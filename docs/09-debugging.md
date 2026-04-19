@@ -7,13 +7,14 @@
 
 ## このページは何？
 
-**実際に cub3D を作って遭遇した 4 つのバグと、その直し方を記録したページ** です。
+**実際に cub3D を作って遭遇した 6 つのバグと、その直し方を記録したページ** です。
 
 教科書的な解説だけでなく、**実際のハマりポイント** を知っておくと、
 あなたが同じバグに遭遇したとき即座に対処できます。
 
 !!! info "元コミット"
-    Git log: [`53cdd1f` — Fix Linux key input, add map size limit, and improve map parser](https://github.com/) (2026-04-12)
+    - `53cdd1f` — Fix Linux key input, add map size limit, and improve map parser (2026-04-12)
+    - `c9917a3` — final（**壁衝突フリーズ修正** + 色パース厳格化） (2026-04-19)
 
 ### 修正サマリー
 
@@ -32,6 +33,12 @@ mindmap
     移動速度
       操作感改善
       2 倍に調整
+    壁衝突フリーズ
+      perp_wall_dist 0除算
+      最小値クランプ
+    色パース厳格化
+      空トークン拒否
+      要素数チェック前倒し
 ```
 
 ---

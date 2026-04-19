@@ -9,12 +9,16 @@
 
 ### 🎬 実際の動き
 
-![cub3D gameplay](images/gameplay.gif)
+<video class="cub3d-video" autoplay loop muted playsinline preload="auto"
+       onclick="this.paused ? this.play() : this.pause();">
+  <source src="images/gameplay.mp4" type="video/mp4">
+  <img src="images/gameplay.gif" alt="cub3D gameplay">
+</video>
 
 プレイヤーが回転・前進すると、画面の壁の位置や大きさがリアルタイムに変化します。
 これが **レイキャスティング** の仕組みです。
 
-*（GIF をクリックで一時停止／再生）*
+*動画をクリックすると **その場で一時停止**（再クリックで再生再開）*
 
 ---
 
