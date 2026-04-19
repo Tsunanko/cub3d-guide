@@ -101,7 +101,7 @@ def main():
         "ffmpeg", "-y",
         "-framerate", str(int(fps)),
         "-i", f"{tmp_dir}/f%04d.png",
-        "-vf", "scale=480:-1:flags=lanczos,palettegen=max_colors=64",
+        "-vf", "scale=720:-1:flags=lanczos,palettegen=max_colors=96",
         palette,
     ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     subprocess.run([
@@ -109,7 +109,7 @@ def main():
         "-framerate", str(int(fps)),
         "-i", f"{tmp_dir}/f%04d.png",
         "-i", palette,
-        "-lavfi", "scale=480:-1:flags=lanczos [x]; [x][1:v] paletteuse=dither=bayer:bayer_scale=5",
+        "-lavfi", "scale=720:-1:flags=lanczos [x]; [x][1:v] paletteuse=dither=bayer:bayer_scale=4",
         "-loop", "0",
         gif,
     ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)

@@ -1,0 +1,15 @@
+/* 画像とGIFを全幅で大きく表示 */
+.md-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* GIFやスクリーンショットは特に大きく */
+.md-content img[src$=".gif"],
+.md-content img[src$=".png"] {
+    display: block;
+    margin: 1em auto;
+    max-width: 100%;
+}
