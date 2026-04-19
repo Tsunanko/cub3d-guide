@@ -25,7 +25,7 @@ from Quartz import (
 
 CUB3D = "/tmp/cub3D_demo"
 CUB3D_DIR = "/Users/ichippe/Workspace/01-42tokyo/milestone4/cub3d"
-MAP = "maps/valid/00_subject.cub"
+MAP = "maps/valid/02_small_square.cub"
 OUT = "/Users/ichippe/Workspace/01-42tokyo/milestone4/cub3d-guide/docs/images"
 
 
