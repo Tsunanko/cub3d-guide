@@ -1,9 +1,10 @@
-/* 動画制御: 堅牢な autoplay + ループ + クリック一時停止
+/* 動画制御: 堅牢な autoplay + ループ + クリック一時停止 (v2)
  *
- * - ページ表示時に確実に play を試みる
- * - タブに戻った時に再生再開
- * - ended イベントで loop の保険
- * - クリックは dblclick（誤クリック防止）
+ * 追加対策:
+ * - IntersectionObserver で画面内に入った時に play
+ * - pause イベントで（ユーザー意図以外なら）再開
+ * - 定期的に paused を監視して自動復旧
+ * - ユーザー操作フラグ（クリックによる明示的 pause かを判定）
  */
 (function () {
   'use strict';
@@ -12,50 +13,78 @@
     if (video.dataset.controlInit === '1') return;
     video.dataset.controlInit = '1';
 
-    // 属性を確実にセット
     video.muted = true;
     video.loop = true;
     video.playsInline = true;
+    video.preload = 'auto';
 
-    // 初回再生を強化
+    // ユーザーが明示的に一時停止したか
+    var userPaused = false;
+
     var tryPlay = function () {
-      var promise = video.play();
-      if (promise !== undefined) {
-        promise.catch(function () {
-          // autoplay 失敗時は無視（ユーザー操作後に再生される）
-        });
-      }
+      if (userPaused) return;
+      try {
+        var p = video.play();
+        if (p !== undefined) {
+          p.catch(function () { /* 無視 */ });
+        }
+      } catch (e) { /* 無視 */ }
     };
 
-    // loop の保険: ended で明示的に巻き戻し
+    // クリックで明示的に pause/play トグル
+    video.addEventListener('click', function () {
+      if (video.paused) {
+        userPaused = false;
+        tryPlay();
+      } else {
+        userPaused = true;
+        video.pause();
+      }
+    });
+
+    // pause が勝手に起きたら復帰（ユーザー意図でなければ）
+    video.addEventListener('pause', function () {
+      if (!userPaused && !document.hidden) {
+        setTimeout(tryPlay, 50);
+      }
+    });
+
+    // ended で明示的に巻き戻し（loop の保険）
     video.addEventListener('ended', function () {
       video.currentTime = 0;
       tryPlay();
     });
 
-    // タブに戻った時に再生再開
+    // タブ復帰時に再生
     document.addEventListener('visibilitychange', function () {
-      if (!document.hidden && video.paused) {
+      if (!document.hidden && !userPaused && video.paused) {
         tryPlay();
       }
     });
 
-    // クリックは pause/play トグル（シンプル）
-    video.addEventListener('click', function () {
-      if (video.paused) {
-        tryPlay();
-      } else {
-        video.pause();
-      }
-    });
+    // ページ内に入ったら再生（IntersectionObserver）
+    if (typeof IntersectionObserver !== 'undefined') {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (ent) {
+          if (ent.isIntersecting && !userPaused && video.paused) {
+            tryPlay();
+          }
+        });
+      }, { threshold: 0.1 });
+      io.observe(video);
+    }
 
-    // 初期再生
+    // 定期的な監視（3秒おき）
+    setInterval(function () {
+      if (!userPaused && video.paused && !document.hidden) {
+        tryPlay();
+      }
+    }, 3000);
+
+    // 初回再生試行
     tryPlay();
-
-    // 1秒後に paused だったら再試行（autoplay policy 対策）
-    setTimeout(function () {
-      if (video.paused) tryPlay();
-    }, 1000);
+    setTimeout(tryPlay, 500);
+    setTimeout(tryPlay, 1500);
   }
 
   function initAll() {
@@ -65,7 +94,6 @@
     }
   }
 
-  // Material の instant navigation に対応
   if (window.document$ && typeof window.document$.subscribe === 'function') {
     window.document$.subscribe(initAll);
   } else if (document.readyState === 'loading') {
