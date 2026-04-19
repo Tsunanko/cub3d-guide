@@ -1,3 +1,7 @@
+/* =====================================================
+ * cub3D ガイド 共通スタイル
+ * ===================================================== */
+
 /* 画像とGIFを全幅で大きく表示 */
 .md-content img {
     max-width: 100%;
@@ -8,33 +12,10 @@
 
 /* GIFやスクリーンショットは特に大きく */
 .md-content img[src$=".gif"],
-.md-content img[src$=".png"],
-.md-content img[data-gifffer],
-.md-content img[data-gif-wrapped] {
+.md-content img[src$=".png"] {
     display: block;
     margin: 1em auto;
     max-width: 100%;
-}
-
-/* Gifffer のコンテナ（自動挿入される <div>）に適用 */
-.gifffer-wrapper,
-.md-content > p > img[data-gifffer] {
-    cursor: pointer;
-}
-
-/* Gifffer の canvas はクリック可能にしてカーソルを pointer に */
-.md-content canvas {
-    cursor: pointer;
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* ホバー時の見た目 */
-.md-content canvas:hover {
-    opacity: 0.95;
-    transition: opacity 0.2s;
 }
 
 /* 動画も画像と同じ扱いで表示 */
@@ -52,4 +33,147 @@
 .md-content video:hover {
     opacity: 0.97;
     transition: opacity 0.15s;
+}
+
+/* =====================================================
+ * ダークモード調整（[data-md-color-scheme="slate"]）
+ *
+ * 目的:
+ *   Mermaid のパステル塗り (style X fill:#E3F2FD 等) は
+ *   デフォルトで黒文字を想定していてダークモードで
+ *   文字が読みにくいため、明示的に塗りの彩度を上げて
+ *   文字を濃色に強制する。
+ * ===================================================== */
+
+/* Mermaid ノードのテキストをダークモードでも見やすく */
+[data-md-color-scheme="slate"] .mermaid .node rect,
+[data-md-color-scheme="slate"] .mermaid .node polygon,
+[data-md-color-scheme="slate"] .mermaid .node circle,
+[data-md-color-scheme="slate"] .mermaid .node ellipse,
+[data-md-color-scheme="slate"] .mermaid .node path {
+    stroke-width: 1.5px;
+}
+
+/* ダークモードで Mermaid ラベル文字を濃い色に統一 */
+[data-md-color-scheme="slate"] .mermaid .nodeLabel,
+[data-md-color-scheme="slate"] .mermaid .nodeLabel p,
+[data-md-color-scheme="slate"] .mermaid .nodeLabel span,
+[data-md-color-scheme="slate"] .mermaid .edgeLabel,
+[data-md-color-scheme="slate"] .mermaid .edgeLabel p,
+[data-md-color-scheme="slate"] .mermaid .label {
+    color: #1a1a1a !important;
+    fill: #1a1a1a !important;
+}
+
+/* edgeLabel の背景（矢印ラベル下地）もダーク対応 */
+[data-md-color-scheme="slate"] .mermaid .edgeLabel rect,
+[data-md-color-scheme="slate"] .mermaid .edgeLabel .labelBkg {
+    fill: #eceff1 !important;
+    background-color: #eceff1 !important;
+    opacity: 0.95 !important;
+}
+
+/* Mermaid の矢印線 */
+[data-md-color-scheme="slate"] .mermaid .flowchart-link,
+[data-md-color-scheme="slate"] .mermaid path.path,
+[data-md-color-scheme="slate"] .mermaid .edgePath .path {
+    stroke: #b0bec5 !important;
+}
+
+[data-md-color-scheme="slate"] .mermaid marker path,
+[data-md-color-scheme="slate"] .mermaid .arrowheadPath {
+    fill: #b0bec5 !important;
+    stroke: #b0bec5 !important;
+}
+
+/* =====================================================
+ * ダークモードでのその他の読みやすさ改善
+ * ===================================================== */
+
+/* インラインコード（`code`）のコントラスト向上 */
+[data-md-color-scheme="slate"] code {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: #ffcc80;
+}
+
+/* ==highlight== のダークモード対応 */
+[data-md-color-scheme="slate"] mark {
+    background-color: #ffe082;
+    color: #1a1a1a;
+    padding: 0 0.2em;
+    border-radius: 3px;
+}
+
+/* テーブル行の縞模様（ダークモードでも読みやすく） */
+[data-md-color-scheme="slate"] .md-typeset table:not([class]) tbody tr:nth-child(odd) {
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+[data-md-color-scheme="slate"] .md-typeset table:not([class]) th {
+    background-color: rgba(255, 255, 255, 0.06);
+    color: #eceff1;
+}
+
+/* 引用ブロック (blockquote) のダークモード */
+[data-md-color-scheme="slate"] .md-typeset blockquote {
+    color: #cfd8dc;
+    border-left-color: #546e7a;
+}
+
+/* Admonition タイトルバーの文字色を明るく */
+[data-md-color-scheme="slate"] .md-typeset .admonition-title,
+[data-md-color-scheme="slate"] .md-typeset summary {
+    color: #eceff1;
+}
+
+/* Admonition ボックスの背景を若干明るく */
+[data-md-color-scheme="slate"] .md-typeset .admonition,
+[data-md-color-scheme="slate"] .md-typeset details {
+    background-color: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* タブ (pymdownx.tabbed) のダークモード */
+[data-md-color-scheme="slate"] .md-typeset .tabbed-set > input:checked + label {
+    color: #ff9800;
+    border-color: #ff9800;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .tabbed-labels > label {
+    color: #b0bec5;
+}
+
+/* リンクの下線強化（ダークモードでも見やすく） */
+[data-md-color-scheme="slate"] .md-typeset a {
+    color: #80cbc4;
+}
+
+[data-md-color-scheme="slate"] .md-typeset a:hover {
+    color: #ffcc80;
+}
+
+/* チェックリストのチェックマークもダーク対応 */
+[data-md-color-scheme="slate"] .md-typeset [type="checkbox"] + label::before {
+    border-color: #78909c;
+}
+
+/* 見出しの下線（h2）のコントラスト */
+[data-md-color-scheme="slate"] .md-typeset h2 {
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+/* コードブロック全体のフォント明るさ */
+[data-md-color-scheme="slate"] .highlight .cp,
+[data-md-color-scheme="slate"] .highlight .c1,
+[data-md-color-scheme="slate"] .highlight .cm,
+[data-md-color-scheme="slate"] .highlight .c {
+    color: #90a4ae !important;
+}
+
+/* キーボードショートカット */
+[data-md-color-scheme="slate"] .md-typeset kbd {
+    background-color: #37474f;
+    color: #eceff1;
+    border-color: #546e7a;
+    box-shadow: 0 1px 0 #263238;
 }
