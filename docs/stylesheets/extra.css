@@ -36,3 +36,20 @@
     opacity: 0.95;
     transition: opacity 0.2s;
 }
+
+/* 動画も画像と同じ扱いで表示 */
+.md-content video,
+.md-content .cub3d-video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1em auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    cursor: pointer;
+}
+
+.md-content video:hover {
+    opacity: 0.97;
+    transition: opacity 0.15s;
+}
