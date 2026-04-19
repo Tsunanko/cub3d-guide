@@ -51,7 +51,7 @@ markdown_extensions:
   - md_in_html
   - tables
   - toc:
-      permalink: true
+      permalink: "🔗"
   - pymdownx.arithmatex:
       generic: true
   - pymdownx.details
@@ -100,3 +100,4 @@ nav:
   - 08. メモリ管理: 08-memory.md
   - 09. 実際のバグと修正: 09-debugging.md
   - 🎓 評価対策: eval.md
+  - 📚 用語集: glossary.md
