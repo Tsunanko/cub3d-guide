@@ -52,6 +52,8 @@ markdown_extensions:
   - tables
   - toc:
       permalink: true
+  - pymdownx.arithmatex:
+      generic: true
   - pymdownx.details
   - pymdownx.superfences:
       custom_fences:
@@ -82,13 +84,19 @@ plugins:
         - ja
         - en
 
+extra_javascript:
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
 nav:
   - ホーム: index.md
   - 01. 概要とビルド: 01-overview.md
   - 02. パーサー: 02-parser.md
-  - 03. レイキャスティング: 03-raycasting.md
-  - 04. レンダリング: 04-rendering.md
-  - 05. 入力処理: 05-input.md
-  - 06. メモリ管理: 06-memory.md
-  - 07. 実際のバグと修正: 07-debugging.md
+  - 03. レイキャスティングとは: 03-raycasting.md
+  - 04. DDA アルゴリズム: 04-dda.md
+  - 05. カメラと魚眼補正: 05-camera.md
+  - 06. レンダリング: 06-rendering.md
+  - 07. 入力処理: 07-input.md
+  - 08. メモリ管理: 08-memory.md
+  - 09. 実際のバグと修正: 09-debugging.md
   - 🎓 評価対策: eval.md
