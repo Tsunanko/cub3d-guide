@@ -336,15 +336,19 @@ flowchart TD
 
 **どの関数がどこから呼ばれるか** を整理します。
 
+!!! tip "💡 クリックで解説ページへジャンプ"
+    図の **ノード（関数名）をクリック** すると、その関数の詳しい解説ページに飛びます。
+    関係図が大きいので **3 つに分割** しました。
+
+### ① 起動時の流れ（main → パース → 初期化）
+
 ```mermaid
-flowchart TD
-    M[main]
-    M --> CA[ft_check_args]
-    M --> PR[ft_parse]
-    M --> IG[ft_init_game]
-    M --> MH[mlx_hook x3]
-    M --> MLH[mlx_loop_hook]
-    M --> ML[mlx_loop]
+flowchart LR
+    M([main]) --> CA[ft_check_args<br>引数チェック]
+    M --> PR[ft_parse<br>.cub 解析]
+    M --> IG[ft_init_game<br>miniLibX 起動]
+    M --> MH[mlx_hook × 3<br>イベント登録]
+    M --> ML([mlx_loop<br>無限ループ開始])
 
     PR --> PE[ft_parse_elements]
     PR --> PM[ft_parse_map]
@@ -356,28 +360,72 @@ flowchart TD
     IG --> LT[ft_load_textures]
     IG --> IP[ft_init_player]
 
-    MLH -.毎フレーム.-> GL[ft_game_loop]
-    GL --> MV[ft_move]
-    GL --> RN[ft_render]
+    style M fill:#E3F2FD,stroke:#1976D2,stroke-width:3px
+    style ML fill:#F8BBD0,stroke:#C2185B,stroke-width:2px
+    style PR fill:#FFF9C4
+    style IG fill:#FFE0B2
 
-    RN --> Loop[1024回ループ]
-    Loop --> CR[ft_cast_ray]
-    Loop --> DC[ft_draw_column]
+    click PR "02-parser.html" "パーサー解説へ"
+    click PE "02-parser.html" "パース詳細へ"
+    click PM "02-parser.html" "マップ解析へ"
+    click VM "02-parser.html" "マップ検証へ"
+    click MH "07-input.html" "入力処理へ"
+```
+
+### ② メインループ（毎フレーム）
+
+```mermaid
+flowchart LR
+    ML([mlx_loop]) -.毎フレーム.-> GL([ft_game_loop])
+    GL --> MV[ft_move<br>移動]
+    GL --> RN[ft_render<br>描画]
+
+    RN --> Loop[1024 回ループ]
+    Loop --> CR[ft_cast_ray<br>光線を飛ばす]
+    Loop --> DC[ft_draw_column<br>縦 1 列描画]
 
     CR --> IRD[ft_init_ray_dir]
     CR --> IS[ft_init_step]
     CR --> DDA[ft_dda]
     CR --> CWD[ft_calc_wall_dist]
 
-    MH -.キー押下.-> KP[ft_key_press]
+    style ML fill:#F8BBD0
+    style GL fill:#F8BBD0,stroke:#C2185B,stroke-width:3px
+    style MV fill:#FFE0B2
+    style RN fill:#C8E6C9
+    style CR fill:#BBDEFB
+    style DC fill:#FFF9C4
+
+    click MV "07-input.html" "移動処理へ"
+    click RN "06-rendering.html" "レンダリングへ"
+    click CR "03-raycasting.html" "レイキャスティングへ"
+    click DC "06-rendering.html" "描画詳細へ"
+    click DDA "04-dda.html" "DDA アルゴリズムへ"
+    click IRD "05-camera.html" "光線方向計算へ"
+    click IS "04-dda.html" "DDA 初期化へ"
+    click CWD "05-camera.html" "垂直距離計算へ"
+```
+
+### ③ イベント処理（キー入力・終了）
+
+```mermaid
+flowchart LR
+    MH([mlx_hook]) -.キー押下.-> KP[ft_key_press]
     MH -.キー離す.-> KR[ft_key_release]
     MH -.× ボタン.-> CW[ft_close_window]
 
-    CW --> CL[ft_cleanup]
+    CW --> CL[ft_cleanup<br>メモリ解放]
 
-    style M fill:#E3F2FD
-    style GL fill:#F8BBD0
-    style CL fill:#FFCDD2
+    style MH fill:#E3F2FD,stroke:#1976D2,stroke-width:3px
+    style KP fill:#FFF9C4
+    style KR fill:#FFF9C4
+    style CW fill:#FFCDD2
+    style CL fill:#FFCDD2,stroke:#C62828,stroke-width:2px
+
+    click KP "07-input.html" "キー押下処理へ"
+    click KR "07-input.html" "キー離し処理へ"
+    click CW "08-memory.html" "ウィンドウ閉じ処理へ"
+    click CL "08-memory.html" "メモリ解放へ"
 ```
 
 ---
