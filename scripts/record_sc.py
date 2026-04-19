@@ -14,7 +14,7 @@ from Quartz import (
 
 CUB3D = "/tmp/cub3D_demo"
 CUB3D_DIR = "/Users/ichippe/Workspace/01-42tokyo/milestone4/cub3d"
-MAP = "maps/valid/00_subject.cub"
+MAP = "maps/valid/02_small_square.cub"
 OUT = "/Users/ichippe/Workspace/01-42tokyo/milestone4/cub3d-guide/docs/images"
 
 
@@ -64,8 +64,8 @@ def main():
 
     # 10 秒間、0.15 秒おきに screencapture でキャプチャ
     # （フォアグラウンドを保つために毎回 activate）
-    duration = 12.0
-    interval = 0.15
+    duration = 7.0
+    interval = 0.1
     n_frames = int(duration / interval)
 
     print(f"Capturing {n_frames} frames...")
@@ -101,7 +101,7 @@ def main():
         "ffmpeg", "-y",
         "-framerate", str(int(fps)),
         "-i", f"{tmp_dir}/f%04d.png",
-        "-vf", "scale=600:-1:flags=lanczos,palettegen=max_colors=128",
+        "-vf", "scale=480:-1:flags=lanczos,palettegen=max_colors=64",
         palette,
     ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     subprocess.run([
@@ -109,7 +109,7 @@ def main():
         "-framerate", str(int(fps)),
         "-i", f"{tmp_dir}/f%04d.png",
         "-i", palette,
-        "-lavfi", "scale=600:-1:flags=lanczos [x]; [x][1:v] paletteuse=dither=bayer:bayer_scale=3",
+        "-lavfi", "scale=480:-1:flags=lanczos [x]; [x][1:v] paletteuse=dither=bayer:bayer_scale=5",
         "-loop", "0",
         gif,
     ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
