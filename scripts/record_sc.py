@@ -14,7 +14,7 @@ from Quartz import (
 
 CUB3D = "/tmp/cub3D_demo"
 CUB3D_DIR = "/Users/ichippe/Workspace/01-42tokyo/milestone4/cub3d"
-MAP = "maps/valid/02_small_square.cub"
+MAP = "maps/valid/00_subject.cub"
 OUT = "/Users/ichippe/Workspace/01-42tokyo/milestone4/cub3d-guide/docs/images"
 
 
@@ -64,7 +64,7 @@ def main():
 
     # 10 秒間、0.15 秒おきに screencapture でキャプチャ
     # （フォアグラウンドを保つために毎回 activate）
-    duration = 10.0
+    duration = 12.0
     interval = 0.15
     n_frames = int(duration / interval)
 
