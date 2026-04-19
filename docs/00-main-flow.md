@@ -17,6 +17,9 @@
 
 ## 1. プログラム全体を俯瞰
 
+!!! tip "💡 図の使い方"
+    **各ボックスをクリックすると** 詳しい解説ページに飛びます！
+
 ```mermaid
 flowchart TD
     Start([プログラム起動]) --> Args[引数チェック<br>.cub ファイル指定?]
@@ -40,6 +43,13 @@ flowchart TD
     style Loop fill:#F8BBD0
     style Render fill:#C8E6C9
     style End fill:#D1C4E9
+
+    click Parse "02-parser.html" "パーサーの詳細へ"
+    click Init "00-main-flow.html#4-init-c" "初期化の詳細へ"
+    click Hook "07-input.html" "入力処理の詳細へ"
+    click Move "07-input.html" "移動処理の詳細へ"
+    click Render "03-raycasting.html" "レイキャスティングの詳細へ"
+    click Cleanup "08-memory.html" "メモリ管理の詳細へ"
 ```
 
 ---
