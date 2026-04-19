@@ -8,8 +8,31 @@
 
 /* GIFやスクリーンショットは特に大きく */
 .md-content img[src$=".gif"],
-.md-content img[src$=".png"] {
+.md-content img[src$=".png"],
+.md-content img[data-gifffer],
+.md-content img[data-gif-wrapped] {
     display: block;
     margin: 1em auto;
     max-width: 100%;
+}
+
+/* Gifffer のコンテナ（自動挿入される <div>）に適用 */
+.gifffer-wrapper,
+.md-content > p > img[data-gifffer] {
+    cursor: pointer;
+}
+
+/* Gifffer の canvas はクリック可能にしてカーソルを pointer に */
+.md-content canvas {
+    cursor: pointer;
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ホバー時の見た目 */
+.md-content canvas:hover {
+    opacity: 0.95;
+    transition: opacity 0.2s;
 }
