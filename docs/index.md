@@ -9,8 +9,7 @@
 
 ### 🎬 実際の動き
 
-<video class="cub3d-video" autoplay loop muted playsinline preload="auto"
-       onclick="this.paused ? this.play() : this.pause();">
+<video class="cub3d-video" autoplay loop muted playsinline preload="auto">
   <source src="images/gameplay.mp4" type="video/mp4">
   <img src="images/gameplay.gif" alt="cub3D gameplay">
 </video>
