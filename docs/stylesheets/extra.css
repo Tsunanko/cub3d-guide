@@ -20,6 +20,18 @@
 .md-typeset h3 { font-size: clamp(1.05rem, 0.95rem + 0.3vw, 1.2rem); }
 .md-typeset h4 { font-size: 1.05rem; }
 
+/* 見出しは日本語単位で改行（半角スペース前後で変な位置に折れないように） */
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3,
+.md-typeset h4,
+.md-typeset h5,
+.md-typeset h6 {
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    line-break: strict;
+}
+
 /* サイドバー・ナビは本文より一回り小さく */
 .md-nav {
     font-size: clamp(0.7rem, 0.68rem + 0.08vw, 0.76rem);
@@ -251,9 +263,10 @@
     letter-spacing: 0.02em;
 }
 
-.md-nav__item--section > .md-nav__link,
-.md-nav--secondary .md-nav__item--nested > .md-nav__link,
-.md-nav__list > .md-nav__item > label.md-nav__link {
+/* セクション見出し（nav.sections の非リンク見出し）のみスタイル。
+ * label.md-nav__link はモバイル展開用で Material がデフォルトで hide している
+ * ため触らない（触るとデスクトップで「02. パーサー」が 2 重表示になる）。 */
+.md-nav__item--section > .md-nav__link {
     cursor: default;
     font-weight: 700;
     font-size: 0.82rem;
@@ -267,9 +280,7 @@
     opacity: 1;
 }
 
-[data-md-color-scheme="slate"] .md-nav__item--section > .md-nav__link,
-[data-md-color-scheme="slate"] .md-nav--secondary .md-nav__item--nested > .md-nav__link,
-[data-md-color-scheme="slate"] .md-nav__list > .md-nav__item > label.md-nav__link {
+[data-md-color-scheme="slate"] .md-nav__item--section > .md-nav__link {
     color: #ce93d8;
     border-top-color: rgba(255, 255, 255, 0.12);
 }
@@ -284,7 +295,8 @@
     color: #ce93d8;
 }
 
-.md-nav__item:not(.md-nav__item--section) > .md-nav__link {
+/* クリック可能ページリンクは a 要素のみ。label は触らない。 */
+.md-nav__item:not(.md-nav__item--section) > a.md-nav__link {
     display: block;
     padding: 0.35em 0.6em;
     margin: 0.1em 0;
@@ -297,41 +309,47 @@
                 padding-left 0.15s ease;
 }
 
-[data-md-color-scheme="slate"] .md-nav__item:not(.md-nav__item--section) > .md-nav__link {
+[data-md-color-scheme="slate"] .md-nav__item:not(.md-nav__item--section) > a.md-nav__link {
     color: #cfd8dc;
 }
 
-.md-nav__item:not(.md-nav__item--section) > .md-nav__link:hover {
+.md-nav__item:not(.md-nav__item--section) > a.md-nav__link:hover {
     background-color: rgba(94, 53, 177, 0.10);
     border-left-color: #5e35b1;
     color: #311b92;
     padding-left: 0.9em;
 }
-[data-md-color-scheme="slate"] .md-nav__item:not(.md-nav__item--section) > .md-nav__link:hover {
+[data-md-color-scheme="slate"] .md-nav__item:not(.md-nav__item--section) > a.md-nav__link:hover {
     background-color: rgba(206, 147, 216, 0.14);
     border-left-color: #ce93d8;
     color: #ffffff;
 }
 
-.md-nav__link--active,
-.md-nav__item:not(.md-nav__item--section) > .md-nav__link--active {
+.md-nav__item:not(.md-nav__item--section) > a.md-nav__link--active {
     background-color: rgba(94, 53, 177, 0.16);
     border-left-color: #5e35b1;
     color: #311b92 !important;
     font-weight: 600;
 }
-[data-md-color-scheme="slate"] .md-nav__link--active,
-[data-md-color-scheme="slate"] .md-nav__item:not(.md-nav__item--section) > .md-nav__link--active {
+[data-md-color-scheme="slate"] .md-nav__item:not(.md-nav__item--section) > a.md-nav__link--active {
     background-color: rgba(206, 147, 216, 0.20);
     border-left-color: #ce93d8;
     color: #ffffff !important;
 }
 
-.md-nav__link:focus-visible {
+/* label.md-nav__link (モバイル展開トグル) は Material の default に委ねる */
+label.md-nav__link {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+}
+
+a.md-nav__link:focus-visible {
     outline: 2px solid #5e35b1;
     outline-offset: 1px;
 }
-[data-md-color-scheme="slate"] .md-nav__link:focus-visible {
+[data-md-color-scheme="slate"] a.md-nav__link:focus-visible {
     outline-color: #ce93d8;
 }
 
