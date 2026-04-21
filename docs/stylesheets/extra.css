@@ -32,6 +32,19 @@
     line-break: strict;
 }
 
+/* 表の中で <code>（関数名・パス等）が途中で折れないようにする */
+.md-typeset table code {
+    white-space: nowrap;
+}
+
+/* 表のセル内で日本語短単位が不自然に割れないように */
+.md-typeset table td,
+.md-typeset table th {
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+    line-break: strict;
+}
+
 /* サイドバー・ナビは本文より一回り小さく */
 .md-nav {
     font-size: clamp(0.7rem, 0.68rem + 0.08vw, 0.76rem);
