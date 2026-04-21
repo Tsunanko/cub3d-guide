@@ -135,16 +135,15 @@ mlx_hook(game.win, 3, 1L << 1, ft_key_release, &game);
 **ファイル全体を走査して「最後の非空行」を探していた**。
 
 ```mermaid
-flowchart TD
-    subgraph Before["❌ 修正前"]
-        B1[最初の行から開始] --> B2{次の行ある?}
-        B2 -->|yes| B3{空行じゃない?}
-        B3 -->|yes| B4[last_nonempty を更新]
-        B3 -->|no| B5[次の行へ]
-        B4 --> B5
-        B5 --> B2
-        B2 -->|no| B6[最後の非空行までが<br>マップとみなす]
-    end
+flowchart LR
+    B1[最初の行から開始] --> B2{次の行<br>ある?}
+    B2 -->|yes| B3{空行<br>じゃない?}
+    B3 -->|yes| B4[last_nonempty<br>を更新] --> B5[次の行へ]
+    B3 -->|no| B5
+    B5 --> B2
+    B2 -->|no| B6[最後の非空行までが<br>マップとみなす]
+
+    style B6 fill:#FFCDD2
 ```
 
 これだと下記のような問題が発生：
@@ -191,10 +190,9 @@ static int ft_map_line_count(char **lines, int start)
 ### 修正後のフロー
 
 ```mermaid
-flowchart TD
-    A[start 行から開始] --> B{行がある & 空じゃない?}
-    B -->|yes| C[i++]
-    C --> B
+flowchart LR
+    A[start 行から開始] --> B{行があり &<br>空じゃない?}
+    B -->|yes| C[i++] --> B
     B -->|no| D[そこまでが<br>マップの範囲]
 
     style D fill:#C8E6C9
@@ -255,7 +253,7 @@ void ft_parse_map(char **lines, int start,
 ### 判定フロー
 
 ```mermaid
-flowchart TD
+flowchart LR
     A[マップサイズ取得] --> B{幅 > 500 or<br>高さ > 500?}
     B -->|Yes| C["ft_error<br>'Map too large'"]
     B -->|No| D[通常処理へ]

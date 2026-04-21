@@ -316,13 +316,13 @@ void ft_render(t_game *game)
 ### レンダリングの流れ
 
 ```mermaid
-flowchart TD
-    Start([ft_render 開始]) --> Loop{x = 0 .. 1023}
-    Loop --> Cast[ft_cast_ray<br>x 番目の光線を飛ばす]
-    Cast --> Draw[ft_draw_column<br>縦 1 列を描画<br>天井+壁+床]
+flowchart LR
+    Start([ft_render]) --> Loop{x = 0..1023}
+    Loop -->|各列| Cast[ft_cast_ray<br>光線を飛ばす]
+    Cast --> Draw[ft_draw_column<br>縦 1 列を描画]
     Draw --> Loop
-    Loop -- 全部完了 --> Put[mlx_put_image_to_window<br>フレームを画面に転送]
-    Put --> End([ft_render 終了])
+    Loop -->|完了| Put[mlx_put_image<br>画面に転送]
+    Put --> End([終了])
 
     style Start fill:#E3F2FD
     style End fill:#C8E6C9

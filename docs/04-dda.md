@@ -70,16 +70,12 @@ flowchart LR
 **「X の次の格子線」と「Y の次の格子線」のうち近い方に進む** を繰り返すだけ。
 
 ```mermaid
-flowchart TD
-    Start([開始: 今いるマス]) --> CalcX[X の次の<br>格子線までの距離]
-    CalcX --> CalcY[Y の次の<br>格子線までの距離]
-    CalcY --> Compare{どちらが近い?}
-    Compare -- X が近い --> StepX[X 方向に<br>1 マス進む<br>side = 0]
-    Compare -- Y が近い --> StepY[Y 方向に<br>1 マス進む<br>side = 1]
-    StepX --> Check{そのマスは<br>壁 '1' ?}
-    StepY --> Check
-    Check -- Yes --> End([終了: 距離を返す])
-    Check -- No --> Compare
+flowchart LR
+    Start([開始]) --> CalcX[X の次の<br>格子線まで] --> CalcY[Y の次の<br>格子線まで] --> Compare{どちらが<br>近い?}
+    Compare -->|X| StepX[X 方向<br>1 マス進む<br>side = 0] --> Check{壁 '1' ?}
+    Compare -->|Y| StepY[Y 方向<br>1 マス進む<br>side = 1] --> Check
+    Check -->|Yes| End([終了<br>距離を返す])
+    Check -->|No| Compare
 
     style Start fill:#E3F2FD
     style End fill:#C8E6C9
@@ -153,13 +149,10 @@ flowchart TD
 次の **X 格子線** と **Y 格子線** のうち、**光線が先に届く方** が次の通過地点です。
 
 ```mermaid
-flowchart TD
-    Now[現在位置]
-    NextX[次の X 格子線<br>距離 0.5]
-    NextY[次の Y 格子線<br>距離 1.2]
-    Now -- 距離 0.5 --> NextX
-    Now -- 距離 1.2 --> NextY
-    NextX -- 0.5 < 1.2 --> Pick[X 格子線を通過]
+flowchart LR
+    Now[現在位置] -->|距離 0.5| NextX[次の X 格子線]
+    Now -->|距離 1.2| NextY[次の Y 格子線]
+    NextX -->|0.5 < 1.2| Pick[X 格子線を通過]
 
     style Now fill:#E3F2FD
     style Pick fill:#C8E6C9

@@ -82,11 +82,11 @@ cub3D では画面サイズが `includes/cub3d.h` に定義されています:
 幅が 1024 なら 1024 本必要です。
 
 ```mermaid
-flowchart TD
-    Screen[画面<br>横幅 1024px] --> Col1[縦線 1: 光線 #0]
-    Screen --> Col2[縦線 2: 光線 #1]
+flowchart LR
+    Screen[画面<br>横幅 1024px] --> Col1[縦線 1<br>光線 #0]
+    Screen --> Col2[縦線 2<br>光線 #1]
     Screen --> ColDots[... 中略 ...]
-    Screen --> ColEnd[縦線 1024: 光線 #1023]
+    Screen --> ColEnd[縦線 1024<br>光線 #1023]
 
     style Screen fill:#E3F2FD
 ```
@@ -116,11 +116,11 @@ flowchart LR
 ## 4. 1 本の光線で何をするか
 
 ```mermaid
-flowchart TD
-    Start[画面の 1 ピクセル幅の<br>縦線を描きたい] --> Ray[そのピクセル専用の<br>光線を 1 本飛ばす]
-    Ray --> Dist[1 マスずつ進んで<br>壁までの距離を測る<br>例: 4 マス]
-    Dist --> Calc["壁の高さ = 画面高さ 768 ÷ 距離 4<br>= 192 ピクセル"]
-    Calc --> Draw[画面中央に<br>高さ 192 ピクセルの<br>縦線を描画]
+flowchart LR
+    Start[画面の<br>1px 幅の縦線] --> Ray[専用の光線を<br>1 本飛ばす]
+    Ray --> Dist[1 マスずつ進んで<br>壁までの距離測定<br>例: 4 マス]
+    Dist --> Calc["壁の高さ<br>= 768 ÷ 4<br>= 192 px"]
+    Calc --> Draw[画面中央に<br>192px の縦線<br>を描画]
 
     style Start fill:#E3F2FD
     style Draw fill:#C8E6C9

@@ -35,17 +35,11 @@ DDA で壁は見つけられるようになりました。
 その画面の幅を決めるのが **plane** ベクトルです。
 
 ```mermaid
-flowchart TD
-    P(プレイヤー)
-    D[正面<br>dir ベクトル]
-    PL[視野の横幅<br>plane ベクトル]
-    L[視野の左端]
-    R[視野の右端]
-
-    P --> D
-    P --> PL
-    PL --> L
-    PL --> R
+flowchart LR
+    P(プレイヤー) --> D[正面<br>dir ベクトル]
+    P --> PL[視野の横幅<br>plane ベクトル]
+    PL --> L[視野の左端]
+    PL --> R[視野の右端]
 
     style P fill:#4CAF50,color:#fff,stroke:#1B5E20,stroke-width:2px
     style D fill:#FFC107,color:#000
@@ -172,14 +166,14 @@ $$
 DDA で **最後にどちらの格子線を渡ったか** と **光線の向きの符号** で決まります。
 
 ```mermaid
-flowchart TD
+flowchart LR
     S{side == 0?}
-    S -- Yes<br>X 壁に当たった --> D1{dir.x > 0?}
-    S -- No<br>Y 壁に当たった --> D2{dir.y > 0?}
-    D1 -- Yes, 東向き --> EA[EA<br>東側テクスチャ]
-    D1 -- No, 西向き --> WE[WE<br>西側テクスチャ]
-    D2 -- Yes, 南向き --> SO[SO<br>南側テクスチャ]
-    D2 -- No, 北向き --> NO[NO<br>北側テクスチャ]
+    S -->|Yes<br>X 壁| D1{dir.x > 0?}
+    S -->|No<br>Y 壁| D2{dir.y > 0?}
+    D1 -->|Yes 東向き| EA[EA<br>東側テクスチャ]
+    D1 -->|No 西向き| WE[WE<br>西側テクスチャ]
+    D2 -->|Yes 南向き| SO[SO<br>南側テクスチャ]
+    D2 -->|No 北向き| NO[NO<br>北側テクスチャ]
 
     style EA fill:#FFE082
     style WE fill:#FFAB91

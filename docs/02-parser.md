@@ -160,14 +160,12 @@ flowchart LR
 全部読むと合計 `111111` → **`0x3F`**（10 進数で 63）になります。
 
 ```mermaid
-flowchart TD
-    Start[flags = 0x00<br>まだ何も読んでない] --> R1[NO を読む]
-    R1 --> F1[flags = 0x01]
-    F1 --> R2[SO を読む]
-    R2 --> F2[flags = 0x03]
-    F2 --> Dots[... 残りも順次]
-    Dots --> Full[flags = 0x3F<br>全部読んだ!]
-    Full --> Go[マップ読み取りへ進む]
+flowchart LR
+    Start[flags = 0x00<br>何も読んでない] --> R1[NO を読む<br>flags = 0x01]
+    R1 --> R2[SO を読む<br>flags = 0x03]
+    R2 --> Dots[... 残り 4 つも<br>順次読む]
+    Dots --> Full[flags = 0x3F<br>全部完了!]
+    Full --> Go[マップ読み取りへ]
 
     style Start fill:#FFCDD2
     style Full fill:#C8E6C9

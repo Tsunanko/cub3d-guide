@@ -77,25 +77,40 @@
     margin: 1.5em auto;
     text-align: center;
 }
+/* SVG は親幅いっぱい使う。Mermaid は内部 viewBox を持つので
+ * width: 100% で自然にスケールアップ（小さい図も画面幅まで広がる） */
 .mermaid svg {
-    max-width: 100%;
+    width: 100% !important;
+    max-width: 100% !important;
     height: auto;
+    display: block;
+    margin: 0 auto;
 }
 .mermaid .node rect,
 .mermaid .node polygon,
 .mermaid .node circle,
 .mermaid .node ellipse,
 .mermaid .node path {
-    stroke-width: 2px !important;
+    stroke-width: 2.5px !important;
 }
+/* 17 → 20px。SVG が拡大されるとさらに大きく見える */
 .mermaid .nodeLabel,
 .mermaid .nodeLabel p,
 .mermaid .label {
-    font-size: 17px !important;
+    font-size: 20px !important;
+    font-weight: 500;
+    line-height: 1.4 !important;
+}
+.mermaid .edgeLabel,
+.mermaid .edgeLabel p,
+.mermaid .edgeLabel span {
+    font-size: 18px !important;
     font-weight: 500;
 }
-.mermaid .edgeLabel {
-    font-size: 16px !important;
+.mermaid .cluster-label,
+.mermaid .cluster text {
+    font-size: 19px !important;
+    font-weight: 600 !important;
 }
 
 /* =====================================================
