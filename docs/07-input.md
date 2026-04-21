@@ -10,17 +10,13 @@
 
 **キーボード入力を受け取ってプレイヤーを動かす処理** を解説します。
 
-```
-キー押下 (W)
-   ↓
-keys.w = 1 にセット
-   ↓
-毎フレーム移動関数を呼ぶ
-   ↓
-player.pos を更新
-   ↓
-次フレームで再描画
-```
+<div class="step-flow">
+  <div class="step"><span class="step-num">1</span>キー押下<br><code>W</code></div>
+  <div class="step"><span class="step-num">2</span><code>keys.w = 1</code><br>にセット</div>
+  <div class="step"><span class="step-num">3</span>毎フレーム<br>移動関数を<br>呼ぶ</div>
+  <div class="step"><span class="step-num">4</span><code>player.pos</code><br>を更新</div>
+  <div class="step"><span class="step-num">5</span>次フレームで<br>再描画</div>
+</div>
 
 **リアルタイムに動く** 仕組みはこのループで成り立っています。
 
