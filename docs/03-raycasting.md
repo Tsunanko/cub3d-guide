@@ -52,7 +52,7 @@
 ```mermaid
 flowchart LR
     P[プレイヤー] == 光線 ==> W[壁]
-    P -. 光の長さ = 壁までの距離 .-> W
+    P -.->|光の長さ = 壁までの距離| W
 
     style P fill:#4CAF50,color:#fff,stroke:#1B5E20,stroke-width:2px
     style W fill:#795548,color:#fff,stroke:#3E2723,stroke-width:2px
