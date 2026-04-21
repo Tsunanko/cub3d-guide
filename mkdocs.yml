@@ -92,6 +92,7 @@ extra_javascript:
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
   - js/video-control.js
   - js/mermaid-override.js
+  - js/user-notes.js
 
 nav:
   - ホーム: index.md

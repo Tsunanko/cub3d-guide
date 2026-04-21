@@ -515,3 +515,229 @@ a.md-nav__link:focus-visible {
 [data-md-color-scheme="slate"] .concept-card.concept-warning .concept-title {
     color: #ffab91;
 }
+
+/* =====================================================
+ * マイメモ機能 (user-notes.js)
+ * 右下 FAB + 右からスライドする drawer で、ページごとのメモを localStorage 保存
+ * カラーは JS 側から --un-primary / --un-primary-dark を注入
+ * ===================================================== */
+
+#un-fab {
+    position: fixed;
+    right: 1.2rem;
+    bottom: 1.2rem;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: none;
+    background: var(--un-primary, #5e35b1);
+    color: #fff;
+    font-size: 22px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    z-index: 100;
+    transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+#un-fab:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+    background: var(--un-primary-dark, #4527a0);
+}
+#un-fab:focus {
+    outline: 3px solid rgba(255, 255, 255, 0.6);
+    outline-offset: 2px;
+}
+.un-fab-icon {
+    font-size: 24px;
+    line-height: 1;
+}
+.un-fab-dot {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #4caf50;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+#un-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    z-index: 199;
+    opacity: 0;
+    transition: opacity 0.24s ease-out;
+}
+#un-backdrop.un-open {
+    opacity: 1;
+}
+
+#un-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 420px;
+    max-width: 100vw;
+    height: 100vh;
+    background: var(--md-default-bg-color, #fff);
+    color: var(--md-default-fg-color, #111);
+    box-shadow: -4px 0 14px rgba(0, 0, 0, 0.2);
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform 0.24s ease-out;
+    font-size: 0.9rem;
+}
+#un-drawer.un-open {
+    transform: translateX(0);
+}
+
+.un-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 1rem 1rem 0.8rem;
+    border-bottom: 1px solid var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.1));
+    gap: 0.6rem;
+}
+.un-head-title {
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-start;
+    min-width: 0;
+    flex: 1;
+}
+.un-head-icon {
+    font-size: 1.6rem;
+    line-height: 1;
+    flex-shrink: 0;
+}
+.un-head-text {
+    min-width: 0;
+    flex: 1;
+}
+.un-head-label {
+    font-size: 0.72rem;
+    opacity: 0.6;
+    line-height: 1.2;
+}
+.un-head-page {
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.3;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+}
+#un-close {
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: 1.2rem;
+    cursor: pointer;
+    opacity: 0.65;
+    padding: 0.2rem 0.5rem;
+    flex-shrink: 0;
+    line-height: 1;
+}
+#un-close:hover {
+    opacity: 1;
+}
+
+.un-hint {
+    padding: 0.6rem 1rem;
+    font-size: 0.74rem;
+    line-height: 1.6;
+    opacity: 0.8;
+    background: var(--md-code-bg-color, #f5f5f5);
+    border-bottom: 1px solid var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.08));
+}
+[data-md-color-scheme="slate"] .un-hint {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+#un-text {
+    flex: 1;
+    width: 100%;
+    min-height: 0;
+    padding: 0.9rem 1rem;
+    border: none;
+    outline: none;
+    resize: none;
+    font-family: inherit;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: inherit;
+    background: transparent;
+    tab-size: 2;
+}
+#un-text::placeholder {
+    opacity: 0.4;
+}
+
+.un-foot {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.4rem;
+    padding: 0.7rem;
+    border-top: 1px solid var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.1));
+    background: var(--md-default-bg-color, #fff);
+}
+.un-foot button {
+    padding: 0.5rem 0.6rem;
+    background: transparent;
+    color: inherit;
+    border: 1px solid var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.15));
+    border-radius: 4px;
+    font-size: 0.78rem;
+    cursor: pointer;
+    transition: background 0.12s, border-color 0.12s;
+}
+.un-foot button:hover {
+    background: var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.06));
+    border-color: var(--md-default-fg-color--lighter, rgba(0, 0, 0, 0.3));
+}
+.un-foot .un-feedback {
+    grid-column: 1 / -1;
+    background: var(--un-primary, #5e35b1);
+    color: #fff;
+    border-color: var(--un-primary, #5e35b1);
+    font-weight: 600;
+}
+.un-foot .un-feedback:hover {
+    background: var(--un-primary-dark, #4527a0);
+    border-color: var(--un-primary-dark, #4527a0);
+}
+
+[data-md-color-scheme="slate"] .un-foot button {
+    background: rgba(255, 255, 255, 0.04);
+}
+[data-md-color-scheme="slate"] .un-foot button:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 480px) {
+    #un-drawer {
+        width: 100vw;
+    }
+    #un-fab {
+        right: 0.9rem;
+        bottom: 0.9rem;
+    }
+}
+
+/* 印刷時は表示しない */
+@media print {
+    #un-fab,
+    #un-drawer,
+    #un-backdrop {
+        display: none !important;
+    }
+}
