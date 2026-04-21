@@ -2,6 +2,29 @@
  * cub3D ガイド 共通スタイル
  * ===================================================== */
 
+/* ----- コンテンツエリア: 広い画面では左右の余白を有効活用 -----
+ * Material デフォルト 1220px だと FHD/QHD で両脇が空きすぎる。
+ * viewport の 92% を上限にしつつ、超ワイドでも 1760px で頭打ち。
+ */
+.md-grid {
+    max-width: min(1760px, 92vw);
+}
+
+/* ----- 本文フォントをビューポート幅に応じて伸縮 ----- */
+.md-typeset {
+    font-size: clamp(0.82rem, 0.78rem + 0.22vw, 0.92rem);
+    line-height: 1.75;
+}
+.md-typeset h1 { font-size: clamp(1.6rem, 1.3rem + 0.9vw, 2.0rem); }
+.md-typeset h2 { font-size: clamp(1.25rem, 1.05rem + 0.6vw, 1.5rem); margin-top: 1.8em; }
+.md-typeset h3 { font-size: clamp(1.05rem, 0.95rem + 0.3vw, 1.2rem); }
+.md-typeset h4 { font-size: 1.05rem; }
+
+/* サイドバー・ナビは本文より一回り小さく */
+.md-nav {
+    font-size: clamp(0.7rem, 0.68rem + 0.08vw, 0.76rem);
+}
+
 /* 画像とGIFを全幅で大きく表示 */
 .md-content img {
     max-width: 100%;
@@ -176,4 +199,245 @@
     color: #eceff1;
     border-color: #546e7a;
     box-shadow: 0 1px 0 #263238;
+}
+
+/* =====================================================
+ * 画像クリックで拡大（画像を含むリンクのみに限定）
+ * 周囲のレイアウトに影響しない absolute オーバーレイ表示。
+ * ===================================================== */
+
+.md-content a:has(> img) {
+    position: relative;
+    display: inline-block;
+}
+
+.md-content a img {
+    cursor: zoom-in;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.md-content a img:hover {
+    transform: scale(1.01);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.22);
+}
+
+.md-content a:has(> img):hover::after {
+    content: "🔍 クリックで拡大";
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    background: rgba(94, 53, 177, 0.92);
+    color: #ffffff;
+    font-size: 0.8em;
+    font-weight: 600;
+    pointer-events: none;
+    letter-spacing: 0.02em;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+[data-md-color-scheme="slate"] .md-content a:has(> img):hover::after {
+    background: rgba(179, 136, 255, 0.92);
+    color: #1a1a1a;
+}
+
+/* =====================================================
+ * サイドバー: セクション見出しとクリック可能リンクを区別
+ * ===================================================== */
+
+.md-nav__title {
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.md-nav__item--section > .md-nav__link,
+.md-nav--secondary .md-nav__item--nested > .md-nav__link,
+.md-nav__list > .md-nav__item > label.md-nav__link {
+    cursor: default;
+    font-weight: 700;
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+    margin-top: 0.9em;
+    margin-bottom: 0.2em;
+    padding-top: 0.35em;
+    padding-bottom: 0.35em;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    color: #5e35b1;
+    opacity: 1;
+}
+
+[data-md-color-scheme="slate"] .md-nav__item--section > .md-nav__link,
+[data-md-color-scheme="slate"] .md-nav--secondary .md-nav__item--nested > .md-nav__link,
+[data-md-color-scheme="slate"] .md-nav__list > .md-nav__item > label.md-nav__link {
+    color: #ce93d8;
+    border-top-color: rgba(255, 255, 255, 0.12);
+}
+
+.md-nav__item--section > .md-nav__link:hover,
+.md-nav__item--section > .md-nav__link:focus {
+    color: #5e35b1;
+    background: transparent;
+}
+[data-md-color-scheme="slate"] .md-nav__item--section > .md-nav__link:hover,
+[data-md-color-scheme="slate"] .md-nav__item--section > .md-nav__link:focus {
+    color: #ce93d8;
+}
+
+.md-nav__item:not(.md-nav__item--section) > .md-nav__link {
+    display: block;
+    padding: 0.35em 0.6em;
+    margin: 0.1em 0;
+    border-left: 3px solid transparent;
+    border-radius: 0 4px 4px 0;
+    color: #2c3e50;
+    transition: background-color 0.15s ease,
+                border-left-color 0.15s ease,
+                color 0.15s ease,
+                padding-left 0.15s ease;
+}
+
+[data-md-color-scheme="slate"] .md-nav__item:not(.md-nav__item--section) > .md-nav__link {
+    color: #cfd8dc;
+}
+
+.md-nav__item:not(.md-nav__item--section) > .md-nav__link:hover {
+    background-color: rgba(94, 53, 177, 0.10);
+    border-left-color: #5e35b1;
+    color: #311b92;
+    padding-left: 0.9em;
+}
+[data-md-color-scheme="slate"] .md-nav__item:not(.md-nav__item--section) > .md-nav__link:hover {
+    background-color: rgba(206, 147, 216, 0.14);
+    border-left-color: #ce93d8;
+    color: #ffffff;
+}
+
+.md-nav__link--active,
+.md-nav__item:not(.md-nav__item--section) > .md-nav__link--active {
+    background-color: rgba(94, 53, 177, 0.16);
+    border-left-color: #5e35b1;
+    color: #311b92 !important;
+    font-weight: 600;
+}
+[data-md-color-scheme="slate"] .md-nav__link--active,
+[data-md-color-scheme="slate"] .md-nav__item:not(.md-nav__item--section) > .md-nav__link--active {
+    background-color: rgba(206, 147, 216, 0.20);
+    border-left-color: #ce93d8;
+    color: #ffffff !important;
+}
+
+.md-nav__link:focus-visible {
+    outline: 2px solid #5e35b1;
+    outline-offset: 1px;
+}
+[data-md-color-scheme="slate"] .md-nav__link:focus-visible {
+    outline-color: #ce93d8;
+}
+
+/* =====================================================
+ * HTML カードコンポーネント（Markdown 内に埋め込める視覚化部品）
+ *
+ * 使い方:
+ *   <div class="step-flow">
+ *     <div class="step"><span class="step-num">1</span>...</div>
+ *     ...
+ *   </div>
+ *
+ *   <div class="concept-card">
+ *     <div class="concept-title">💡 タイトル</div>
+ *     本文...
+ *   </div>
+ * ===================================================== */
+
+/* ステップフロー（番号付きの横並びカード） */
+.step-flow {
+    display: flex;
+    gap: 10px;
+    margin: 1.5em 0;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: center;
+}
+
+.step-flow .step {
+    flex: 1 1 180px;
+    min-width: 180px;
+    padding: 1em;
+    background: linear-gradient(135deg, #EDE7F6, #D1C4E9);
+    border: 2px solid #9575cd;
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+    font-size: 0.95em;
+    color: #1a1a1a;
+}
+
+.step-flow .step .step-num {
+    display: inline-block;
+    width: 2em;
+    height: 2em;
+    line-height: 2em;
+    background: #5e35b1;
+    color: #fff;
+    border-radius: 50%;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+}
+
+[data-md-color-scheme="slate"] .step-flow .step {
+    background: linear-gradient(135deg, #4527a0, #5e35b1);
+    color: #eceff1;
+    border-color: #b39ddb;
+}
+
+[data-md-color-scheme="slate"] .step-flow .step .step-num {
+    background: #b39ddb;
+    color: #311b92;
+}
+
+/* コンセプトカード（まとめボックス） */
+.concept-card {
+    margin: 1.5em 0;
+    padding: 1.2em 1.4em;
+    background: linear-gradient(135deg, #F3E5F5, #E1BEE7);
+    border: 2px solid #ba68c8;
+    border-left-width: 6px;
+    border-radius: 8px;
+    color: #1a1a1a;
+}
+
+.concept-card .concept-title {
+    font-weight: 700;
+    font-size: 1.05em;
+    margin-bottom: 0.6em;
+    color: #4a148c;
+}
+
+.concept-card.concept-warning {
+    background: linear-gradient(135deg, #FFF3E0, #FFCCBC);
+    border-color: #ff7043;
+}
+
+.concept-card.concept-warning .concept-title {
+    color: #bf360c;
+}
+
+[data-md-color-scheme="slate"] .concept-card {
+    background: linear-gradient(135deg, #311b92, #4527a0);
+    color: #eceff1;
+    border-color: #b39ddb;
+}
+
+[data-md-color-scheme="slate"] .concept-card .concept-title {
+    color: #ffffff;
+}
+
+[data-md-color-scheme="slate"] .concept-card.concept-warning {
+    background: linear-gradient(135deg, #4e342e, #5d4037);
+    border-color: #ff8a65;
+}
+
+[data-md-color-scheme="slate"] .concept-card.concept-warning .concept-title {
+    color: #ffab91;
 }
