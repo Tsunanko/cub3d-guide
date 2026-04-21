@@ -71,6 +71,34 @@
 }
 
 /* =====================================================
+ * Mermaid 図の文字サイズと枠線を本文に合わせて調整
+ * ===================================================== */
+.mermaid {
+    margin: 1.5em auto;
+    text-align: center;
+}
+.mermaid svg {
+    max-width: 100%;
+    height: auto;
+}
+.mermaid .node rect,
+.mermaid .node polygon,
+.mermaid .node circle,
+.mermaid .node ellipse,
+.mermaid .node path {
+    stroke-width: 2px !important;
+}
+.mermaid .nodeLabel,
+.mermaid .nodeLabel p,
+.mermaid .label {
+    font-size: 17px !important;
+    font-weight: 500;
+}
+.mermaid .edgeLabel {
+    font-size: 16px !important;
+}
+
+/* =====================================================
  * ダークモード調整（[data-md-color-scheme="slate"]）
  *
  * 目的:
