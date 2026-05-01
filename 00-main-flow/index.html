@@ -1,0 +1,2012 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="42 Tokyo cub3D プロジェクトの解説サイト（超初心者向け）">
+      
+      
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../01-overview/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>00. プログラム全体の流れ - cub3D Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans JP";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="deep-purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#00-mainc" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href=".." title="cub3D Guide" class="md-header__button md-logo" aria-label="cub3D Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 16.5c0 .38-.21.71-.53.88l-7.9 4.44c-.16.12-.36.18-.57.18s-.41-.06-.57-.18l-7.9-4.44A.99.99 0 0 1 3 16.5v-9c0-.38.21-.71.53-.88l7.9-4.44c.16-.12.36-.18.57-.18s.41.06.57.18l7.9 4.44c.32.17.53.5.53.88zM12 4.15 6.04 7.5 12 10.85l5.96-3.35zM5 15.91l6 3.38v-6.71L5 9.21zm14 0v-6.7l-6 3.37v6.71z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            cub3D Guide
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              00. プログラム全体の流れ
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="deep-purple"  aria-label="ダークモードへ"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="ダークモードへ" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-purple"  aria-label="ライトモードへ"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="ライトモードへ" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="検索">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="共有" aria-label="共有" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="cub3D Guide" class="md-nav__button md-logo" aria-label="cub3D Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 16.5c0 .38-.21.71-.53.88l-7.9 4.44c-.16.12-.36.18-.57.18s-.41-.06-.57-.18l-7.9-4.44A.99.99 0 0 1 3 16.5v-9c0-.38.21-.71.53-.88l7.9-4.44c.16-.12.36-.18.57-.18s.41.06.57.18l7.9 4.44c.32.17.53.5.53.88zM12 4.15 6.04 7.5 12 10.85l5.96-3.35zM5 15.91l6 3.38v-6.71L5 9.21zm14 0v-6.7l-6 3.37v6.71z"/></svg>
+
+    </a>
+    cub3D Guide
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ホーム
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    00. プログラム全体の流れ
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    00. プログラム全体の流れ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        このページは何？
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. プログラム全体を俯瞰
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-main-mainc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. main 関数（main.c）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. main 関数（main.c）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        処理の流れ
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ft_check_args" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        引数チェック（ft_check_args）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ft_close_window" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ウィンドウを閉じる（ft_close_window）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-ft_game_loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. ゲームループ（ft_game_loop）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-initc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 初期化（init.c）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 初期化（init.c）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        プレイヤーの初期化
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dir-plane" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        向きごとの dir / plane
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-renderc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 描画ループ（render.c）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 描画ループ（render.c）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        レンダリングの流れ
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 全体のコール関係図
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 全体のコール関係図">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-main" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ① 起動時の流れ（main → パース → 初期化）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ② メインループ（毎フレーム）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ③ イベント処理（キー入力・終了）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. ファイル別の担当
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. ディフェンスで聞かれること
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. よくあるミス
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📚 分からない用語は？
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. 次のページへ
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01. 概要とビルド
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-parser/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02. パーサー
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-raycasting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03. レイキャスティングとは
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-dda/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04. DDA アルゴリズム
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-camera/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05. カメラと魚眼補正
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06. レンダリング
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-input/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07. 入力処理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08. メモリ管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-debugging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09. 実際のバグと修正
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../eval/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🎓 評価対策
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📚 用語集
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        このページは何？
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. プログラム全体を俯瞰
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-main-mainc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. main 関数（main.c）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. main 関数（main.c）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        処理の流れ
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ft_check_args" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        引数チェック（ft_check_args）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ft_close_window" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ウィンドウを閉じる（ft_close_window）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-ft_game_loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. ゲームループ（ft_game_loop）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-initc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 初期化（init.c）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 初期化（init.c）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        プレイヤーの初期化
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dir-plane" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        向きごとの dir / plane
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-renderc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 描画ループ（render.c）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 描画ループ（render.c）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        レンダリングの流れ
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 全体のコール関係図
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 全体のコール関係図">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-main" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ① 起動時の流れ（main → パース → 初期化）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ② メインループ（毎フレーム）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ③ イベント処理（キー入力・終了）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. ファイル別の担当
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. ディフェンスで聞かれること
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. よくあるミス
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📚 分からない用語は？
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. 次のページへ
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<p><a href="../">🏠 ホーム</a> › <strong>00. プログラム全体の流れ</strong></p>
+<h1 id="00-mainc">00. プログラム全体の流れ — <code>main.c</code></h1>
+<hr />
+<h2 id="_1">このページは何？</h2>
+<p><strong>cub3D プログラムが起動してから終わるまでの「流れ」を追うページ</strong> です。</p>
+<p>各ページで詳しく解説する処理が、<strong>どこから呼ばれて、どう繋がっているか</strong> を
+最初に把握しておくと、他のページの理解が深まります。</p>
+<hr />
+<h2 id="1">1. プログラム全体を俯瞰</h2>
+<div class="admonition tip">
+<p class="admonition-title">💡 図の使い方</p>
+<p><strong>各ボックスをクリックすると</strong> 詳しい解説ページに飛びます！</p>
+</div>
+<pre class="mermaid"><code>flowchart TD
+    Start([プログラム起動]) --&gt; Args[引数チェック&lt;br&gt;.cub ファイル指定?]
+    Args -- OK --&gt; Parse[パース&lt;br&gt;.cub を読む]
+    Args -- NG --&gt; ErrA[エラー終了]
+    Parse --&gt; Init[初期化&lt;br&gt;miniLibX + 構造体]
+    Init --&gt; Hook[キー/閉じるイベントを&lt;br&gt;mlx_hook に登録]
+    Hook --&gt; Loop[mlx_loop 開始&lt;br&gt;無限ループ]
+    Loop --&gt; FrameLoop{60 FPS で&lt;br&gt;毎フレーム}
+    FrameLoop --&gt; Move[ft_move&lt;br&gt;キー状態から位置を更新]
+    Move --&gt; Render[ft_render&lt;br&gt;1024 本の光線で描画]
+    Render --&gt; Display[画面に表示]
+    Display --&gt; FrameLoop
+    FrameLoop --&gt; EscOrClose{ESC or&lt;br&gt;× ボタン?}
+    EscOrClose -- Yes --&gt; Cleanup[ft_cleanup&lt;br&gt;メモリ解放]
+    Cleanup --&gt; End([プログラム終了])
+
+    style Start fill:#E3F2FD
+    style Parse fill:#FFF9C4
+    style Init fill:#FFE0B2
+    style Loop fill:#F8BBD0
+    style Render fill:#C8E6C9
+    style End fill:#D1C4E9
+
+    click Parse "02-parser.html" "パーサーの詳細へ"
+    click Init "00-main-flow.html#4-init-c" "初期化の詳細へ"
+    click Hook "07-input.html" "入力処理の詳細へ"
+    click Move "07-input.html" "移動処理の詳細へ"
+    click Render "03-raycasting.html" "レイキャスティングの詳細へ"
+    click Cleanup "08-memory.html" "メモリ管理の詳細へ"</code></pre>
+<hr />
+<h2 id="2-main-mainc">2. main 関数（main.c）</h2>
+<p>プログラムの <strong>入口</strong> です。</p>
+<div class="language-c highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">srcs/main.c</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span>
+<span class="normal"><a href="#__codelineno-0-14">14</a></span>
+<span class="normal"><a href="#__codelineno-0-15">15</a></span>
+<span class="normal"><a href="#__codelineno-0-16">16</a></span>
+<span class="normal"><a href="#__codelineno-0-17">17</a></span>
+<span class="normal"><a href="#__codelineno-0-18">18</a></span>
+<span class="normal"><a href="#__codelineno-0-19">19</a></span>
+<span class="normal"><a href="#__codelineno-0-20">20</a></span>
+<span class="normal"><a href="#__codelineno-0-21">21</a></span>
+<span class="normal"><a href="#__codelineno-0-22">22</a></span>
+<span class="normal"><a href="#__codelineno-0-23">23</a></span>
+<span class="normal"><a href="#__codelineno-0-24">24</a></span>
+<span class="normal"><a href="#__codelineno-0-25">25</a></span>
+<span class="normal"><a href="#__codelineno-0-26">26</a></span>
+<span class="normal"><a href="#__codelineno-0-27">27</a></span>
+<span class="normal"><a href="#__codelineno-0-28">28</a></span>
+<span class="normal"><a href="#__codelineno-0-29">29</a></span>
+<span class="normal"><a href="#__codelineno-0-30">30</a></span>
+<span class="normal"><a href="#__codelineno-0-31">31</a></span>
+<span class="normal"><a href="#__codelineno-0-32">32</a></span>
+<span class="normal"><a href="#__codelineno-0-33">33</a></span>
+<span class="normal"><a href="#__codelineno-0-34">34</a></span>
+<span class="normal"><a href="#__codelineno-0-35">35</a></span>
+<span class="normal"><a href="#__codelineno-0-36">36</a></span>
+<span class="normal"><a href="#__codelineno-0-37">37</a></span>
+<span class="normal"><a href="#__codelineno-0-38">38</a></span>
+<span class="normal"><a href="#__codelineno-0-39">39</a></span>
+<span class="normal"><a href="#__codelineno-0-40">40</a></span>
+<span class="normal"><a href="#__codelineno-0-41">41</a></span>
+<span class="normal"><a href="#__codelineno-0-42">42</a></span>
+<span class="normal"><a href="#__codelineno-0-43">43</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">)</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="p">{</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="w">    </span><span class="n">t_game</span><span class="w">  </span><span class="n">game</span><span class="p">;</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="w">    </span><span class="c1">// ── ① 初期化 ──</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="w">    </span><span class="c1">// game 構造体をゼロクリア</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="w">    </span><span class="c1">// (ゴミ値を防ぐため超重要)</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="w">    </span><span class="n">ft_bzero</span><span class="p">(</span><span class="o">&amp;</span><span class="n">game</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">t_game</span><span class="p">));</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9"></a>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="w">    </span><span class="c1">// ── ② 引数チェック ──</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="w">    </span><span class="c1">// 引数が 2 個（プログラム名+ファイル）</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="w">    </span><span class="c1">// 拡張子が .cub か</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="w">    </span><span class="n">ft_check_args</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">);</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14"></a>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="w">    </span><span class="c1">// ── ③ .cub ファイルをパース ──</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16"></a><span class="w">    </span><span class="c1">// テキストファイル → game.config 構造体</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17"></a><span class="w">    </span><span class="n">ft_parse</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="o">&amp;</span><span class="n">game</span><span class="p">.</span><span class="n">config</span><span class="p">);</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18"></a>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19"></a><span class="w">    </span><span class="c1">// ── ④ ゲーム初期化 ──</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20"></a><span class="w">    </span><span class="c1">// miniLibX を起動</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21"></a><span class="w">    </span><span class="c1">// ウィンドウを作る</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22"></a><span class="w">    </span><span class="c1">// テクスチャを読み込む</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23"></a><span class="w">    </span><span class="c1">// プレイヤー位置を設定</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24"></a><span class="w">    </span><span class="n">ft_init_game</span><span class="p">(</span><span class="o">&amp;</span><span class="n">game</span><span class="p">);</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25"></a>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26"></a><span class="w">    </span><span class="c1">// ── ⑤ イベントハンドラを登録 ──</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27"></a><span class="w">    </span><span class="c1">// 2  = キー押下</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28"></a><span class="w">    </span><span class="c1">// 3  = キー離す</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29"></a><span class="w">    </span><span class="c1">// 17 = ウィンドウ × ボタン</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30"></a><span class="w">    </span><span class="n">mlx_hook</span><span class="p">(</span><span class="n">game</span><span class="p">.</span><span class="n">win</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">  </span><span class="mf">1L</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">ft_key_press</span><span class="p">,</span><span class="w">    </span><span class="o">&amp;</span><span class="n">game</span><span class="p">);</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31"></a><span class="w">    </span><span class="n">mlx_hook</span><span class="p">(</span><span class="n">game</span><span class="p">.</span><span class="n">win</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">  </span><span class="mf">1L</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">ft_key_release</span><span class="p">,</span><span class="w">  </span><span class="o">&amp;</span><span class="n">game</span><span class="p">);</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32"></a><span class="w">    </span><span class="n">mlx_hook</span><span class="p">(</span><span class="n">game</span><span class="p">.</span><span class="n">win</span><span class="p">,</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">       </span><span class="n">ft_close_window</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">game</span><span class="p">);</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33"></a>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34"></a><span class="w">    </span><span class="c1">// ── ⑥ メインループ登録 ──</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35"></a><span class="w">    </span><span class="c1">// 毎フレーム ft_game_loop を呼ぶ</span>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36"></a><span class="w">    </span><span class="n">mlx_loop_hook</span><span class="p">(</span><span class="n">game</span><span class="p">.</span><span class="n">mlx</span><span class="p">,</span><span class="w"> </span><span class="n">ft_game_loop</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">game</span><span class="p">);</span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37"></a>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38"></a><span class="w">    </span><span class="c1">// ── ⑦ 無限ループ開始 ──</span>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39"></a><span class="w">    </span><span class="c1">// ここで mlx_loop に処理を渡す</span>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40"></a><span class="w">    </span><span class="c1">// ESC か × で終了するまで戻らない</span>
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41"></a><span class="w">    </span><span class="n">mlx_loop</span><span class="p">(</span><span class="n">game</span><span class="p">.</span><span class="n">mlx</span><span class="p">);</span>
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<h3 id="_2">処理の流れ</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">ステップ</th>
+<th style="text-align: left;">処理</th>
+<th style="text-align: left;">詳しくは</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">① 初期化</td>
+<td style="text-align: left;"><code>ft_bzero</code> で構造体を 0 にする</td>
+<td style="text-align: left;">下記</td>
+</tr>
+<tr>
+<td style="text-align: center;">② 引数チェック</td>
+<td style="text-align: left;">拡張子と引数の数を確認</td>
+<td style="text-align: left;">下記</td>
+</tr>
+<tr>
+<td style="text-align: center;">③ パース</td>
+<td style="text-align: left;">.cub ファイルを読んで構造体に</td>
+<td style="text-align: left;"><a href="../02-parser/">02 パーサー</a></td>
+</tr>
+<tr>
+<td style="text-align: center;">④ 初期化</td>
+<td style="text-align: left;">miniLibX とゲーム状態の準備</td>
+<td style="text-align: left;">下記</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑤ イベント登録</td>
+<td style="text-align: left;">キー入力等のコールバック登録</td>
+<td style="text-align: left;"><a href="../07-input/">07 入力処理</a></td>
+</tr>
+<tr>
+<td style="text-align: center;">⑥ ループ登録</td>
+<td style="text-align: left;">毎フレーム呼ぶ関数を登録</td>
+<td style="text-align: left;">下記</td>
+</tr>
+<tr>
+<td style="text-align: center;">⑦ ループ開始</td>
+<td style="text-align: left;">mlx_loop を呼んで無限ループへ</td>
+<td style="text-align: left;">—</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ft_check_args">引数チェック（ft_check_args）</h3>
+<div class="language-c highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">srcs/main.c (ft_check_args)</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span>
+<span class="normal"><a href="#__codelineno-1-12">12</a></span>
+<span class="normal"><a href="#__codelineno-1-13">13</a></span>
+<span class="normal"><a href="#__codelineno-1-14">14</a></span>
+<span class="normal"><a href="#__codelineno-1-15">15</a></span>
+<span class="normal"><a href="#__codelineno-1-16">16</a></span>
+<span class="normal"><a href="#__codelineno-1-17">17</a></span>
+<span class="normal"><a href="#__codelineno-1-18">18</a></span>
+<span class="normal"><a href="#__codelineno-1-19">19</a></span>
+<span class="normal"><a href="#__codelineno-1-20">20</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">ft_check_args</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">)</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="p">{</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">len</span><span class="p">;</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="w">    </span><span class="c1">// 引数は 2 個必須 (プログラム名 + .cub)</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">argc</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="w">        </span><span class="n">ft_error</span><span class="p">(</span><span class="s">&quot;Usage: ./cub3D &lt;map.cub&gt;&quot;</span><span class="p">);</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8"></a>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="w">    </span><span class="c1">// ファイル名の長さ</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="w">    </span><span class="n">len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ft_strlen</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11"></a>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="w">    </span><span class="c1">// 拡張子が .cub か確認</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="w">    </span><span class="c1">// - ファイル名が 5 文字未満なら NG</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="w">    </span><span class="c1">//   (&quot;.cub&quot; + 最低 1 文字)</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="w">    </span><span class="c1">// - 末尾 4 文字が &quot;.cub&quot; でないと NG</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">len</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">5</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17"></a><span class="w">        </span><span class="o">||</span><span class="w"> </span><span class="n">ft_strncmp</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">len</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18"></a><span class="w">                      </span><span class="s">&quot;.cub&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19"></a><span class="w">        </span><span class="n">ft_error</span><span class="p">(</span><span class="s">&quot;Invalid file extension, expected .cub&quot;</span><span class="p">);</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<h3 id="ft_close_window">ウィンドウを閉じる（ft_close_window）</h3>
+<div class="language-c highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">srcs/main.c (ft_close_window)</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">5</a></span>
+<span class="normal"><a href="#__codelineno-2-6">6</a></span>
+<span class="normal"><a href="#__codelineno-2-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">ft_close_window</span><span class="p">(</span><span class="n">t_game</span><span class="w"> </span><span class="o">*</span><span class="n">game</span><span class="p">)</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="p">{</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="w">    </span><span class="c1">// × ボタンが押されたときに呼ばれる</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="w">    </span><span class="n">ft_cleanup</span><span class="p">(</span><span class="n">game</span><span class="p">);</span><span class="w">  </span><span class="c1">// メモリを全解放</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="w">    </span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w">           </span><span class="c1">// プログラムを終了</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w">        </span><span class="c1">// （届かないが warning 抑止）</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="admonition info">
+<p class="admonition-title">ft_close_window はなぜ必要？</p>
+<p>ウィンドウの × ボタンで閉じたとき、
+この関数を呼ばないと <strong>プログラムが即終了して cleanup が走らず
+メモリリーク</strong> になります。
+<code>mlx_hook</code> のイベント 17（DestroyNotify）で登録します。</p>
+</div>
+<hr />
+<h2 id="3-ft_game_loop">3. ゲームループ（ft_game_loop）</h2>
+<p><strong>1 フレームごとに呼ばれる関数</strong>。60 FPS なら 1 秒に 60 回呼ばれます。</p>
+<div class="language-c highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">srcs/main.c (ft_game_loop)</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span>
+<span class="normal"><a href="#__codelineno-3-5">5</a></span>
+<span class="normal"><a href="#__codelineno-3-6">6</a></span>
+<span class="normal"><a href="#__codelineno-3-7">7</a></span>
+<span class="normal"><a href="#__codelineno-3-8">8</a></span>
+<span class="normal"><a href="#__codelineno-3-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="kt">int</span><span class="w"> </span><span class="nf">ft_game_loop</span><span class="p">(</span><span class="n">t_game</span><span class="w"> </span><span class="o">*</span><span class="n">game</span><span class="p">)</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="p">{</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="w">    </span><span class="c1">// ① プレイヤーの移動 (キー状態を元に)</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="w">    </span><span class="n">ft_move</span><span class="p">(</span><span class="n">game</span><span class="p">);</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5"></a>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="w">    </span><span class="c1">// ② 画面を描画 (レイキャスティング)</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="w">    </span><span class="n">ft_render</span><span class="p">(</span><span class="n">game</span><span class="p">);</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<p>この 2 行だけの短い関数が <strong>ゲームの心臓部</strong> です。</p>
+<pre class="mermaid"><code>flowchart LR
+    Loop([mlx_loop_hook&lt;br&gt;から呼ばれる]) --&gt; Move[ft_move&lt;br&gt;プレイヤー移動]
+    Move --&gt; Render[ft_render&lt;br&gt;画面描画]
+    Render --&gt; Done([次のフレームへ])
+
+    style Loop fill:#F8BBD0
+    style Move fill:#FFE0B2
+    style Render fill:#C8E6C9</code></pre>
+<hr />
+<h2 id="4-initc">4. 初期化（init.c）</h2>
+<p><strong>miniLibX を起動し、ゲーム状態を準備する処理</strong> です。</p>
+<div class="language-c highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">srcs/init.c (ft_init_game)</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span>
+<span class="normal"><a href="#__codelineno-4-11">11</a></span>
+<span class="normal"><a href="#__codelineno-4-12">12</a></span>
+<span class="normal"><a href="#__codelineno-4-13">13</a></span>
+<span class="normal"><a href="#__codelineno-4-14">14</a></span>
+<span class="normal"><a href="#__codelineno-4-15">15</a></span>
+<span class="normal"><a href="#__codelineno-4-16">16</a></span>
+<span class="normal"><a href="#__codelineno-4-17">17</a></span>
+<span class="normal"><a href="#__codelineno-4-18">18</a></span>
+<span class="normal"><a href="#__codelineno-4-19">19</a></span>
+<span class="normal"><a href="#__codelineno-4-20">20</a></span>
+<span class="normal"><a href="#__codelineno-4-21">21</a></span>
+<span class="normal"><a href="#__codelineno-4-22">22</a></span>
+<span class="normal"><a href="#__codelineno-4-23">23</a></span>
+<span class="normal"><a href="#__codelineno-4-24">24</a></span>
+<span class="normal"><a href="#__codelineno-4-25">25</a></span>
+<span class="normal"><a href="#__codelineno-4-26">26</a></span>
+<span class="normal"><a href="#__codelineno-4-27">27</a></span>
+<span class="normal"><a href="#__codelineno-4-28">28</a></span>
+<span class="normal"><a href="#__codelineno-4-29">29</a></span>
+<span class="normal"><a href="#__codelineno-4-30">30</a></span>
+<span class="normal"><a href="#__codelineno-4-31">31</a></span>
+<span class="normal"><a href="#__codelineno-4-32">32</a></span>
+<span class="normal"><a href="#__codelineno-4-33">33</a></span>
+<span class="normal"><a href="#__codelineno-4-34">34</a></span>
+<span class="normal"><a href="#__codelineno-4-35">35</a></span>
+<span class="normal"><a href="#__codelineno-4-36">36</a></span>
+<span class="normal"><a href="#__codelineno-4-37">37</a></span>
+<span class="normal"><a href="#__codelineno-4-38">38</a></span>
+<span class="normal"><a href="#__codelineno-4-39">39</a></span>
+<span class="normal"><a href="#__codelineno-4-40">40</a></span>
+<span class="normal"><a href="#__codelineno-4-41">41</a></span>
+<span class="normal"><a href="#__codelineno-4-42">42</a></span>
+<span class="normal"><a href="#__codelineno-4-43">43</a></span>
+<span class="normal"><a href="#__codelineno-4-44">44</a></span>
+<span class="normal"><a href="#__codelineno-4-45">45</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">ft_init_game</span><span class="p">(</span><span class="n">t_game</span><span class="w"> </span><span class="o">*</span><span class="n">game</span><span class="p">)</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="p">{</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="w">    </span><span class="c1">// ── ① miniLibX 起動 ──</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="w">    </span><span class="c1">// X11 や OpenGL との接続を確立</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="w">    </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">mlx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mlx_init</span><span class="p">();</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">game</span><span class="o">-&gt;</span><span class="n">mlx</span><span class="p">)</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="w">        </span><span class="n">ft_error</span><span class="p">(</span><span class="s">&quot;Failed to initialize miniLibX&quot;</span><span class="p">);</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8"></a>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="w">    </span><span class="c1">// ── ② ウィンドウ作成 ──</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10"></a><span class="w">    </span><span class="c1">// 1024 x 768 のウィンドウを開く</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11"></a><span class="w">    </span><span class="c1">// タイトルバーは &quot;cub3D&quot;</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12"></a><span class="w">    </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">win</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mlx_new_window</span><span class="p">(</span><span class="n">game</span><span class="o">-&gt;</span><span class="n">mlx</span><span class="p">,</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13"></a><span class="w">                               </span><span class="n">WIN_W</span><span class="p">,</span><span class="w"> </span><span class="n">WIN_H</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;cub3D&quot;</span><span class="p">);</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">game</span><span class="o">-&gt;</span><span class="n">win</span><span class="p">)</span>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15"></a><span class="w">        </span><span class="n">ft_error</span><span class="p">(</span><span class="s">&quot;Failed to create window&quot;</span><span class="p">);</span>
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16"></a>
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17"></a><span class="w">    </span><span class="c1">// ── ③ フレームバッファ作成 ──</span>
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18"></a><span class="w">    </span><span class="c1">// 画面に出す前の「下書きキャンバス」</span>
+</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19"></a><span class="w">    </span><span class="c1">// 1 ピクセルずつ書き込んで、</span>
+</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20"></a><span class="w">    </span><span class="c1">// 完成したら一度にウィンドウに転送</span>
+</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21"></a><span class="w">    </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">frame</span><span class="p">.</span><span class="n">ptr</span><span class="w"> </span><span class="o">=</span>
+</span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22"></a><span class="w">        </span><span class="n">mlx_new_image</span><span class="p">(</span><span class="n">game</span><span class="o">-&gt;</span><span class="n">mlx</span><span class="p">,</span><span class="w"> </span><span class="n">WIN_W</span><span class="p">,</span><span class="w"> </span><span class="n">WIN_H</span><span class="p">);</span>
+</span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">game</span><span class="o">-&gt;</span><span class="n">frame</span><span class="p">.</span><span class="n">ptr</span><span class="p">)</span>
+</span><span id="__span-4-24"><a id="__codelineno-4-24" name="__codelineno-4-24"></a><span class="w">        </span><span class="n">ft_error</span><span class="p">(</span><span class="s">&quot;Failed to create frame buffer&quot;</span><span class="p">);</span>
+</span><span id="__span-4-25"><a id="__codelineno-4-25" name="__codelineno-4-25"></a>
+</span><span id="__span-4-26"><a id="__codelineno-4-26" name="__codelineno-4-26"></a><span class="w">    </span><span class="c1">// フレームのピクセルデータへのアドレスを取得</span>
+</span><span id="__span-4-27"><a id="__codelineno-4-27" name="__codelineno-4-27"></a><span class="w">    </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">frame</span><span class="p">.</span><span class="n">addr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mlx_get_data_addr</span><span class="p">(</span>
+</span><span id="__span-4-28"><a id="__codelineno-4-28" name="__codelineno-4-28"></a><span class="w">        </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">frame</span><span class="p">.</span><span class="n">ptr</span><span class="p">,</span>
+</span><span id="__span-4-29"><a id="__codelineno-4-29" name="__codelineno-4-29"></a><span class="w">        </span><span class="o">&amp;</span><span class="n">game</span><span class="o">-&gt;</span><span class="n">frame</span><span class="p">.</span><span class="n">bpp</span><span class="p">,</span>
+</span><span id="__span-4-30"><a id="__codelineno-4-30" name="__codelineno-4-30"></a><span class="w">        </span><span class="o">&amp;</span><span class="n">game</span><span class="o">-&gt;</span><span class="n">frame</span><span class="p">.</span><span class="n">line_len</span><span class="p">,</span>
+</span><span id="__span-4-31"><a id="__codelineno-4-31" name="__codelineno-4-31"></a><span class="w">        </span><span class="o">&amp;</span><span class="n">game</span><span class="o">-&gt;</span><span class="n">frame</span><span class="p">.</span><span class="n">endian</span><span class="p">);</span>
+</span><span id="__span-4-32"><a id="__codelineno-4-32" name="__codelineno-4-32"></a><span class="w">    </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">frame</span><span class="p">.</span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WIN_W</span><span class="p">;</span>
+</span><span id="__span-4-33"><a id="__codelineno-4-33" name="__codelineno-4-33"></a><span class="w">    </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">frame</span><span class="p">.</span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WIN_H</span><span class="p">;</span>
+</span><span id="__span-4-34"><a id="__codelineno-4-34" name="__codelineno-4-34"></a>
+</span><span id="__span-4-35"><a id="__codelineno-4-35" name="__codelineno-4-35"></a><span class="w">    </span><span class="c1">// ── ④ テクスチャ 4 枚を読み込む ──</span>
+</span><span id="__span-4-36"><a id="__codelineno-4-36" name="__codelineno-4-36"></a><span class="w">    </span><span class="c1">// .xpm ファイルを mlx 画像として読む</span>
+</span><span id="__span-4-37"><a id="__codelineno-4-37" name="__codelineno-4-37"></a><span class="w">    </span><span class="n">ft_load_textures</span><span class="p">(</span><span class="n">game</span><span class="p">);</span>
+</span><span id="__span-4-38"><a id="__codelineno-4-38" name="__codelineno-4-38"></a>
+</span><span id="__span-4-39"><a id="__codelineno-4-39" name="__codelineno-4-39"></a><span class="w">    </span><span class="c1">// ── ⑤ プレイヤーの位置と向きを初期化 ──</span>
+</span><span id="__span-4-40"><a id="__codelineno-4-40" name="__codelineno-4-40"></a><span class="w">    </span><span class="n">ft_init_player</span><span class="p">(</span><span class="n">game</span><span class="p">);</span>
+</span><span id="__span-4-41"><a id="__codelineno-4-41" name="__codelineno-4-41"></a>
+</span><span id="__span-4-42"><a id="__codelineno-4-42" name="__codelineno-4-42"></a><span class="w">    </span><span class="c1">// ── ⑥ キー状態をゼロクリア ──</span>
+</span><span id="__span-4-43"><a id="__codelineno-4-43" name="__codelineno-4-43"></a><span class="w">    </span><span class="c1">// 起動直後は全キー未押下</span>
+</span><span id="__span-4-44"><a id="__codelineno-4-44" name="__codelineno-4-44"></a><span class="w">    </span><span class="n">ft_bzero</span><span class="p">(</span><span class="o">&amp;</span><span class="n">game</span><span class="o">-&gt;</span><span class="n">keys</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">t_keys</span><span class="p">));</span>
+</span><span id="__span-4-45"><a id="__codelineno-4-45" name="__codelineno-4-45"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<h3 id="_3">プレイヤーの初期化</h3>
+<p><code>.cub</code> ファイルで <code>N S E W</code> のどれが書かれていたかを元に、
+<strong>プレイヤーの位置と向き</strong> を設定します。</p>
+<div class="language-c highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">srcs/init.c (ft_init_player)</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span>
+<span class="normal"><a href="#__codelineno-5-11">11</a></span>
+<span class="normal"><a href="#__codelineno-5-12">12</a></span>
+<span class="normal"><a href="#__codelineno-5-13">13</a></span>
+<span class="normal"><a href="#__codelineno-5-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">ft_init_player</span><span class="p">(</span><span class="n">t_game</span><span class="w"> </span><span class="o">*</span><span class="n">game</span><span class="p">)</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="p">{</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="w">    </span><span class="c1">// 位置: .cub パース時に +0.5 されてる</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="w">    </span><span class="c1">// マスの中央にプレイヤーを置く</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="w">    </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">pos</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">config</span><span class="p">.</span><span class="n">player_x</span><span class="p">;</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="w">    </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">pos</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">config</span><span class="p">.</span><span class="n">player_y</span><span class="p">;</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7"></a>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8"></a><span class="w">    </span><span class="c1">// 向き別の dir/plane を設定</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">game</span><span class="o">-&gt;</span><span class="n">config</span><span class="p">.</span><span class="n">player_dir</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;N&#39;</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10"></a><span class="w">        </span><span class="o">||</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">config</span><span class="p">.</span><span class="n">player_dir</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;S&#39;</span><span class="p">)</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11"></a><span class="w">        </span><span class="n">ft_init_dir_ns</span><span class="p">(</span><span class="n">game</span><span class="p">);</span><span class="w">  </span><span class="c1">// 南北用</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12"></a><span class="w">    </span><span class="k">else</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13"></a><span class="w">        </span><span class="n">ft_init_dir_ew</span><span class="p">(</span><span class="n">game</span><span class="p">);</span><span class="w">  </span><span class="c1">// 東西用</span>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<h3 id="dir-plane">向きごとの dir / plane</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">初期の向き</th>
+<th style="text-align: center;">dir (正面)</th>
+<th style="text-align: center;">plane (視野横)</th>
+<th style="text-align: center;">視野角</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>N (北)</strong></td>
+<td style="text-align: center;"><code>(0, -1)</code></td>
+<td style="text-align: center;"><code>(0.66, 0)</code></td>
+<td style="text-align: center;">約 66 度</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>S (南)</strong></td>
+<td style="text-align: center;"><code>(0, +1)</code></td>
+<td style="text-align: center;"><code>(-0.66, 0)</code></td>
+<td style="text-align: center;">約 66 度</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>E (東)</strong></td>
+<td style="text-align: center;"><code>(+1, 0)</code></td>
+<td style="text-align: center;"><code>(0, 0.66)</code></td>
+<td style="text-align: center;">約 66 度</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>W (西)</strong></td>
+<td style="text-align: center;"><code>(-1, 0)</code></td>
+<td style="text-align: center;"><code>(0, -0.66)</code></td>
+<td style="text-align: center;">約 66 度</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition info">
+<p class="admonition-title">0.66 の意味</p>
+<p><code>plane</code> の長さ ÷ <code>dir</code> の長さ = <code>0.66</code> → <strong>視野角 ≈ 66 度</strong>。
+1.0 にすれば 90 度 FOV。0.66 は <strong>人の目に近い自然な視野</strong> です。</p>
+</div>
+<hr />
+<h2 id="5-renderc">5. 描画ループ（render.c）</h2>
+<p><strong>毎フレーム、画面幅分の光線を飛ばして描画</strong> します。</p>
+<div class="language-c highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">srcs/render/render.c</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-6-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-6-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-6-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-6-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-6-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-6-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-6-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-6-10">10</a></span>
+<span class="normal"><a href="#__codelineno-6-11">11</a></span>
+<span class="normal"><a href="#__codelineno-6-12">12</a></span>
+<span class="normal"><a href="#__codelineno-6-13">13</a></span>
+<span class="normal"><a href="#__codelineno-6-14">14</a></span>
+<span class="normal"><a href="#__codelineno-6-15">15</a></span>
+<span class="normal"><a href="#__codelineno-6-16">16</a></span>
+<span class="normal"><a href="#__codelineno-6-17">17</a></span>
+<span class="normal"><a href="#__codelineno-6-18">18</a></span>
+<span class="normal"><a href="#__codelineno-6-19">19</a></span>
+<span class="normal"><a href="#__codelineno-6-20">20</a></span>
+<span class="normal"><a href="#__codelineno-6-21">21</a></span>
+<span class="normal"><a href="#__codelineno-6-22">22</a></span>
+<span class="normal"><a href="#__codelineno-6-23">23</a></span>
+<span class="normal"><a href="#__codelineno-6-24">24</a></span>
+<span class="normal"><a href="#__codelineno-6-25">25</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">ft_render</span><span class="p">(</span><span class="n">t_game</span><span class="w"> </span><span class="o">*</span><span class="n">game</span><span class="p">)</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="p">{</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="w">    </span><span class="kt">int</span><span class="w">     </span><span class="n">x</span><span class="p">;</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="w">    </span><span class="n">t_ray</span><span class="w">   </span><span class="n">ray</span><span class="p">;</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5"></a>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="w">    </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7"></a><span class="w">    </span><span class="c1">// 画面の横幅分（1024 回）光線を飛ばす</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8"></a><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">WIN_W</span><span class="p">)</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10"></a><span class="w">        </span><span class="c1">// ① 光線 1 本を飛ばして壁を探す</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11"></a><span class="w">        </span><span class="c1">//    (DDA で計算、距離と壁の向きを取得)</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12"></a><span class="w">        </span><span class="n">ft_cast_ray</span><span class="p">(</span><span class="n">game</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ray</span><span class="p">);</span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13"></a>
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14"></a><span class="w">        </span><span class="c1">// ② そのピクセル列（縦 1 ライン）を描画</span>
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15"></a><span class="w">        </span><span class="c1">//    (天井 + 壁 + 床)</span>
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16"></a><span class="w">        </span><span class="n">ft_draw_column</span><span class="p">(</span><span class="n">game</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ray</span><span class="p">);</span>
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17"></a><span class="w">        </span><span class="n">x</span><span class="o">++</span><span class="p">;</span>
+</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19"></a><span class="w">    </span><span class="c1">// ③ 完成したフレームをウィンドウに転送</span>
+</span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20"></a><span class="w">    </span><span class="c1">// 1 ピクセルずつ直接描くより高速</span>
+</span><span id="__span-6-21"><a id="__codelineno-6-21" name="__codelineno-6-21"></a><span class="w">    </span><span class="n">mlx_put_image_to_window</span><span class="p">(</span><span class="n">game</span><span class="o">-&gt;</span><span class="n">mlx</span><span class="p">,</span>
+</span><span id="__span-6-22"><a id="__codelineno-6-22" name="__codelineno-6-22"></a><span class="w">                             </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">win</span><span class="p">,</span>
+</span><span id="__span-6-23"><a id="__codelineno-6-23" name="__codelineno-6-23"></a><span class="w">                             </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">frame</span><span class="p">.</span><span class="n">ptr</span><span class="p">,</span>
+</span><span id="__span-6-24"><a id="__codelineno-6-24" name="__codelineno-6-24"></a><span class="w">                             </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+</span><span id="__span-6-25"><a id="__codelineno-6-25" name="__codelineno-6-25"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<h3 id="_4">レンダリングの流れ</h3>
+<pre class="mermaid"><code>flowchart LR
+    Start([ft_render]) --&gt; Loop{x = 0..1023}
+    Loop --&gt;|各列| Cast[ft_cast_ray&lt;br&gt;光線を飛ばす]
+    Cast --&gt; Draw[ft_draw_column&lt;br&gt;縦 1 列を描画]
+    Draw --&gt; Loop
+    Loop --&gt;|完了| Put[mlx_put_image&lt;br&gt;画面に転送]
+    Put --&gt; End([終了])
+
+    style Start fill:#E3F2FD
+    style End fill:#C8E6C9
+    style Cast fill:#FFE0B2
+    style Draw fill:#FFF9C4</code></pre>
+<hr />
+<h2 id="6">6. 全体のコール関係図</h2>
+<p><strong>どの関数がどこから呼ばれるか</strong> を整理します。</p>
+<div class="admonition tip">
+<p class="admonition-title">💡 クリックで解説ページへジャンプ</p>
+<p>図の <strong>ノード（関数名）をクリック</strong> すると、その関数の詳しい解説ページに飛びます。
+関係図が大きいので <strong>3 つに分割</strong> しました。</p>
+</div>
+<h3 id="1-main">① 起動時の流れ（main → パース → 初期化）</h3>
+<pre class="mermaid"><code>flowchart LR
+    M([main]) --&gt; CA[ft_check_args&lt;br&gt;引数チェック]
+    M --&gt; PR[ft_parse&lt;br&gt;.cub 解析]
+    M --&gt; IG[ft_init_game&lt;br&gt;miniLibX 起動]
+    M --&gt; MH[mlx_hook × 3&lt;br&gt;イベント登録]
+    M --&gt; ML([mlx_loop&lt;br&gt;無限ループ開始])
+
+    PR --&gt; PE[ft_parse_elements]
+    PR --&gt; PM[ft_parse_map]
+    PR --&gt; VM[ft_validate_map]
+
+    IG --&gt; MI[mlx_init]
+    IG --&gt; NW[mlx_new_window]
+    IG --&gt; NI[mlx_new_image]
+    IG --&gt; LT[ft_load_textures]
+    IG --&gt; IP[ft_init_player]
+
+    style M fill:#E3F2FD,stroke:#1976D2,stroke-width:3px
+    style ML fill:#F8BBD0,stroke:#C2185B,stroke-width:2px
+    style PR fill:#FFF9C4
+    style IG fill:#FFE0B2
+
+    click PR "02-parser.html" "パーサー解説へ"
+    click PE "02-parser.html" "パース詳細へ"
+    click PM "02-parser.html" "マップ解析へ"
+    click VM "02-parser.html" "マップ検証へ"
+    click MH "07-input.html" "入力処理へ"</code></pre>
+<h3 id="2">② メインループ（毎フレーム）</h3>
+<pre class="mermaid"><code>flowchart LR
+    ML([mlx_loop]) -.毎フレーム.-&gt; GL([ft_game_loop])
+    GL --&gt; MV[ft_move&lt;br&gt;移動]
+    GL --&gt; RN[ft_render&lt;br&gt;描画]
+
+    RN --&gt; Loop[1024 回ループ]
+    Loop --&gt; CR[ft_cast_ray&lt;br&gt;光線を飛ばす]
+    Loop --&gt; DC[ft_draw_column&lt;br&gt;縦 1 列描画]
+
+    CR --&gt; IRD[ft_init_ray_dir]
+    CR --&gt; IS[ft_init_step]
+    CR --&gt; DDA[ft_dda]
+    CR --&gt; CWD[ft_calc_wall_dist]
+
+    style ML fill:#F8BBD0
+    style GL fill:#F8BBD0,stroke:#C2185B,stroke-width:3px
+    style MV fill:#FFE0B2
+    style RN fill:#C8E6C9
+    style CR fill:#BBDEFB
+    style DC fill:#FFF9C4
+
+    click MV "07-input.html" "移動処理へ"
+    click RN "06-rendering.html" "レンダリングへ"
+    click CR "03-raycasting.html" "レイキャスティングへ"
+    click DC "06-rendering.html" "描画詳細へ"
+    click DDA "04-dda.html" "DDA アルゴリズムへ"
+    click IRD "05-camera.html" "光線方向計算へ"
+    click IS "04-dda.html" "DDA 初期化へ"
+    click CWD "05-camera.html" "垂直距離計算へ"</code></pre>
+<h3 id="3">③ イベント処理（キー入力・終了）</h3>
+<pre class="mermaid"><code>flowchart LR
+    MH([mlx_hook]) -.キー押下.-&gt; KP[ft_key_press]
+    MH -.キー離す.-&gt; KR[ft_key_release]
+    MH -.× ボタン.-&gt; CW[ft_close_window]
+
+    CW --&gt; CL[ft_cleanup&lt;br&gt;メモリ解放]
+
+    style MH fill:#E3F2FD,stroke:#1976D2,stroke-width:3px
+    style KP fill:#FFF9C4
+    style KR fill:#FFF9C4
+    style CW fill:#FFCDD2
+    style CL fill:#FFCDD2,stroke:#C62828,stroke-width:2px
+
+    click KP "07-input.html" "キー押下処理へ"
+    click KR "07-input.html" "キー離し処理へ"
+    click CW "08-memory.html" "ウィンドウ閉じ処理へ"
+    click CL "08-memory.html" "メモリ解放へ"</code></pre>
+<hr />
+<h2 id="7">7. ファイル別の担当</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">ファイル</th>
+<th style="text-align: left;">役割</th>
+<th style="text-align: left;">詳しくは</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>main.c</code></td>
+<td style="text-align: left;">入口、イベント登録、ループ開始</td>
+<td style="text-align: left;"><strong>本ページ</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>init.c</code></td>
+<td style="text-align: left;">miniLibX 起動、プレイヤー初期化</td>
+<td style="text-align: left;"><strong>本ページ</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>parser/*.c</code></td>
+<td style="text-align: left;"><code>.cub</code> ファイルの読み取り</td>
+<td style="text-align: left;"><a href="../02-parser/">02</a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>render/raycaster.c</code></td>
+<td style="text-align: left;">光線 1 本の計算</td>
+<td style="text-align: left;"><a href="../04-dda/">04</a>・<a href="../05-camera/">05</a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>render/draw_column.c</code></td>
+<td style="text-align: left;">縦 1 列の描画</td>
+<td style="text-align: left;"><a href="../06-rendering/">06</a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>render/texture.c</code></td>
+<td style="text-align: left;">テクスチャ読み込み・取得</td>
+<td style="text-align: left;"><a href="../06-rendering/">06</a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>render/render.c</code></td>
+<td style="text-align: left;">1 フレームの描画ループ</td>
+<td style="text-align: left;"><strong>本ページ</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>input/input.c</code></td>
+<td style="text-align: left;">キーイベントハンドラ</td>
+<td style="text-align: left;"><a href="../07-input/">07</a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>input/move.c</code></td>
+<td style="text-align: left;">プレイヤー移動と回転</td>
+<td style="text-align: left;"><a href="../07-input/">07</a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>utils/cleanup.c</code></td>
+<td style="text-align: left;">メモリ解放</td>
+<td style="text-align: left;"><a href="../08-memory/">08</a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>utils/error.c</code></td>
+<td style="text-align: left;">エラー時の処理</td>
+<td style="text-align: left;"><a href="../08-memory/">08</a></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="8">8. ディフェンスで聞かれること</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">質問</th>
+<th style="text-align: left;">答え方</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">main の最初に <code>ft_bzero</code> を呼ぶ理由は？</td>
+<td style="text-align: left;">構造体のメンバをゼロクリアしてゴミ値を防ぎ、NULL チェックを確実にするため</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>mlx_loop_hook</code> と <code>mlx_hook</code> の違いは？</td>
+<td style="text-align: left;"><code>mlx_hook</code> はイベント発生時に呼ばれる。<code>mlx_loop_hook</code> は <strong>毎フレーム</strong> 呼ばれる</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>mlx_loop</code> を呼ぶとどうなる？</td>
+<td style="text-align: left;">無限ループに入り、登録したコールバックを呼び続ける。<code>exit</code> するまで戻らない</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>ft_game_loop</code> は何をする？</td>
+<td style="text-align: left;">毎フレーム、移動と描画の 2 つを呼ぶだけ</td>
+</tr>
+<tr>
+<td style="text-align: left;">0.66 という plane の長さの意味は？</td>
+<td style="text-align: left;">FOV（視野角）を 66 度にするため。1.0 にすれば 90 度になる</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="9">9. よくあるミス</h2>
+<div class="admonition warning">
+<p class="admonition-title">ft_bzero 忘れ</p>
+<p>構造体のメンバを 0 にしないと <strong>ゴミ値</strong> が入り、後の NULL チェックが効かなくなる。</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">× ボタンの hook 忘れ</p>
+<p><code>mlx_hook(win, 17, ...)</code> を忘れると × で閉じたときに cleanup が走らずリーク。</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">mlx_loop_hook を間違えて mlx_loop に</p>
+<p><code>mlx_loop_hook(mlx, func, param)</code> と <code>mlx_loop(mlx)</code> は別の関数。混同注意。</p>
+</div>
+<hr />
+<h2 id="_5">📚 分からない用語は？</h2>
+<p><strong>→ <a href="../glossary/">📚 用語集</a></strong></p>
+<hr />
+<h2 id="10">10. 次のページへ</h2>
+<p>プログラムの全体像が掴めたところで、個別の仕組みを学んでいきます。
+次は <a href="../01-overview/">📦 01. 概要とビルド</a> で環境と操作方法を確認しましょう。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  ページトップへ戻る
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="フッター" >
+        
+          
+          <a href=".." class="md-footer__link md-footer__link--prev" aria-label="前: ホーム">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                前
+              </span>
+              <div class="md-ellipsis">
+                ホーム
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../01-overview/" class="md-footer__link md-footer__link--next" aria-label="次: 01. 概要とビルド">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                次
+              </span>
+              <div class="md-ellipsis">
+                01. 概要とビルド
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../js/video-control.js"></script>
+      
+        <script src="../js/mermaid-override.js"></script>
+      
+        <script src="../js/user-notes.js"></script>
+      
+    
+  </body>
+</html>
