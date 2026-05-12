@@ -105,7 +105,7 @@ ft_error("...");
 
 ### cleanup.c（全解放）
 
-```c title="cleanup.c" linenums="1"
+```c title="cleanup.c"
 #ifdef __linux__
 
 // Linux 専用: ディスプレイも解放する

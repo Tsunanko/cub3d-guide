@@ -101,7 +101,7 @@ C では「関数のアドレス（関数ポインタ）」で登録します。
 
 #### キー状態を記録する
 
-```c title="input.c (set_key)" linenums="1"
+```c title="input.c (set_key)"
 // キーに対応するフラグをセット/クリア
 // val = 1 (押された) or 0 (離された)
 static void ft_set_key(int keycode,
@@ -130,7 +130,7 @@ static void ft_set_key(int keycode,
 
 #### キー押下のハンドラ
 
-```c title="input.c (key_press)" linenums="1"
+```c title="input.c (key_press)"
 // キーが押されたときに呼ばれる
 int ft_key_press(int keycode, t_game *game)
 {
@@ -148,7 +148,7 @@ int ft_key_press(int keycode, t_game *game)
 
 #### キー離した時のハンドラ
 
-```c title="input.c (key_release)" linenums="1"
+```c title="input.c (key_release)"
 // キーが離されたときに呼ばれる
 int ft_key_release(int keycode, t_game *game)
 {
@@ -171,7 +171,7 @@ int ft_key_release(int keycode, t_game *game)
 
 #### 衝突判定
 
-```c title="move.c (can_move)" linenums="1"
+```c title="move.c (can_move)"
 // 指定位置に移動可能か判定
 static int ft_can_move(t_game *game,
                         double x, double y)
@@ -195,7 +195,7 @@ static int ft_can_move(t_game *game,
 
 #### 前進・後退
 
-```c title="move.c (forward_back)" linenums="1"
+```c title="move.c (forward_back)"
 static void ft_move_forward_back(t_game *game)
 {
     double nx;  // 次の X 位置
@@ -247,7 +247,7 @@ static void ft_move_forward_back(t_game *game)
 
 #### 回転（三角関数）
 
-```c title="move.c (rotate)" linenums="1"
+```c title="move.c (rotate)"
 // 回転行列を使って向きを変える
 static void ft_rotate(t_game *game, double angle)
 {
@@ -282,7 +282,7 @@ static void ft_rotate(t_game *game, double angle)
 
 #### メインの移動関数
 
-```c title="move.c (move)" linenums="1"
+```c title="move.c (move)"
 void ft_move(t_game *game)
 {
     // WASD の判定

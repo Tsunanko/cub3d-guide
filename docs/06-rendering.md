@@ -109,7 +109,7 @@ draw_floor: 下部を床色で塗る
 
 ### 描画パラメータの計算
 
-```c title="draw_column.c (calc_draw_params)" linenums="1"
+```c title="draw_column.c (calc_draw_params)"
 static void ft_calc_draw_params(t_ray *ray,
                                  t_img *tex,
                                  t_draw *d)
@@ -157,7 +157,7 @@ static void ft_calc_draw_params(t_ray *ray,
 
 ### 1 列の描画
 
-```c title="draw_column.c (draw_column)" linenums="1"
+```c title="draw_column.c (draw_column)"
 void ft_draw_column(t_game *game, int x, t_ray *ray)
 {
     t_draw  d;
@@ -205,7 +205,7 @@ void ft_draw_column(t_game *game, int x, t_ray *ray)
 
 ### 天井と床（単色塗り）
 
-```c title="draw_column.c (ceiling/floor)" linenums="1"
+```c title="draw_column.c (ceiling/floor)"
 static void ft_draw_ceiling(t_game *game,
                              int x, int end)
 {

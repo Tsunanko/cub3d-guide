@@ -171,7 +171,7 @@ flowchart LR
 
 ### 最初の格子線までの距離を計算
 
-```c title="raycaster.c (init_step)" linenums="1"
+```c title="raycaster.c (init_step)"
 static void ft_init_step(t_game *game, t_ray *ray)
 {
     // ── X 方向 ──
@@ -214,7 +214,7 @@ static void ft_init_step(t_game *game, t_ray *ray)
 
 ### DDA 本体
 
-```c title="raycaster.c (dda)" linenums="1"
+```c title="raycaster.c (dda)"
 static void ft_dda(t_game *game, t_ray *ray)
 {
     int hit;

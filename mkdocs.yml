@@ -109,5 +109,7 @@ nav:
   - 07. 入力処理: 07-input.md
   - 08. メモリ管理: 08-memory.md
   - 09. 実際のバグと修正: 09-debugging.md
-  - 🎓 評価対策: eval.md
+  - 🎓 評価対策:
+    - 概要: eval.md
+    - 👤 User basic events: eval-events.md
   - 📚 用語集: glossary.md

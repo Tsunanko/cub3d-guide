@@ -203,7 +203,7 @@ flowchart LR
 
 ### 光線の向き計算
 
-```c title="raycaster.c (init_ray_dir)" linenums="1"
+```c title="raycaster.c (init_ray_dir)"
 static void ft_init_ray_dir(t_game *game,
                             int x, t_ray *ray)
 {
@@ -236,7 +236,7 @@ static void ft_init_ray_dir(t_game *game,
 
 ### 垂直距離と壁の向き
 
-```c title="raycaster.c (calc_wall_dist)" linenums="1"
+```c title="raycaster.c (calc_wall_dist)"
 static void ft_calc_wall_dist(t_game *game,
                                t_ray *ray)
 {

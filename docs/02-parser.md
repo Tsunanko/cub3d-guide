@@ -293,7 +293,7 @@ flowchart TD
 
 ### エントリポイント
 
-```c title="parse.c (ft_parse)" linenums="1"
+```c title="parse.c (ft_parse)"
 void ft_parse(char *path, t_config *config)
 {
     char  *content;
