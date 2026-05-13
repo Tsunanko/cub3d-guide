@@ -110,48 +110,26 @@ draw_floor: 下部を床色で塗る
 ### 描画パラメータの計算
 
 ```c title="draw_column.c (calc_draw_params)"
-static void ft_calc_draw_params(t_ray *ray,
-                                 t_img *tex,
-                                 t_draw *d)
+static void ft_calc_draw_params(t_ray *ray, t_img *tex, t_draw *d)
 {
-    // 壁の高さ = 画面高さ / 距離
-    // 距離が近いほど高く、遠いほど低い
+    // 壁の高さ = 画面高さ / 距離 (距離が近いほど高く)
     d->line_h = (int)(WIN_H / ray->perp_wall_dist);
-
-    // 描画の上端 y
-    // 画面中央を基準に、壁の高さ/2 だけ上
     d->draw_start = -d->line_h / 2 + WIN_H / 2;
-
-    // 描画の下端 y
     d->draw_end = d->line_h / 2 + WIN_H / 2;
-
-    // 画面外にはみ出したらクリッピング
     if (d->draw_start < 0)
         d->draw_start = 0;
     if (d->draw_end >= WIN_H)
         d->draw_end = WIN_H - 1;
-
-    // テクスチャの X 座標を計算
-    // wall_x は 0〜1 の小数、tex->width をかけて
-    // テクスチャ上のピクセル座標にする
+    // wall_x (0〜1) を tex->width 倍してテクスチャ X 座標に
     d->tex_x = (int)(ray->wall_x * tex->width);
-
-    // 壁の向きによってはテクスチャを左右反転
-    // (光線の向きに合わせて表示が歪まないように)
+    // 光線の向きに合わせてテクスチャを左右反転
     if (ray->side == 0 && ray->dir.x > 0)
         d->tex_x = tex->width - d->tex_x - 1;
     if (ray->side == 1 && ray->dir.y < 0)
         d->tex_x = tex->width - d->tex_x - 1;
-
     // テクスチャ Y 方向のステップ幅
-    // 壁の高さ分描くので、テクスチャの何ピクセルずつ
-    // 進むかを計算
     d->step = 1.0 * tex->height / d->line_h;
-
-    // 最初の tex_y 位置
-    // (画面クリッピングされた場合の補正を含む)
-    d->tex_pos = (d->draw_start - WIN_H / 2
-                  + d->line_h / 2) * d->step;
+    d->tex_pos = (d->draw_start - WIN_H / 2 + d->line_h / 2) * d->step;
 }
 ```
 
@@ -166,39 +144,20 @@ void ft_draw_column(t_game *game, int x, t_ray *ray)
     int     tex_y;
     int     color;
 
-    // このレイが使うテクスチャを選択
     tex = &game->tex[ray->tex_id];
-
-    // 描画パラメータを計算
     ft_calc_draw_params(ray, tex, &d);
-
-    // ── 1. 天井部分を単色で塗る ──
     ft_draw_ceiling(game, x, d.draw_start);
-
-    // ── 2. 壁部分をテクスチャで塗る ──
     y = d.draw_start;
     while (y <= d.draw_end)
     {
-        // テクスチャの Y 座標を計算
-        // (float を int に変換)
         tex_y = (int)d.tex_pos;
-
-        // クリッピング (テクスチャ範囲外を防ぐ)
         if (tex_y >= tex->height)
             tex_y = tex->height - 1;
-
-        // 次の行のため tex_pos を進める
         d.tex_pos += d.step;
-
-        // テクスチャから色を取得
         color = ft_get_texel(tex, d.tex_x, tex_y);
-
-        // 画面に 1 ピクセル書き込む
         ft_put_pixel(&game->frame, x, y, color);
         y++;
     }
-
-    // ── 3. 床部分を単色で塗る ──
     ft_draw_floor(game, x, d.draw_end + 1);
 }
 ```
@@ -206,32 +165,26 @@ void ft_draw_column(t_game *game, int x, t_ray *ray)
 ### 天井と床（単色塗り）
 
 ```c title="draw_column.c (ceiling/floor)"
-static void ft_draw_ceiling(t_game *game,
-                             int x, int end)
+static void ft_draw_ceiling(t_game *game, int x, int end)
 {
     int y;
 
     y = 0;
-    // y=0 から draw_start まで天井色で埋める
     while (y < end)
     {
-        ft_put_pixel(&game->frame, x, y,
-                     game->config.ceiling.hex);
+        ft_put_pixel(&game->frame, x, y, game->config.ceiling.hex);
         y++;
     }
 }
 
-static void ft_draw_floor(t_game *game,
-                           int x, int start)
+static void ft_draw_floor(t_game *game, int x, int start)
 {
     int y;
 
     y = start;
-    // draw_end+1 から画面下端まで床色で埋める
     while (y < WIN_H)
     {
-        ft_put_pixel(&game->frame, x, y,
-                     game->config.floor.hex);
+        ft_put_pixel(&game->frame, x, y, game->config.floor.hex);
         y++;
     }
 }

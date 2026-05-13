@@ -204,25 +204,15 @@ flowchart LR
 ### 光線の向き計算
 
 ```c title="raycaster.c (init_ray_dir)"
-static void ft_init_ray_dir(t_game *game,
-                            int x, t_ray *ray)
+static void ft_init_ray_dir(t_game *game, int x, t_ray *ray)
 {
     double camera_x;
 
-    // 画面の x 座標を -1〜+1 に変換
     camera_x = 2.0 * x / (double)WIN_W - 1.0;
-
-    // 光線の向き = 正面向き + 横向き * camera_x
-    ray->dir.x = game->player.dir.x
-               + game->player.plane.x * camera_x;
-    ray->dir.y = game->player.dir.y
-               + game->player.plane.y * camera_x;
-
-    // 今いるマスの座標を int で取得
+    ray->dir.x = game->player.dir.x + game->player.plane.x * camera_x;
+    ray->dir.y = game->player.dir.y + game->player.plane.y * camera_x;
     ray->map_pos.x = (int)game->player.pos.x;
     ray->map_pos.y = (int)game->player.pos.y;
-
-    // 1 マス進むのに必要な光線の長さ
     if (ray->dir.x == 0)
         ray->delta_dist.x = 1e30;  // div by 0 対策
     else
@@ -237,37 +227,29 @@ static void ft_init_ray_dir(t_game *game,
 ### 垂直距離と壁の向き
 
 ```c title="raycaster.c (calc_wall_dist)"
-static void ft_calc_wall_dist(t_game *game,
-                               t_ray *ray)
+static void ft_calc_wall_dist(t_game *game, t_ray *ray)
 {
-    // 垂直距離 = 魚眼補正済みの正しい距離
     if (ray->side == 0)
     {
-        // X 壁（東西）に当たった
-        ray->perp_wall_dist =
-            ray->side_dist.x - ray->delta_dist.x;
+        ray->perp_wall_dist = ray->side_dist.x - ray->delta_dist.x;
         ray->wall_x = game->player.pos.y
             + ray->perp_wall_dist * ray->dir.y;
     }
     else
     {
-        // Y 壁（南北）に当たった
-        ray->perp_wall_dist =
-            ray->side_dist.y - ray->delta_dist.y;
+        ray->perp_wall_dist = ray->side_dist.y - ray->delta_dist.y;
         ray->wall_x = game->player.pos.x
             + ray->perp_wall_dist * ray->dir.x;
     }
     ray->wall_x -= floor(ray->wall_x);
-
-    // どのテクスチャを使うか
     if (ray->side == 0 && ray->dir.x > 0)
-        ray->tex_id = TEX_EA;  // 東
+        ray->tex_id = TEX_EA;
     else if (ray->side == 0 && ray->dir.x <= 0)
-        ray->tex_id = TEX_WE;  // 西
+        ray->tex_id = TEX_WE;
     else if (ray->side == 1 && ray->dir.y > 0)
-        ray->tex_id = TEX_SO;  // 南
+        ray->tex_id = TEX_SO;
     else
-        ray->tex_id = TEX_NO;  // 北
+        ray->tex_id = TEX_NO;
 }
 ```
 

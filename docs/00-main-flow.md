@@ -99,31 +99,20 @@ int main(int argc, char **argv)
 {
     t_game  game;
 
-    // 構造体をゼロクリア (ゴミ値防止)
     ft_bzero(&game, sizeof(t_game));
-
-    // 引数 (個数と拡張子) を検証
     ft_check_args(argc, argv);
-
-    // .cub をパースして game.config に格納
     ft_parse(argv[1], &game.config);
-
-    // miniLibX 起動 + プレイヤー初期化
     ft_init_game(&game);
-
-    // キーと × ボタンのコールバック登録
     mlx_hook(game.win, 2,  1L << 0, ft_key_press,    &game);
     mlx_hook(game.win, 3,  1L << 1, ft_key_release,  &game);
     mlx_hook(game.win, 17, 0,       ft_close_window, &game);
-
-    // 毎フレーム呼ばれる関数を登録
     mlx_loop_hook(game.mlx, ft_game_loop, &game);
-
-    // 無限ループ突入 (ESC か × で抜ける)
     mlx_loop(game.mlx);
     return (0);
 }
 ```
+
+各行の意味は、続く「新しい概念をひとつずつ解説」で扱います。
 
 ### 新しい概念をひとつずつ解説
 
@@ -254,40 +243,27 @@ flowchart LR
 ```c title="srcs/init.c (ft_init_game)"
 void ft_init_game(t_game *game)
 {
-    // ── miniLibX 起動 ──
     game->mlx = mlx_init();
     if (!game->mlx)
         ft_error("Failed to initialize miniLibX");
-
-    // ── ウィンドウ作成 ──
-    game->win = mlx_new_window(game->mlx,
-                               WIN_W, WIN_H, "cub3D");
+    game->win = mlx_new_window(game->mlx, WIN_W, WIN_H, "cub3D");
     if (!game->win)
         ft_error("Failed to create window");
-
-    // ── フレームバッファ作成 ──
-    game->frame.ptr =
-        mlx_new_image(game->mlx, WIN_W, WIN_H);
+    game->frame.ptr = mlx_new_image(game->mlx, WIN_W, WIN_H);
     if (!game->frame.ptr)
         ft_error("Failed to create frame buffer");
-    game->frame.addr = mlx_get_data_addr(
-        game->frame.ptr,
-        &game->frame.bpp,
-        &game->frame.line_len,
-        &game->frame.endian);
+    game->frame.addr = mlx_get_data_addr(game->frame.ptr,
+        &game->frame.bpp, &game->frame.line_len, &game->frame.endian);
     game->frame.width = WIN_W;
     game->frame.height = WIN_H;
-
-    // ── テクスチャ 4 枚を読み込む ──
     ft_load_textures(game);
-
-    // ── プレイヤーの位置と向きを初期化 ──
     ft_init_player(game);
-
-    // ── キー状態をゼロクリア ──
     ft_bzero(&game->keys, sizeof(t_keys));
 }
 ```
+
+`mlx_init` → `mlx_new_window` → `mlx_new_image` → テクスチャ →
+プレイヤー → キーフラグの順で、**作る順序が重要** です（前の戻り値が次の引数になる）。
 
 ### 新しい概念をひとつずつ解説
 
@@ -351,10 +327,7 @@ void ft_render(t_game *game)
         ft_draw_column(game, x, &ray);
         x++;
     }
-    mlx_put_image_to_window(game->mlx,
-                            game->win,
-                            game->frame.ptr,
-                            0, 0);
+    mlx_put_image_to_window(game->mlx, game->win, game->frame.ptr, 0, 0);
 }
 ```
 

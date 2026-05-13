@@ -107,35 +107,27 @@ ft_error("...");
 
 ```c title="cleanup.c"
 #ifdef __linux__
-
 // Linux 専用: ディスプレイも解放する
 static void ft_destroy_mlx(void *mlx)
 {
     if (mlx)
     {
-        // X11 ディスプレイを切断
         mlx_destroy_display(mlx);
-        // mlx 構造体自体を解放
         free(mlx);
     }
 }
-
 #else
-
 // macOS: mlx_destroy_display がない
 static void ft_destroy_mlx(void *mlx)
 {
-    (void)mlx;  // 未使用引数の警告を抑制
+    (void)mlx;
 }
-
 #endif
 
-// config 内のメモリを解放
 static void ft_free_config(t_config *config)
 {
     int i;
 
-    // 4 つのテクスチャパスを解放
     i = 0;
     while (i < 4)
     {
@@ -143,51 +135,35 @@ static void ft_free_config(t_config *config)
             free(config->tex_path[i]);
         i++;
     }
-
-    // マップデータ (二次元配列) を解放
     if (config->map)
     {
         i = 0;
-        // 各行を解放
         while (i < config->map_h)
         {
             free(config->map[i]);
             i++;
         }
-        // 行ポインタ配列を解放
         free(config->map);
     }
 }
 
-// メイン cleanup 関数
 // エラー時・正常終了時の両方から呼ばれる
 void ft_cleanup(t_game *game)
 {
     int i;
 
-    // 4 つのテクスチャ画像を解放
     i = 0;
     while (i < 4)
     {
         if (game->tex[i].ptr)
-            mlx_destroy_image(game->mlx,
-                              game->tex[i].ptr);
+            mlx_destroy_image(game->mlx, game->tex[i].ptr);
         i++;
     }
-
-    // フレームバッファ (描画用 image) を解放
     if (game->frame.ptr)
-        mlx_destroy_image(game->mlx,
-                          game->frame.ptr);
-
-    // ウィンドウを閉じる
+        mlx_destroy_image(game->mlx, game->frame.ptr);
     if (game->win)
         mlx_destroy_window(game->mlx, game->win);
-
-    // ディスプレイ解放 (Linux のみ)
     ft_destroy_mlx(game->mlx);
-
-    // config 内のメモリ解放
     ft_free_config(&game->config);
 }
 ```
@@ -206,7 +182,6 @@ void ft_cleanup(t_game *game)
 char **map = calloc(rows + 1, sizeof(char *));
 for (int i = 0; i < rows; i++)
     map[i] = malloc(cols);
-
 // 解放 (逆順)
 for (int i = 0; i < rows; i++)
     free(map[i]);  // 各行を先に解放

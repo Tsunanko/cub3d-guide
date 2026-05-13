@@ -102,27 +102,19 @@ C では「関数のアドレス（関数ポインタ）」で登録します。
 #### キー状態を記録する
 
 ```c title="input.c (set_key)"
-// キーに対応するフラグをセット/クリア
 // val = 1 (押された) or 0 (離された)
-static void ft_set_key(int keycode,
-                        t_keys *keys, int val)
+static void ft_set_key(int keycode, t_keys *keys, int val)
 {
-    // W キー
     if (keycode == KEY_W)
         keys->w = val;
-    // A キー (左ストレイフ)
     else if (keycode == KEY_A)
         keys->a = val;
-    // S キー (後退)
     else if (keycode == KEY_S)
         keys->s = val;
-    // D キー (右ストレイフ)
     else if (keycode == KEY_D)
         keys->d = val;
-    // ← キー (左回転)
     else if (keycode == KEY_LEFT)
         keys->left = val;
-    // → キー (右回転)
     else if (keycode == KEY_RIGHT)
         keys->right = val;
 }
@@ -131,16 +123,13 @@ static void ft_set_key(int keycode,
 #### キー押下のハンドラ
 
 ```c title="input.c (key_press)"
-// キーが押されたときに呼ばれる
 int ft_key_press(int keycode, t_game *game)
 {
-    // ESC は即終了
     if (keycode == KEY_ESC)
     {
-        ft_cleanup(game);  // メモリ解放
+        ft_cleanup(game);
         exit(0);
     }
-    // 他のキーはフラグを 1 にセット
     ft_set_key(keycode, &game->keys, 1);
     return (0);
 }
@@ -149,10 +138,8 @@ int ft_key_press(int keycode, t_game *game)
 #### キー離した時のハンドラ
 
 ```c title="input.c (key_release)"
-// キーが離されたときに呼ばれる
 int ft_key_release(int keycode, t_game *game)
 {
-    // フラグを 0 にクリア
     ft_set_key(keycode, &game->keys, 0);
     return (0);
 }
@@ -172,23 +159,16 @@ int ft_key_release(int keycode, t_game *game)
 #### 衝突判定
 
 ```c title="move.c (can_move)"
-// 指定位置に移動可能か判定
-static int ft_can_move(t_game *game,
-                        double x, double y)
+static int ft_can_move(t_game *game, double x, double y)
 {
     int mx;
     int my;
 
-    // float → int で格子座標に変換
     mx = (int)x;
     my = (int)y;
-
-    // マップ範囲外は移動不可
     if (mx < 0 || mx >= game->config.map_w
         || my < 0 || my >= game->config.map_h)
         return (0);
-
-    // そこが壁('1') でなければ移動可
     return (game->config.map[my][mx] != '1');
 }
 ```
@@ -198,40 +178,26 @@ static int ft_can_move(t_game *game,
 ```c title="move.c (forward_back)"
 static void ft_move_forward_back(t_game *game)
 {
-    double nx;  // 次の X 位置
-    double ny;  // 次の Y 位置
+    double nx;
+    double ny;
 
-    // W: 前進
     if (game->keys.w)
     {
-        // プレイヤーの向き方向に MOVE_SPEED 進む
-        nx = game->player.pos.x
-           + game->player.dir.x * MOVE_SPEED;
-        ny = game->player.pos.y
-           + game->player.dir.y * MOVE_SPEED;
-
-        // X と Y を別々に判定
-        // (角でぴったり止まらず壁沿いに動くため)
-        if (ft_can_move(game, nx,
-                        game->player.pos.y))
+        nx = game->player.pos.x + game->player.dir.x * MOVE_SPEED;
+        ny = game->player.pos.y + game->player.dir.y * MOVE_SPEED;
+        // X と Y を別々に判定 (壁沿いにスライドできるように)
+        if (ft_can_move(game, nx, game->player.pos.y))
             game->player.pos.x = nx;
-        if (ft_can_move(game,
-                        game->player.pos.x, ny))
+        if (ft_can_move(game, game->player.pos.x, ny))
             game->player.pos.y = ny;
     }
-
-    // S: 後退 (同じ処理で逆方向)
     if (game->keys.s)
     {
-        nx = game->player.pos.x
-           - game->player.dir.x * MOVE_SPEED;
-        ny = game->player.pos.y
-           - game->player.dir.y * MOVE_SPEED;
-        if (ft_can_move(game, nx,
-                        game->player.pos.y))
+        nx = game->player.pos.x - game->player.dir.x * MOVE_SPEED;
+        ny = game->player.pos.y - game->player.dir.y * MOVE_SPEED;
+        if (ft_can_move(game, nx, game->player.pos.y))
             game->player.pos.x = nx;
-        if (ft_can_move(game,
-                        game->player.pos.x, ny))
+        if (ft_can_move(game, game->player.pos.x, ny))
             game->player.pos.y = ny;
     }
 }
@@ -248,34 +214,23 @@ static void ft_move_forward_back(t_game *game)
 #### 回転（三角関数）
 
 ```c title="move.c (rotate)"
-// 回転行列を使って向きを変える
 static void ft_rotate(t_game *game, double angle)
 {
     double old_dir_x;
     double old_plane_x;
 
-    // 古い dir.x を保存
-    // (dir.y の更新で dir.x を使うので)
+    // dir.y の更新で dir.x を使うので保存
     old_dir_x = game->player.dir.x;
-
-    // 2D 回転行列:
-    // | cos  -sin | | x |   | x*cos - y*sin |
-    // | sin   cos | | y | = | x*sin + y*cos |
-    game->player.dir.x =
-        game->player.dir.x * cos(angle)
+    // 2D 回転行列: x' = x*cos - y*sin, y' = x*sin + y*cos
+    game->player.dir.x = game->player.dir.x * cos(angle)
         - game->player.dir.y * sin(angle);
-    game->player.dir.y =
-        old_dir_x * sin(angle)
+    game->player.dir.y = old_dir_x * sin(angle)
         + game->player.dir.y * cos(angle);
-
-    // カメラプレーンも同じ角度で回転
-    // (向きと連動して視野も回る必要がある)
+    // カメラプレーンも同じ角度で回転 (視野が向きに追従)
     old_plane_x = game->player.plane.x;
-    game->player.plane.x =
-        game->player.plane.x * cos(angle)
+    game->player.plane.x = game->player.plane.x * cos(angle)
         - game->player.plane.y * sin(angle);
-    game->player.plane.y =
-        old_plane_x * sin(angle)
+    game->player.plane.y = old_plane_x * sin(angle)
         + game->player.plane.y * cos(angle);
 }
 ```
@@ -285,15 +240,10 @@ static void ft_rotate(t_game *game, double angle)
 ```c title="move.c (move)"
 void ft_move(t_game *game)
 {
-    // WASD の判定
     ft_move_forward_back(game);
     ft_move_strafe(game);
-
-    // 矢印キーの判定
-    // 負の角度 = 反時計回り (左回転)
     if (game->keys.left)
         ft_rotate(game, -ROT_SPEED);
-    // 正の角度 = 時計回り (右回転)
     if (game->keys.right)
         ft_rotate(game, ROT_SPEED);
 }
@@ -305,23 +255,18 @@ void ft_move(t_game *game)
 // init.c または render.c に書かれる
 int ft_loop(t_game *game)
 {
-    ft_move(game);           // 移動計算
-    ft_render(game);         // 画面再描画
-    mlx_put_image_to_window( // フレームを画面に転送
-        game->mlx, game->win,
-        game->frame.ptr, 0, 0);
+    ft_move(game);
+    ft_render(game);
+    mlx_put_image_to_window(game->mlx, game->win, game->frame.ptr, 0, 0);
     return (0);
 }
 
 // main でフックを登録
 mlx_loop_hook(game.mlx, ft_loop, &game);
-mlx_hook(game.win, 2, 1L<<0,
-         ft_key_press, &game);
-mlx_hook(game.win, 3, 1L<<1,
-         ft_key_release, &game);
-mlx_hook(game.win, 17, 0,
-         ft_close, &game);
-mlx_loop(game.mlx);  // 無限ループ開始
+mlx_hook(game.win, 2,  1L << 0, ft_key_press,   &game);
+mlx_hook(game.win, 3,  1L << 1, ft_key_release, &game);
+mlx_hook(game.win, 17, 0,       ft_close,       &game);
+mlx_loop(game.mlx);
 ```
 
 ---

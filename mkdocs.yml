@@ -111,5 +111,12 @@ nav:
   - 09. 実際のバグと修正: 09-debugging.md
   - 🎓 評価対策:
     - 概要: eval.md
+    - 🔨 Executable name: eval-execution.md
+    - ⚙️ Configuration file: eval-config.md
+    - 🪟 Display: eval-display.md
     - 👤 User basic events: eval-events.md
+    - 🏃 Movements: eval-movement.md
+    - 🧱 Walls: eval-walls.md
+    - ⚠️ Error management: eval-errors.md
+    - 🏆 Bonus: eval-bonus.md
   - 📚 用語集: glossary.md

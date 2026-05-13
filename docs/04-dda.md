@@ -174,39 +174,28 @@ flowchart LR
 ```c title="raycaster.c (init_step)"
 static void ft_init_step(t_game *game, t_ray *ray)
 {
-    // ── X 方向 ──
-    // 光線が左向きか右向きか判定
     if (ray->dir.x < 0)
     {
         ray->step.x = -1;           // 左に進む
-        // 左の格子線までの距離
-        ray->side_dist.x =
-            (game->player.pos.x - ray->map_pos.x)
+        ray->side_dist.x = (game->player.pos.x - ray->map_pos.x)
             * ray->delta_dist.x;
     }
     else
     {
         ray->step.x = 1;            // 右に進む
-        // 右の格子線までの距離
-        ray->side_dist.x =
-            (ray->map_pos.x + 1.0
-             - game->player.pos.x)
+        ray->side_dist.x = (ray->map_pos.x + 1.0 - game->player.pos.x)
             * ray->delta_dist.x;
     }
-    // ── Y 方向も同じ処理 ──
     if (ray->dir.y < 0)
     {
         ray->step.y = -1;           // 上に進む
-        ray->side_dist.y =
-            (game->player.pos.y - ray->map_pos.y)
+        ray->side_dist.y = (game->player.pos.y - ray->map_pos.y)
             * ray->delta_dist.y;
     }
     else
     {
         ray->step.y = 1;            // 下に進む
-        ray->side_dist.y =
-            (ray->map_pos.y + 1.0
-             - game->player.pos.y)
+        ray->side_dist.y = (ray->map_pos.y + 1.0 - game->player.pos.y)
             * ray->delta_dist.y;
     }
 }
@@ -219,10 +208,9 @@ static void ft_dda(t_game *game, t_ray *ray)
 {
     int hit;
 
-    hit = 0;  // まだ壁に当たってない
+    hit = 0;
     while (!hit)
     {
-        // X と Y の次の格子線、近い方に進む
         if (ray->side_dist.x < ray->side_dist.y)
         {
             ray->side_dist.x += ray->delta_dist.x;
@@ -235,16 +223,10 @@ static void ft_dda(t_game *game, t_ray *ray)
             ray->map_pos.y += ray->step.y;
             ray->side = 1;  // Y 壁に当たった
         }
-        // マップ外に出たら強制終了（安全策）
-        if (ray->map_pos.x < 0
-            || ray->map_pos.x >= game->config.map_w
-            || ray->map_pos.y < 0
-            || ray->map_pos.y >= game->config.map_h)
+        if (ray->map_pos.x < 0 || ray->map_pos.x >= game->config.map_w
+            || ray->map_pos.y < 0 || ray->map_pos.y >= game->config.map_h)
             break ;
-        // そのマスが壁 '1' なら終了
-        if (game->config.map
-                [ray->map_pos.y]
-                [ray->map_pos.x] == '1')
+        if (game->config.map[ray->map_pos.y][ray->map_pos.x] == '1')
             hit = 1;
     }
 }

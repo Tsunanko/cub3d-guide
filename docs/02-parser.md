@@ -299,28 +299,15 @@ void ft_parse(char *path, t_config *config)
     char  *content;
     char **lines;
 
-    // ── 準備 ──
-    // config をゼロクリア (ゴミ値を防ぐ)
     ft_bzero(config, sizeof(t_config));
-
-    // ファイル全体を1つの文字列として読み込み
     content = ft_read_file(path);
-
-    // 改行で分割して行の配列にする
     lines = ft_split_lines(content);
-    free(content);  // 元文字列はもう不要
-
+    free(content);
     if (!lines)
         ft_error("Memory allocation failed");
-
-    // エラー時クリーンアップ用の登録
     ft_set_errctx(config, lines);
-
-    // ── 本処理 ──
-    ft_process_lines(lines, config);  // 1 行ずつ処理
-    ft_validate_map(config);           // マップの検証
-
-    // ── 後片付け ──
+    ft_process_lines(lines, config);
+    ft_validate_map(config);
     ft_set_errctx(NULL, NULL);
     ft_free_lines(lines);
 }
