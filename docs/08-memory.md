@@ -20,16 +20,35 @@ cub3D は特に解放対象が多いので、**計画的な管理** が必要で
 
 ---
 
-## 1. このページで学ぶこと
+## 🎯 なぜメモリ管理を学ぶ？（学習意図）
 
-- **リソース管理の基本**: 確保したら必ず解放
-- **miniLibX リソースの解放**: image, window, display
-- **エラー時の部分解放**: どこまで確保したか追跡
-- **leaks / valgrind での確認**
+cub3D は **長時間動き続けるプログラム** で、確保するリソースの種類が一気に増えます。
+ここで「**確保したものを最後まで責任を持って解放する**」という C プログラマの基本動作を、
+**多種類リソース + エラーパスあり** という難条件で身につけます。
+
+| 学ばせたいこと | このページで出会う形 |
+|---|---|
+| **確保と解放のペアリング** | `malloc` ↔ `free`、`mlx_new_*` ↔ `mlx_destroy_*` の対 |
+| **C には GC も RAII もない**現実 | 全パス（正常 + 異常）から自力で cleanup を呼ぶ設計 |
+| **二次元配列の解放順** | 内側 → 外側の順、逆だと dangling pointer |
+| **NULL セーフな解放**（`if (ptr)`） | `mlx_destroy_*` は NULL で落ちる可能性があるので保護 |
+| **環境差異**（Linux と macOS のリソース差） | `#ifdef __linux__` で `mlx_destroy_display` を分岐 |
+
+つまり「**マルチリソースのライフサイクルを、エラー経路も含めて全部管理する**」のがこのページの狙いです。
 
 ---
 
-## 2. 用語と仕組みの整理
+## このページで学ぶこと
+
+- **`ft_cleanup`** — 4 つのテクスチャ + フレーム + ウィンドウ + mlx を順に解放する集約関数
+- **`ft_free_config`** — マップの二次元配列とテクスチャパス文字列を解放
+- **`errctx`（エラーコンテキスト）** — エラー時にどこまで確保したかを追跡する仕組み
+- **`#ifdef __linux__`** — `mlx_destroy_display` + `free` が必要なのは Linux のみ
+- **`valgrind` / `leaks`** — リークが本当に 0 か外部ツールで検証する手順
+
+---
+
+## 1. 用語と仕組みの整理
 
 ### メモリリーク（memory leak）
 
@@ -101,7 +120,7 @@ ft_error("...");
 
 ---
 
-## 3. コード解説
+## 2. コード解説
 
 ### cleanup.c（全解放）
 
@@ -192,7 +211,7 @@ free(map);         // 行ポインタ配列を最後に
 
 ---
 
-## 4. メモリ確認ツール
+## 3. メモリ確認ツール
 
 ### Linux: valgrind
 
@@ -225,49 +244,35 @@ miniLibX は macOS ではリークを出すことがあるので、
 
 ---
 
-## 5. メモリ管理のチェックリスト
+## 4. このページに関連する評価項目
 
-### 確保と解放のペア
+本ページの内容は、評価シートの **以下のセクション** に対応します。詳細（英語原文 + 日本語訳 + 評価者が見るコード + Q&A）は専用ページに。
 
-- [ ] `malloc` の対 `free` がある
-- [ ] `calloc` の対 `free` がある
-- [ ] `ft_calloc` / `ft_strdup` 等も同様
-- [ ] `mlx_new_image` の対 `mlx_destroy_image`
-- [ ] `mlx_new_window` の対 `mlx_destroy_window`
-- [ ] `mlx_xpm_file_to_image` の対 `mlx_destroy_image`
-- [ ] Linux の `mlx_init` の対 `mlx_destroy_display + free`
+| 評価セクション | 担当する内容 | 詳細 |
+|:---|:---|:---|
+| **Error management** | 異常マップ / ESC / × / 乱打のいずれの経路でもリーク 0、`leaks` / `valgrind` で検証 | [eval-errors](eval-errors.md) |
 
-### エラーパス
-
-- [ ] parse エラー時にも cleanup される
-- [ ] テクスチャ読み込み失敗時にも cleanup される
-- [ ] ESC 終了時に cleanup される
-- [ ] ウィンドウ × ボタンで cleanup される
+→ 全項目を一覧したい場合は **[評価対策トップ](eval.md)** へ。
 
 ---
 
-## 6. 評価シートの確認項目
+## 5. ディフェンスで聞かれること（学習トピック）
 
-- [ ] `leaks` / `valgrind` でリーク 0
-- [ ] 異常系（壊れたマップ等）でもリークしない
-- [ ] ESC 終了時もリークしない
-- [ ] `Ctrl+C` はリーク OK（シグナルハンドラ不要）
+評価シート項目別の詳細（リーク 0 の根拠・確認手順）は **[eval-errors](eval-errors.md)** にあります。
+ここでは **本ページの学習トピック（メモリ管理の設計）に関する技術質問** だけを扱います。
 
----
-
-## 7. ディフェンスで聞かれること
-
-| 質問 | 答え方 |
-|------|--------|
-| メモリリークをどう防いだ？ | 確保と解放を対にし、エラー時は errctx でグローバル登録した情報を元にクリーンアップ |
-| 二次元配列の解放順は？ | 中の配列を先に解放して、最後に外の配列（行ポインタ配列）を解放 |
-| NULL チェックは必要？ | `free(NULL)` は安全だが、`mlx_destroy_*` は NULL で落ちる可能性があるので必須 |
-| RAII はないけどどうしてる？ | cleanup 関数を 1 つ用意し、すべてのパスから確実に呼ぶように設計 |
-| valgrind で "still reachable" が出たら？ | 通常は miniLibX 内部のもの。自分のコードの `definitely lost` が 0 なら OK |
+| 質問 | 答え方 | 実装で言うと |
+|---|---|---|
+| メモリリークをどう防いだ？ | 確保と解放を対にし、エラー時は `errctx` でグローバル登録した情報を元にクリーンアップ | `ft_set_errctx` 登録 → `ft_error` 内部で `ft_cleanup` を呼んで `exit` |
+| 二次元配列の解放順は？ | 中の配列を先に解放してから、最後に外の配列（行ポインタ配列）を解放 | `ft_free_config` のループで `free(map[i])` → `free(map)` |
+| NULL チェックは必要？ | `free(NULL)` は安全だが、`mlx_destroy_*` は NULL で落ちる可能性があるので必須 | `ft_cleanup` で `if (game->tex[i].ptr)` / `if (game->win)` を毎回確認 |
+| RAII はないけどどうしてる？ | `ft_cleanup` 関数を 1 つ用意し、すべてのパス（正常終了・ESC・× ・エラー）から確実に呼ぶように設計 | `ft_close_window` / `ft_key_press`（ESC）/ `ft_error` 全てが `ft_cleanup` 経由 |
+| valgrind で "still reachable" が出たら？ | 通常は miniLibX 内部のもの。自分のコードの `definitely lost` が 0 なら OK | `definitely lost: 0 bytes in 0 blocks` を必ず確認 |
+| なぜ `mlx_destroy_display` が macOS にないの？ | macOS の miniLibX は Cocoa（NSApp）を内部で持つ別実装で、ディスプレイの概念が違うため | `#ifdef __linux__` でラップして Linux のみ呼ぶ |
 
 ---
 
-## 8. よくあるミス
+## 6. よくあるミス
 
 !!! warning "エラーパスでリーク"
     正常終了は OK でも、エラー時 ( 壊れたマップなど ) で cleanup が呼ばれずリーク。
@@ -283,6 +288,24 @@ miniLibX は macOS ではリークを出すことがあるので、
 
 ---
 
-## 9. 次のページへ
+## 💡 ここまでの学びのまとめ
+
+このページで身についたこと:
+
+- **確保と解放のペアリング** が C プログラムの基本動作（`malloc` ↔ `free`、`mlx_new_*` ↔ `mlx_destroy_*`）
+- **`ft_cleanup` という集約関数** を全パスから呼ぶことで、C でも RAII 相当の安全性を確保できる
+- **`errctx` でエラー時の解放対象を追跡** する古典的パターン（グローバル変数の正当な使い方）
+- **NULL セーフな解放**：`free(NULL)` は安全だが `mlx_destroy_*` は危険なので必ず `if (ptr)`
+- **`#ifdef __linux__` で環境差を吸収**：Linux のみ `mlx_destroy_display` + `free` が必要
+
+!!! tip "ここで詰まったら"
+    - 「`valgrind` で `definitely lost` が出る！」→ 確保したのに `ft_cleanup` 内で解放していないリソースがある。新しく `mlx_new_*` を追加したら `ft_cleanup` も同時に更新
+    - 「`mlx_destroy_*` でクラッシュする！」→ NULL チェックを忘れている。`if (ptr)` を全箇所で
+    - 「Linux だけリークする！」→ `mlx_init` の戻り値 + `mlx_destroy_display` の解放忘れ。`#ifdef __linux__` の分岐を確認
+    - 「エラー時だけリーク！」→ `ft_error` の中で `ft_cleanup` が呼ばれていない or `errctx` に未登録。エラーパスを追って確認
+
+---
+
+## 7. 次のページへ
 
 次は [09. 実際のバグと修正](09-debugging.md) で、開発中に遭遇した生のバグと直し方を学びます。
