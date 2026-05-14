@@ -1,0 +1,2182 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="42 Tokyo cub3D プロジェクトの解説サイト（超初心者向け）">
+      
+      
+      
+      
+        <link rel="prev" href="../eval/">
+      
+      
+        <link rel="next" href="../eval-config/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>🔨 Executable name - cub3D Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans JP";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="deep-purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#executable-name" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href=".." title="cub3D Guide" class="md-header__button md-logo" aria-label="cub3D Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 16.5c0 .38-.21.71-.53.88l-7.9 4.44c-.16.12-.36.18-.57.18s-.41-.06-.57-.18l-7.9-4.44A.99.99 0 0 1 3 16.5v-9c0-.38.21-.71.53-.88l7.9-4.44c.16-.12.36-.18.57-.18s.41.06.57.18l7.9 4.44c.32.17.53.5.53.88zM12 4.15 6.04 7.5 12 10.85l5.96-3.35zM5 15.91l6 3.38v-6.71L5 9.21zm14 0v-6.7l-6 3.37v6.71z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            cub3D Guide
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              🔨 Executable name
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="deep-purple"  aria-label="ダークモードへ"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="ダークモードへ" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-purple"  aria-label="ライトモードへ"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="ライトモードへ" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="検索">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="共有" aria-label="共有" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="cub3D Guide" class="md-nav__button md-logo" aria-label="cub3D Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 16.5c0 .38-.21.71-.53.88l-7.9 4.44c-.16.12-.36.18-.57.18s-.41-.06-.57-.18l-7.9-4.44A.99.99 0 0 1 3 16.5v-9c0-.38.21-.71.53-.88l7.9-4.44c.16-.12.36-.18.57-.18s.41.06.57.18l7.9 4.44c.32.17.53.5.53.88zM12 4.15 6.04 7.5 12 10.85l5.96-3.35zM5 15.91l6 3.38v-6.71L5 9.21zm14 0v-6.7l-6 3.37v6.71z"/></svg>
+
+    </a>
+    cub3D Guide
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ホーム
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-main-flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    00. プログラム全体の流れ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01. 概要とビルド
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-parser/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02. パーサー
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-raycasting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03. レイキャスティングとは
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-dda/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04. DDA アルゴリズム
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-camera/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05. カメラと魚眼補正
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06. レンダリング
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-input/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07. 入力処理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08. メモリ管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-debugging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09. 実際のバグと修正
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🎓 評価対策
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🎓 評価対策
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../eval/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概要
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔨 Executable name
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔨 Executable name
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🌱 3 秒でわかる
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📋 セクション全体の原文
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-1-make" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test 1: make でエラーも警告もなくビルドできる
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test 1: make でエラーも警告もなくビルドできる">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ① 評価シート原文
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ② 日本語訳
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ③ 評価者が確認すること
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ④ 評価者が見るコード箇所
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑤ 原理原則 — なぜ 3 つのフラグが必須か？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑥ よくある罠
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑦ 想定質問と模範回答
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-2-make-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test 2: make 2 回目で再リンクなし
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test 2: make 2 回目で再リンクなし">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ① 評価シート原文
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ② 日本語訳
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ③ 評価者が確認すること
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ④ 評価者が見るコード箇所
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑤ 原理原則 — なぜ再リンクが起きるか？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑥ よくある罠
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑦ 想定質問と模範回答
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-3-cub3d" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test 3: 実行ファイル名が cub3D
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test 3: 実行ファイル名が cub3D">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ① 評価シート原文
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ② 日本語訳
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ③ 評価者が確認すること
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ④ 評価者が見るコード箇所
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-d" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑤ 原理原則 — なぜ大文字 D に強くこだわるか？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑥ よくある罠
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑦ 想定質問と模範回答
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 ディフェンス当日の動き方
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📋 提出前最終チェック
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        関連ページ
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../eval-config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ⚙️ Configuration file
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../eval-display/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🪟 Display
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../eval-events/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    👤 User basic events
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../eval-movement/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏃 Movements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../eval-walls/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧱 Walls
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../eval-errors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ⚠️ Error management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../eval-bonus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏆 Bonus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📚 用語集
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🌱 3 秒でわかる
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📋 セクション全体の原文
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-1-make" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test 1: make でエラーも警告もなくビルドできる
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test 1: make でエラーも警告もなくビルドできる">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ① 評価シート原文
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ② 日本語訳
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ③ 評価者が確認すること
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ④ 評価者が見るコード箇所
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑤ 原理原則 — なぜ 3 つのフラグが必須か？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑥ よくある罠
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑦ 想定質問と模範回答
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-2-make-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test 2: make 2 回目で再リンクなし
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test 2: make 2 回目で再リンクなし">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ① 評価シート原文
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ② 日本語訳
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ③ 評価者が確認すること
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ④ 評価者が見るコード箇所
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑤ 原理原則 — なぜ再リンクが起きるか？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑥ よくある罠
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑦ 想定質問と模範回答
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-3-cub3d" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test 3: 実行ファイル名が cub3D
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test 3: 実行ファイル名が cub3D">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ① 評価シート原文
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ② 日本語訳
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ③ 評価者が確認すること
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ④ 評価者が見るコード箇所
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-d" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑤ 原理原則 — なぜ大文字 D に強くこだわるか？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑥ よくある罠
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑦ 想定質問と模範回答
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 ディフェンス当日の動き方
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📋 提出前最終チェック
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        関連ページ
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<p><a href="../">🏠 ホーム</a> › 🎓 評価対策 › <strong>🔨 Executable name</strong></p>
+<h1 id="executable-name">Executable name — 評価詳細</h1>
+<p>cub3D 評価シートの <strong>「Executable name」セクション</strong> を「評価原文 + 日本語訳 + コード + 原理原則 + 模範回答」で 1 項目ずつ解説します。</p>
+<p>→ 概要は <strong><a href="../eval/">評価対策トップ</a></strong> を参照。
+→ 本文の流れは <strong><a href="../00-main-flow/">00 プログラム全体の流れ</a></strong> を参照。</p>
+<hr />
+<h2 id="3">🌱 3 秒でわかる</h2>
+<table>
+<thead>
+<tr>
+<th>観点</th>
+<th>一言で</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>🎯 評価形式</strong></td>
+<td>3 テスト中 <strong>1 つでも失敗</strong> したら <strong><code>Invalid compilation</code> フラグ</strong> で defense 終了</td>
+</tr>
+<tr>
+<td><strong>📦 関連コード</strong></td>
+<td><code>Makefile</code> の <code>NAME = cub3D</code> / <code>CFLAGS = -Wall -Wextra -Werror</code> / <code>.PHONY</code> / <code>$(NAME):</code> ターゲット</td>
+</tr>
+<tr>
+<td><strong>⚠️ ハマりどころ</strong></td>
+<td>実行ファイル名を <code>cub3d</code>（小文字 d）にしてしまう、<code>make</code> 2 回目で <strong>再リンク</strong> が走る、<code>-Werror</code> を抜かす</td>
+</tr>
+<tr>
+<td><strong>🔗 本文ページ</strong></td>
+<td><a href="../00-main-flow/">00 メインフロー §1 ビルド</a></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_1">📋 セクション全体の原文</h2>
+<div class="admonition note">
+<p class="admonition-title">原文（評価シート Executable name）</p>
+<blockquote>
+<p>Check that the project compiles correctly (without relinking) when running the make command and that the executable name is cub3D. If not, use the invalid compilation flag at the end of the scale.</p>
+</blockquote>
+</div>
+<div class="admonition info">
+<p class="admonition-title">日本語訳</p>
+<p><code>make</code> コマンドを実行した際にプロジェクトが <strong>再リンクなしで正しくコンパイル</strong> され、実行ファイル名が <strong><code>cub3D</code></strong> であることを確認する。そうでない場合は、評価シート末尾の <strong><code>Invalid compilation</code> フラグ</strong> を使う。</p>
+</div>
+<hr />
+<h2 id="test-1-make">Test 1: <code>make</code> でエラーも警告もなくビルドできる</h2>
+<h3 id="1">① 評価シート原文</h3>
+<blockquote>
+<p>Check that the project compiles correctly when running the make command.</p>
+</blockquote>
+<h3 id="2">② 日本語訳</h3>
+<blockquote>
+<p><code>make</code> コマンドでプロジェクトが <strong>エラーも警告もなくコンパイル</strong> されること。</p>
+</blockquote>
+<h3 id="3_1">③ 評価者が確認すること</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">確認</th>
+<th style="text-align: left;">期待される挙動</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>エラーゼロ</strong></td>
+<td style="text-align: left;"><code>make</code> の出力にコンパイルエラーが 1 つも無い</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>警告ゼロ</strong></td>
+<td style="text-align: left;"><code>warning:</code> の文字が 1 行も出ない</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>必須フラグ</strong></td>
+<td style="text-align: left;"><code>-Wall -Wextra -Werror</code> が <code>CFLAGS</code> に並んでいる</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>実行ファイル生成</strong></td>
+<td style="text-align: left;">ビルド後にカレントに <code>cub3D</code> が出来ている</td>
+</tr>
+</tbody>
+</table>
+<h3 id="4">④ 評価者が見るコード箇所</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">ファイル</th>
+<th style="text-align: left;">関数/変数</th>
+<th style="text-align: left;">何を見るか</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>Makefile</code></td>
+<td style="text-align: left;"><code>CFLAGS</code></td>
+<td style="text-align: left;"><code>-Wall -Wextra -Werror</code> の <strong>3 つすべてが揃っているか</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Makefile</code></td>
+<td style="text-align: left;"><code>$(NAME):</code> ターゲット</td>
+<td style="text-align: left;"><code>.o</code> を集めて <code>$(CC) $(CFLAGS) ... -o $(NAME)</code> でリンクしているか</td>
+</tr>
+<tr>
+<td style="text-align: left;">ターミナル</td>
+<td style="text-align: left;"><code>make</code> の出力</td>
+<td style="text-align: left;"><code>warning:</code> が 1 行も出ないか</td>
+</tr>
+</tbody>
+</table>
+<div class="language-makefile highlight"><span class="filename">Makefile (フラグ宣言)</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nv">CC</span><span class="w">      </span><span class="o">=</span><span class="w"> </span>cc
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nv">CFLAGS</span><span class="w">  </span><span class="o">=</span><span class="w"> </span>-Wall<span class="w"> </span>-Wextra<span class="w"> </span>-Werror
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nv">NAME</span><span class="w">    </span><span class="o">=</span><span class="w"> </span>cub3D
+</span></code></pre></div>
+<div class="language-makefile highlight"><span class="filename">Makefile ($(NAME) ターゲット)</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nf">$(NAME)</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">OBJS</span><span class="k">)</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="k">$(</span>CC<span class="k">)</span><span class="w"> </span><span class="k">$(</span>CFLAGS<span class="k">)</span><span class="w"> </span><span class="k">$(</span>OBJS<span class="k">)</span><span class="w"> </span><span class="k">$(</span>MLX_FLAGS<span class="k">)</span><span class="w"> </span>-o<span class="w"> </span><span class="k">$(</span>NAME<span class="k">)</span>
+</span></code></pre></div>
+<h3 id="5-3">⑤ 原理原則 — なぜ 3 つのフラグが必須か？</h3>
+<p>42 では C プログラムを「<strong>警告ゼロでビルドできる</strong>」状態に保つことが必須です。</p>
+<ul>
+<li><strong><code>-Wall</code></strong> — よく使う警告群（未使用変数・暗黙変換など）を有効化</li>
+<li><strong><code>-Wextra</code></strong> — <code>-Wall</code> で拾えない警告（符号比較・空構造体など）も有効化</li>
+<li><strong><code>-Werror</code></strong> — 警告を <strong>コンパイルエラーに格上げ</strong>。1 つでも警告が出れば即ビルド失敗</li>
+</ul>
+<pre class="mermaid"><code>flowchart LR
+    Code[ソースコード] --&gt; Compile[cc -Wall -Wextra -Werror]
+    Compile --&gt;|警告 0| OK[ビルド成功]
+    Compile --&gt;|警告 1 以上| Fail[エラー化 → ビルド失敗]
+    Fail --&gt; Flag[Invalid compilation フラグ]</code></pre>
+<p>警告は <strong>未定義動作の前兆</strong> であることが多いので、本番に持ち込ませない強制力として <code>-Werror</code> が機能します。</p>
+<h3 id="6">⑥ よくある罠</h3>
+<ul>
+<li>❌ <code>CFLAGS</code> に <code>-Wall</code> だけしか書いていない → 評価者がフラグを <code>grep</code> して気付く → <code>Invalid compilation</code></li>
+<li>❌ <code>mlx_init</code> 系の暗黙宣言警告が出ているのに気付かない → <code>-Werror</code> でビルド不可</li>
+<li>❌ 環境変数で <code>CFLAGS</code> が上書きされる構造（<code>CFLAGS = ...</code> ではなく <code>CFLAGS += ...</code>）→ ローカルでは通るが評価者環境で警告</li>
+<li>❌ Linux と macOS でフラグが分岐していないため、片方の環境で警告</li>
+</ul>
+<h3 id="7">⑦ 想定質問と模範回答</h3>
+<table>
+<thead>
+<tr>
+<th>質問</th>
+<th>模範回答</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>「<code>-Werror</code> を入れている理由は？」</td>
+<td>警告を読み飛ばさず、コードに残さないため。警告は未定義動作の前兆なので、本番に行かせない開発文化を強制する目的です</td>
+</tr>
+<tr>
+<td>「<code>-Wall</code> と <code>-Wextra</code> の違いは？」</td>
+<td><code>-Wall</code> は「全て」と読みますが実は一部の警告のみ有効化、<code>-Wextra</code> で残りの警告（符号比較・初期化漏れなど）まで広げます。両方セットで使うのが定石です</td>
+</tr>
+<tr>
+<td>「miniLibX のヘッダに警告が出たら？」</td>
+<td>システムヘッダ扱いにする <code>-isystem</code> を使うか、自分のラッパー関数で受けて自前コードに警告を出さない設計にします</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="test-2-make-2">Test 2: <code>make</code> 2 回目で再リンクなし</h2>
+<h3 id="1_1">① 評価シート原文</h3>
+<blockquote>
+<p>Check that the project compiles correctly (without relinking) when running the make command.</p>
+</blockquote>
+<h3 id="2_1">② 日本語訳</h3>
+<blockquote>
+<p><code>make</code> を 2 回目に実行したとき、<strong>再リンクが走らない</strong>（<code>Nothing to be done for 'all'</code> などが出る）こと。</p>
+</blockquote>
+<h3 id="3_2">③ 評価者が確認すること</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">確認</th>
+<th style="text-align: left;">期待される挙動</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>1 回目 <code>make</code></strong></td>
+<td style="text-align: left;">全 <code>.o</code> をコンパイルし <code>cub3D</code> を生成</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>2 回目 <code>make</code></strong></td>
+<td style="text-align: left;"><code>make: Nothing to be done for 'all'.</code> などが出て、コンパイルもリンクも走らない</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>.PHONY</code> 宣言</strong></td>
+<td style="text-align: left;"><code>all clean fclean re</code> が <code>.PHONY</code> に並んでいる</td>
+</tr>
+</tbody>
+</table>
+<h3 id="4_1">④ 評価者が見るコード箇所</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">ファイル</th>
+<th style="text-align: left;">場所</th>
+<th style="text-align: left;">何を見るか</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>Makefile</code></td>
+<td style="text-align: left;"><code>all:</code> ターゲット</td>
+<td style="text-align: left;"><code>$(NAME)</code> を依存に持つだけで、空ターゲットになっているか</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Makefile</code></td>
+<td style="text-align: left;"><code>.PHONY</code> 行</td>
+<td style="text-align: left;"><code>all clean fclean re</code> が宣言されているか</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Makefile</code></td>
+<td style="text-align: left;">パターンルール</td>
+<td style="text-align: left;"><code>%.o: %.c</code> の依存関係で <code>.c</code> が変わったときだけ <code>.o</code> を作り直すか</td>
+</tr>
+</tbody>
+</table>
+<div class="language-makefile highlight"><span class="filename">Makefile (.PHONY と all)</span><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nf">.PHONY</span><span class="o">:</span><span class="w"> </span><span class="n">all</span> <span class="n">clean</span> <span class="n">fclean</span> <span class="n">re</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nf">all</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">NAME</span><span class="k">)</span>
+</span></code></pre></div>
+<div class="language-makefile highlight"><span class="filename">Makefile (パターンルール)</span><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nf">$(OBJS_DIR)/%.o</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">SRCS_DIR</span><span class="k">)</span>/%.<span class="n">c</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span>@mkdir<span class="w"> </span>-p<span class="w"> </span><span class="k">$(</span>dir<span class="w"> </span><span class="nv">$@</span><span class="k">)</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="k">$(</span>CC<span class="k">)</span><span class="w"> </span><span class="k">$(</span>CFLAGS<span class="k">)</span><span class="w"> </span><span class="k">$(</span>INCLUDES<span class="k">)</span><span class="w"> </span>-c<span class="w"> </span>$&lt;<span class="w"> </span>-o<span class="w"> </span><span class="nv">$@</span>
+</span></code></pre></div>
+<h3 id="5">⑤ 原理原則 — なぜ再リンクが起きるか？</h3>
+<p><code>make</code> はターゲットと依存ファイルの <strong>タイムスタンプ</strong> を見て、依存の方が新しければ再ビルドします。再リンクが毎回走る典型原因は:</p>
+<pre class="mermaid"><code>flowchart TD
+    A[make 2 回目] --&gt; B{$(NAME) は&lt;br/&gt;OBJS より新しい？}
+    B --&gt;|Yes| OK[Nothing to be done.]
+    B --&gt;|No| Re[リンクが走る]
+    Re --&gt; Cause1[原因 1: .PHONY 漏れで&lt;br/&gt;$(NAME) という&lt;br/&gt;ファイル名のディレクトリ等が衝突]
+    Re --&gt; Cause2[原因 2: OBJS が&lt;br/&gt;毎回 touch されている]
+    Re --&gt; Cause3[原因 3: 依存に存在しないファイル&lt;br/&gt;を書いている]</code></pre>
+<p><code>.PHONY</code> に <code>all</code> を入れずに <code>all:</code> を書くと、たまたま <code>all</code> というファイルが存在した時に動作が変わります。<code>$(NAME)</code> の依存解決を安定させるためにも <code>.PHONY</code> 宣言は必須です。</p>
+<h3 id="6_1">⑥ よくある罠</h3>
+<ul>
+<li>❌ <code>.PHONY: all clean fclean re</code> を書いていない → 同名のファイル/ディレクトリが出来た瞬間に動作不安定</li>
+<li>❌ <code>$(OBJS)</code> を <code>wildcard</code> で取り直して毎回タイムスタンプが変わる</li>
+<li>❌ ヘッダ依存を書かず、<code>includes/cub3d.h</code> を更新しても再コンパイルされない（評価とは別の問題だがハマりやすい）</li>
+<li>❌ <code>all: re</code> と書いている → 毎回 <code>re</code> が走る</li>
+</ul>
+<h3 id="7_1">⑦ 想定質問と模範回答</h3>
+<table>
+<thead>
+<tr>
+<th>質問</th>
+<th>模範回答</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>「2 回目の <code>make</code> で何も起きない理由は？」</td>
+<td><code>$(NAME)</code> のタイムスタンプが <code>$(OBJS)</code> より新しいため、Make は再ビルド不要と判断します</td>
+</tr>
+<tr>
+<td>「<code>.PHONY</code> の役割は？」</td>
+<td><code>all</code> <code>clean</code> 等は <strong>ファイルではない仮想ターゲット</strong> であると Make に伝えるためです。これが無いと同名ファイルが存在したときに動作が壊れます</td>
+</tr>
+<tr>
+<td>「ヘッダ依存はどう書いていますか？」</td>
+<td><code>OBJS</code> ルールに <code>$(HEADERS)</code> を依存として並べるか、<code>-MMD</code> で自動生成した <code>.d</code> ファイルを <code>-include</code> しています</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="test-3-cub3d">Test 3: 実行ファイル名が <code>cub3D</code></h2>
+<h3 id="1_2">① 評価シート原文</h3>
+<blockquote>
+<p>Check that the executable name is cub3D.</p>
+</blockquote>
+<h3 id="2_2">② 日本語訳</h3>
+<blockquote>
+<p>実行ファイル名が <strong><code>cub3D</code></strong>（大文字 D）であること。</p>
+</blockquote>
+<h3 id="3_3">③ 評価者が確認すること</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">確認</th>
+<th style="text-align: left;">期待される挙動</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>ファイル名</strong></td>
+<td style="text-align: left;"><code>make</code> 完了後、カレントに <strong><code>cub3D</code></strong>（小文字 cub3 + 大文字 D）が存在</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>./cub3D</code></strong> で起動</td>
+<td style="text-align: left;">小文字 d の <code>./cub3d</code> ではなく、大文字 D で起動できる</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>Makefile</code> の <code>NAME</code></strong></td>
+<td style="text-align: left;"><code>NAME = cub3D</code> と <strong>大文字 D</strong> で宣言されている</td>
+</tr>
+</tbody>
+</table>
+<h3 id="4_2">④ 評価者が見るコード箇所</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">ファイル</th>
+<th style="text-align: left;">変数</th>
+<th style="text-align: left;">何を見るか</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>Makefile</code></td>
+<td style="text-align: left;"><code>NAME</code></td>
+<td style="text-align: left;"><code>NAME = cub3D</code> の <strong>大文字 D</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Makefile</code></td>
+<td style="text-align: left;"><code>$(NAME):</code></td>
+<td style="text-align: left;">リンク時の <code>-o $(NAME)</code> で <code>$(NAME)</code> を使っているか</td>
+</tr>
+<tr>
+<td style="text-align: left;">シェル</td>
+<td style="text-align: left;"><code>ls cub3D</code></td>
+<td style="text-align: left;">大小区別のあるファイルシステム（Linux）でも存在するか</td>
+</tr>
+</tbody>
+</table>
+<div class="language-makefile highlight"><span class="filename">Makefile (NAME 宣言)</span><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nv">NAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>cub3D
+</span></code></pre></div>
+<div class="language-makefile highlight"><span class="filename">Makefile (リンク行)</span><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nf">$(NAME)</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">OBJS</span><span class="k">)</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="k">$(</span>CC<span class="k">)</span><span class="w"> </span><span class="k">$(</span>CFLAGS<span class="k">)</span><span class="w"> </span><span class="k">$(</span>OBJS<span class="k">)</span><span class="w"> </span><span class="k">$(</span>MLX_FLAGS<span class="k">)</span><span class="w"> </span>-o<span class="w"> </span><span class="k">$(</span>NAME<span class="k">)</span>
+</span></code></pre></div>
+<h3 id="5-d">⑤ 原理原則 — なぜ大文字 D に強くこだわるか？</h3>
+<ul>
+<li><strong>subject 厳守</strong> — 42 課題は subject の表記を 1 文字単位で守ることが評価対象</li>
+<li><strong>大小区別</strong> — Linux / <code>ext4</code> などは <strong>大小区別</strong> あり。<code>cub3d</code> と <code>cub3D</code> は <strong>別ファイル</strong> として扱われる</li>
+<li><strong>macOS の罠</strong> — macOS の <code>APFS</code> はデフォルトで <strong>大小区別なし</strong>。ローカルで <code>cub3d</code> でも動くが、評価者の Linux で名前不一致になり Defense 失敗</li>
+</ul>
+<pre class="mermaid"><code>flowchart LR
+    Subj[subject: cub3D] --&gt; Mac[macOS APFS]
+    Subj --&gt; Lin[Linux ext4]
+    Mac --&gt;|大小区別なし| Both[cub3d でも動く]
+    Lin --&gt;|大小区別あり| Strict[cub3D 必須]
+    Both --&gt; Risk[評価環境で失敗]
+    Strict --&gt; OK[正常評価]</code></pre>
+<h3 id="6_2">⑥ よくある罠</h3>
+<ul>
+<li>❌ <code>NAME = cub3d</code>（小文字 d） → macOS では気付かず、Linux 評価で <code>command not found</code></li>
+<li>❌ <code>NAME = Cub3D</code> のような独自表記 → subject 違反</li>
+<li>❌ ハードコードで <code>gcc ... -o cub3d</code> と書いている（<code>$(NAME)</code> を使っていない）</li>
+<li>❌ サブディレクトリに実行ファイルを置く → カレントに <code>cub3D</code> が無いと評価者が見つけられない</li>
+</ul>
+<h3 id="7_2">⑦ 想定質問と模範回答</h3>
+<table>
+<thead>
+<tr>
+<th>質問</th>
+<th>模範回答</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>「ファイル名はなぜ大文字の D ですか？」</td>
+<td>subject 指定に従っているからです。Linux の評価環境は大小区別があるため、<code>cub3D</code> でないと評価で見つけてもらえません</td>
+</tr>
+<tr>
+<td>「macOS で動くから OK では？」</td>
+<td>macOS は APFS で大小区別が無いので、<code>cub3d</code> でも動いてしまいます。評価環境は Linux 想定なので、<code>Makefile</code> の <code>NAME</code> を必ず <code>cub3D</code> に揃えます</td>
+</tr>
+<tr>
+<td>「実行ファイル名を変えたい場合は？」</td>
+<td><code>Makefile</code> の <code>NAME</code> 変数を変更するだけで、リンク行は <code>-o $(NAME)</code> を参照しているので全箇所に反映されます</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_2">🎯 ディフェンス当日の動き方</h2>
+<ol>
+<li><strong><code>make fclean &amp;&amp; make</code></strong> を最初に実行 → 警告 0、エラー 0 を見せる</li>
+<li><strong><code>make</code></strong> をすぐもう 1 回実行 → <code>Nothing to be done for 'all'.</code> が出ることを見せる</li>
+<li><strong><code>ls -l cub3D</code></strong> で大文字 D のファイルが存在することを示す</li>
+<li><strong><code>cat Makefile | head -20</code></strong> で <code>CFLAGS</code> と <code>NAME</code> を見せ、<code>-Wall -Wextra -Werror</code> と <code>cub3D</code> を指差す</li>
+<li><strong><code>grep .PHONY Makefile</code></strong> で <code>.PHONY</code> 宣言を見せる</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">30 秒で説明できるストーリー</p>
+<p>「<code>Makefile</code> で <code>CFLAGS = -Wall -Wextra -Werror</code>、<code>NAME = cub3D</code> と宣言しています。<code>.PHONY: all clean fclean re</code> を付けているので <code>make</code> 2 回目はリンクが走らず、<code>Nothing to be done for 'all'</code> になります。」</p>
+</div>
+<hr />
+<h2 id="_3">📋 提出前最終チェック</h2>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>Makefile</code> に <code>CFLAGS = -Wall -Wextra -Werror</code> がある</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>Makefile</code> に <code>NAME = cub3D</code>（<strong>大文字 D</strong>）がある</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>.PHONY: all clean fclean re</code> が宣言されている</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>make fclean &amp;&amp; make</code> で警告 0、エラー 0</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>make</code> 2 回目で <code>Nothing to be done for 'all'.</code> が出る</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>ls cub3D</code> で <strong>大文字 D</strong> の実行ファイルが存在する</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Linux 環境（評価者環境）で名前一致を確認した</li>
+</ul>
+<hr />
+<h2 id="_4">関連ページ</h2>
+<ul>
+<li>本文: <a href="../00-main-flow/">00 メインフロー</a></li>
+<li>評価: <a href="../eval-config/">Configuration file の評価詳細</a></li>
+<li>評価: <a href="../eval-display/">Technical elements of the display の評価詳細</a></li>
+<li>評価: <a href="../eval-events/">User basic events の評価詳細</a></li>
+<li>評価: <strong><a href="../eval/">評価対策トップへ戻る</a></strong></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  ページトップへ戻る
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="フッター" >
+        
+          
+          <a href="../eval/" class="md-footer__link md-footer__link--prev" aria-label="前: 概要">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                前
+              </span>
+              <div class="md-ellipsis">
+                概要
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../eval-config/" class="md-footer__link md-footer__link--next" aria-label="次: ⚙️ Configuration file">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                次
+              </span>
+              <div class="md-ellipsis">
+                ⚙️ Configuration file
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../js/video-control.js"></script>
+      
+        <script src="../js/mermaid-override.js"></script>
+      
+        <script src="../js/user-notes.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2594 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="42 Tokyo cub3D プロジェクトの解説サイト（超初心者向け）">
+      
+      
+      
+      
+        <link rel="prev" href="../eval-movement/">
+      
+      
+        <link rel="next" href="../eval-errors/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>🧱 Walls - cub3D Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans JP";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="deep-purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#walls" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href=".." title="cub3D Guide" class="md-header__button md-logo" aria-label="cub3D Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 16.5c0 .38-.21.71-.53.88l-7.9 4.44c-.16.12-.36.18-.57.18s-.41-.06-.57-.18l-7.9-4.44A.99.99 0 0 1 3 16.5v-9c0-.38.21-.71.53-.88l7.9-4.44c.16-.12.36-.18.57-.18s.41.06.57.18l7.9 4.44c.32.17.53.5.53.88zM12 4.15 6.04 7.5 12 10.85l5.96-3.35zM5 15.91l6 3.38v-6.71L5 9.21zm14 0v-6.7l-6 3.37v6.71z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            cub3D Guide
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              🧱 Walls
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="deep-purple"  aria-label="ダークモードへ"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="ダークモードへ" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-purple"  aria-label="ライトモードへ"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="ライトモードへ" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="検索">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="共有" aria-label="共有" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="cub3D Guide" class="md-nav__button md-logo" aria-label="cub3D Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 16.5c0 .38-.21.71-.53.88l-7.9 4.44c-.16.12-.36.18-.57.18s-.41-.06-.57-.18l-7.9-4.44A.99.99 0 0 1 3 16.5v-9c0-.38.21-.71.53-.88l7.9-4.44c.16-.12.36-.18.57-.18s.41.06.57.18l7.9 4.44c.32.17.53.5.53.88zM12 4.15 6.04 7.5 12 10.85l5.96-3.35zM5 15.91l6 3.38v-6.71L5 9.21zm14 0v-6.7l-6 3.37v6.71z"/></svg>
+
+    </a>
+    cub3D Guide
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ホーム
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-main-flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    00. プログラム全体の流れ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01. 概要とビルド
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-parser/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02. パーサー
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-raycasting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03. レイキャスティングとは
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-dda/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04. DDA アルゴリズム
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-camera/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05. カメラと魚眼補正
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06. レンダリング
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-input/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07. 入力処理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08. メモリ管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-debugging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09. 実際のバグと修正
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🎓 評価対策
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🎓 評価対策
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../eval/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概要
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../eval-execution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔨 Executable name
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../eval-config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ⚙️ Configuration file
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../eval-display/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🪟 Display
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../eval-events/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    👤 User basic events
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../eval-movement/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏃 Movements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧱 Walls
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧱 Walls
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🌱 3 秒でわかる
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📋 セクション全体の原文
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-1-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test 1: 4 方向のテクスチャが見分けられる
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test 1: 4 方向のテクスチャが見分けられる">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ① 評価シート原文
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ② 日本語訳
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ③ 評価者が確認すること
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ④ 評価者が見るコード箇所
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-side-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑤ 原理原則 — side と光線符号で 4 方向を一意に決める
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑥ よくある罠
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑦ 想定質問と模範回答
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test 2: テクスチャパス変更で描画も変わる
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test 2: テクスチャパス変更で描画も変わる">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ① 評価シート原文
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ② 日本語訳
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ③ 評価者が確認すること
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ④ 評価者が見るコード箇所
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑤ 原理原則 — パスをハードコードしない設計
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑥ よくある罠
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑦ 想定質問と模範回答
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test 3: 不正なテクスチャパスでエラー終了
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test 3: 不正なテクスチャパスでエラー終了">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ① 評価シート原文
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ② 日本語訳
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ③ 評価者が確認すること
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ④ 評価者が見るコード箇所
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑤ 原理原則 — エラーは「早く・きれいに」終わる
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑥ よくある罠
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑦ 想定質問と模範回答
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test 4: 床/天井色がコンフィグから反映される
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test 4: 床/天井色がコンフィグから反映される">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ① 評価シート原文
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ② 日本語訳
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ③ 評価者が確認すること
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ④ 評価者が見るコード箇所
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-rgb-1-int" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑤ 原理原則 — RGB を 1 つの int にパック
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑥ よくある罠
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑦ 想定質問と模範回答
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 ディフェンス当日の動き方
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📋 提出前最終チェック
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        関連ページ
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../eval-errors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ⚠️ Error management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../eval-bonus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏆 Bonus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📚 用語集
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🌱 3 秒でわかる
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📋 セクション全体の原文
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-1-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test 1: 4 方向のテクスチャが見分けられる
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test 1: 4 方向のテクスチャが見分けられる">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ① 評価シート原文
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ② 日本語訳
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ③ 評価者が確認すること
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ④ 評価者が見るコード箇所
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-side-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑤ 原理原則 — side と光線符号で 4 方向を一意に決める
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑥ よくある罠
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑦ 想定質問と模範回答
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test 2: テクスチャパス変更で描画も変わる
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test 2: テクスチャパス変更で描画も変わる">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ① 評価シート原文
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ② 日本語訳
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ③ 評価者が確認すること
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ④ 評価者が見るコード箇所
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑤ 原理原則 — パスをハードコードしない設計
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑥ よくある罠
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑦ 想定質問と模範回答
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test 3: 不正なテクスチャパスでエラー終了
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test 3: 不正なテクスチャパスでエラー終了">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ① 評価シート原文
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ② 日本語訳
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ③ 評価者が確認すること
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ④ 評価者が見るコード箇所
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑤ 原理原則 — エラーは「早く・きれいに」終わる
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑥ よくある罠
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑦ 想定質問と模範回答
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test 4: 床/天井色がコンフィグから反映される
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test 4: 床/天井色がコンフィグから反映される">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ① 評価シート原文
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ② 日本語訳
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ③ 評価者が確認すること
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ④ 評価者が見るコード箇所
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-rgb-1-int" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑤ 原理原則 — RGB を 1 つの int にパック
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑥ よくある罠
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑦ 想定質問と模範回答
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 ディフェンス当日の動き方
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📋 提出前最終チェック
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        関連ページ
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<p><a href="../">🏠 ホーム</a> › 🎓 評価対策 › <strong>🧱 Walls</strong></p>
+<h1 id="walls">Walls — 評価詳細</h1>
+<p>cub3D 評価シートの <strong>「Walls」セクション</strong> を「評価原文 + 日本語訳 + コード + 原理原則 + 模範回答」で 1 テストずつ解説します。</p>
+<p>→ 概要は <strong><a href="../eval/">評価対策トップ</a></strong> を参照。
+→ 本文の流れは <strong><a href="../03-raycasting/">03 レイキャスティング</a></strong> と <strong><a href="../06-rendering/">06 レンダリング</a></strong> を参照。</p>
+<hr />
+<h2 id="3">🌱 3 秒でわかる</h2>
+<table>
+<thead>
+<tr>
+<th>観点</th>
+<th>一言で</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>🎯 評価形式</strong></td>
+<td>4 テスト中 <strong>1 つでも失敗</strong> したら <strong>このセクション 0 点</strong></td>
+</tr>
+<tr>
+<td><strong>📦 関連コード</strong></td>
+<td><code>raycaster.c</code> の side 判定 + <code>draw_column.c</code> の N/S/E/W テクスチャ選択 + <code>texture.c</code> の <code>mlx_xpm_file_to_image</code> + <code>parse_color.c</code> の RGB 抽出</td>
+</tr>
+<tr>
+<td><strong>⚠️ ハマりどころ</strong></td>
+<td>side 判定だけで N と S を分けず両方同じテクスチャ → Test 1 失敗 / 不正パスを <code>mlx_xpm_file_to_image</code> の戻り値 NULL で検知し忘れ</td>
+</tr>
+<tr>
+<td><strong>🔗 本文ページ</strong></td>
+<td><a href="../03-raycasting/">03 レイキャスティング</a> / <a href="../06-rendering/">06 レンダリング</a> / <a href="../02-parser/">02 パーサー</a></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_1">📋 セクション全体の原文</h2>
+<div class="admonition note">
+<p class="admonition-title">原文（評価シート Walls）</p>
+<blockquote>
+<p>In this section, we'll evaluate the walls in the maze. Execute the 4 following tests. If at least one fails, this means that no points will be awarded for this section. The wall's texture vary depending on which compass point the wall is facing (north, south, east, west). Check that the textures on the walls and perspective are visible and correct. Check that if you modify the path of a wall texture in the configuration file, it modifies the rendered texture when the program is re-executed. Also check that if you set a non-existent path it raises an error. Check that the floor and ceiling colors are well handled when you modify them in the configuration file.</p>
+</blockquote>
+</div>
+<div class="admonition info">
+<p class="admonition-title">日本語訳</p>
+<p>本セクションでは迷路の壁を評価する。以下 4 テストを実行する。<strong>1 つでも失敗したら、このセクションは 0 点</strong>。壁のテクスチャは<strong>コンパス方位（N, S, E, W）に応じて変わる</strong> こと。壁テクスチャと<strong>遠近感（perspective）</strong> が見えていて正しいことを確認する。<strong>コンフィグファイル中のテクスチャパスを変更</strong> すると、再実行で<strong>描画されるテクスチャが変わる</strong> こと。また、<strong>存在しないパス</strong> を設定すると<strong>エラーが発生</strong> すること。コンフィグの<strong>床/天井の色</strong> を変更すると、それが<strong>反映</strong> されること。</p>
+</div>
+<hr />
+<h2 id="test-1-4">Test 1: 4 方向のテクスチャが見分けられる</h2>
+<h3 id="1">① 評価シート原文</h3>
+<blockquote>
+<p>The wall's texture vary depending on which compass point the wall is facing (north, south, east, west). Check that the textures on the walls and perspective are visible and correct.</p>
+</blockquote>
+<h3 id="2">② 日本語訳</h3>
+<blockquote>
+<p>壁のテクスチャは<strong>それぞれの方位（N/S/E/W）に応じて異なる</strong> こと。壁のテクスチャと<strong>遠近感（perspective）</strong> が見えていて正しいことを確認する。</p>
+</blockquote>
+<h3 id="3_1">③ 評価者が確認すること</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">確認</th>
+<th style="text-align: left;">期待される挙動</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>北向きの壁</strong></td>
+<td style="text-align: left;">NO テクスチャが貼られている</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>南向きの壁</strong></td>
+<td style="text-align: left;">SO テクスチャが貼られている</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>東向きの壁</strong></td>
+<td style="text-align: left;">EA テクスチャが貼られている</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>西向きの壁</strong></td>
+<td style="text-align: left;">WE テクスチャが貼られている</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>遠近感</strong></td>
+<td style="text-align: left;">近い壁は大きく、遠い壁は小さく描画される</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>4 方向を歩いて確認</strong></td>
+<td style="text-align: left;">評価者は部屋を 1 周してテクスチャの違いを目視確認</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">テスト用に 4 種の派手なテクスチャを</p>
+<p>NO=赤、SO=青、EA=緑、WE=黄色のような <strong>見分けやすいテクスチャ</strong> を <code>assets/test/</code> に用意しておくと、評価者に一発で違いを示せる。</p>
+</div>
+<h3 id="4">④ 評価者が見るコード箇所</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">ファイル</th>
+<th style="text-align: left;">関数</th>
+<th style="text-align: left;">何を見るか</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>srcs/render/raycaster.c</code></td>
+<td style="text-align: left;"><code>ft_dda</code> 内の side 判定</td>
+<td style="text-align: left;"><code>side = 0</code>（X 格子線交差）/ <code>side = 1</code>（Y 格子線交差）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>srcs/render/draw_column.c</code></td>
+<td style="text-align: left;"><code>ft_pick_texture</code></td>
+<td style="text-align: left;">side と光線の向き符号で N/S/E/W のどのテクスチャを使うか分岐</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>includes/cub3d.h</code></td>
+<td style="text-align: left;"><code>t_texture textures[4]</code></td>
+<td style="text-align: left;">4 つのテクスチャを配列やインデックス NO/SO/EA/WE で管理</td>
+</tr>
+</tbody>
+</table>
+<div class="language-c highlight"><span class="filename">srcs/render/raycaster.c (side 判定の核)</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">// DDA ループ内</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">side_dist_x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">side_dist_y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="n">side_dist_x</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">delta_x</span><span class="p">;</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="n">map_x</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">step_x</span><span class="p">;</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="n">side</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">            </span><span class="c1">// ← X 格子線を跨いだ = 東西方向の壁面</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="n">side_dist_y</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">delta_y</span><span class="p">;</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="n">map_y</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">step_y</span><span class="p">;</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="n">side</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">            </span><span class="c1">// ← Y 格子線を跨いだ = 南北方向の壁面</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="p">}</span>
+</span></code></pre></div>
+<div class="language-c highlight"><span class="filename">srcs/render/draw_column.c (ft_pick_texture)</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">t_texture</span><span class="w"> </span><span class="o">*</span><span class="nf">ft_pick_texture</span><span class="p">(</span><span class="n">t_game</span><span class="w"> </span><span class="o">*</span><span class="n">game</span><span class="p">,</span><span class="w"> </span><span class="n">t_ray</span><span class="w"> </span><span class="o">*</span><span class="n">ray</span><span class="p">)</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="p">{</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ray</span><span class="o">-&gt;</span><span class="n">side</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">ray</span><span class="o">-&gt;</span><span class="n">dir_x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">game</span><span class="o">-&gt;</span><span class="n">textures</span><span class="p">[</span><span class="n">EA</span><span class="p">]);</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ray</span><span class="o">-&gt;</span><span class="n">side</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">ray</span><span class="o">-&gt;</span><span class="n">dir_x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">game</span><span class="o">-&gt;</span><span class="n">textures</span><span class="p">[</span><span class="n">WE</span><span class="p">]);</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ray</span><span class="o">-&gt;</span><span class="n">side</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">ray</span><span class="o">-&gt;</span><span class="n">dir_y</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">game</span><span class="o">-&gt;</span><span class="n">textures</span><span class="p">[</span><span class="n">SO</span><span class="p">]);</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">game</span><span class="o">-&gt;</span><span class="n">textures</span><span class="p">[</span><span class="n">NO</span><span class="p">]);</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="p">}</span>
+</span></code></pre></div>
+<h3 id="5-side-4">⑤ 原理原則 — side と光線符号で 4 方向を一意に決める</h3>
+<p>DDA は格子状マップを進むときに「<strong>今回どちらの軸方向の格子線を跨いだか</strong>」が分かります。</p>
+<pre class="mermaid"><code>flowchart TB
+    Side{"side ?"}
+    Side --&gt;|0: X 格子線| DX{"ray.dir_x ?"}
+    Side --&gt;|1: Y 格子線| DY{"ray.dir_y ?"}
+    DX --&gt;|&gt; 0 右向き| EA["EA テクスチャ"]
+    DX --&gt;|&lt; 0 左向き| WE["WE テクスチャ"]
+    DY --&gt;|&gt; 0 下向き| SO["SO テクスチャ"]
+    DY --&gt;|&lt; 0 上向き| NO["NO テクスチャ"]</code></pre>
+<ul>
+<li>「X 格子線を跨ぐ」=「壁が東西どちらかを向いている」</li>
+<li>そのうち「光線が右向き」=「壁の <strong>西側</strong> にぶつかった」=「壁面が <strong>東を向いている</strong>」=「EA テクスチャ」</li>
+</ul>
+<p>逆に考える人が多いので注意:「光線方向 ≠ 壁の方位」。<strong>壁面の法線方向</strong> がコンパス方位になります。</p>
+<h3 id="6">⑥ よくある罠</h3>
+<ul>
+<li>❌ side だけで判定して N/S（または E/W）を<strong>まとめて 1 つのテクスチャ</strong> にする → 「壁のテクスチャが 2 種類しかない」で 0 点</li>
+<li>❌ 光線方向と壁面方位を逆に取る → N と S、E と W が<strong>入れ替わる</strong></li>
+<li>❌ Y 軸の向きを数学（上が +Y）で書く → 南北が逆になる</li>
+<li>❌ <code>ray-&gt;dir_x</code> の符号を見ずに <code>step_x</code> を見てしまう → 同じ符号だが概念がずれるとデバッグが地獄</li>
+<li>❌ 遠近感が出ない（<code>line_h</code> を距離反比例で計算していない）→ Test 1 の "perspective" でも減点</li>
+</ul>
+<h3 id="7">⑦ 想定質問と模範回答</h3>
+<table>
+<thead>
+<tr>
+<th>質問</th>
+<th>模範回答</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>「壁の方向（N/S/E/W）はどう判定する？」</td>
+<td>DDA で<strong>最後にどちらの格子線を跨いだか</strong>（<code>side = 0</code>/<code>1</code>）と、<strong>光線の向きの符号</strong>（<code>ray.dir_x</code>/<code>ray.dir_y</code>）の組み合わせで 4 通りに分岐します</td>
+</tr>
+<tr>
+<td>「side=0 で <code>dir_x&gt;0</code> がなぜ EA？」</td>
+<td>side=0 は X 格子線を跨いだ = 東西向きの壁面。光線が右へ進んで当たった = 壁の西側にヒット = 壁面の法線は東向き → EA テクスチャです</td>
+</tr>
+<tr>
+<td>「遠近感はどう出している？」</td>
+<td><code>line_h = WIN_H / perp_wall_dist</code> で、距離に<strong>反比例</strong> した高さで縦線を描画します。近い壁ほど大きく、遠い壁ほど小さく見えます</td>
+</tr>
+<tr>
+<td>「魚眼補正は？」</td>
+<td>DDA で得た<strong>通常距離</strong> ではなく、<code>(map - pos + (1-step)/2) / dir</code> の式で<strong>垂直距離 perp_wall_dist</strong> を使うため魚眼が出ません</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="test-2">Test 2: テクスチャパス変更で描画も変わる</h2>
+<h3 id="1_1">① 評価シート原文</h3>
+<blockquote>
+<p>Check that if you modify the path of a wall texture in the configuration file, it modifies the rendered texture when the program is re-executed.</p>
+</blockquote>
+<h3 id="2_1">② 日本語訳</h3>
+<blockquote>
+<p>コンフィグファイル（.cub）中の<strong>壁テクスチャのパス</strong> を書き換えたら、再実行時に<strong>描画されるテクスチャが変わる</strong> ことを確認する。</p>
+</blockquote>
+<h3 id="3_2">③ 評価者が確認すること</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">確認</th>
+<th style="text-align: left;">期待される挙動</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>パスを書き換える</strong></td>
+<td style="text-align: left;">例: <code>NO ./textures/wood.xpm</code> を <code>NO ./textures/brick.xpm</code> に変更</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>再ビルドなしで再実行</strong></td>
+<td style="text-align: left;">プログラム再起動だけで反映</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>新しいテクスチャが見える</strong></td>
+<td style="text-align: left;">該当方向の壁が新パスのテクスチャで描画される</td>
+</tr>
+</tbody>
+</table>
+<h3 id="4_1">④ 評価者が見るコード箇所</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">ファイル</th>
+<th style="text-align: left;">関数</th>
+<th style="text-align: left;">何を見るか</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>srcs/parser/parse_texture.c</code></td>
+<td style="text-align: left;"><code>ft_parse_no</code> 等</td>
+<td style="text-align: left;"><code>NO</code> 行のパスを <code>config-&gt;no_path</code> に<strong>ハードコードせずに格納</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>srcs/render/texture.c</code></td>
+<td style="text-align: left;"><code>ft_load_textures</code></td>
+<td style="text-align: left;"><code>mlx_xpm_file_to_image(mlx, config-&gt;no_path, ...)</code> で<strong>実行時に読み込み</strong></td>
+</tr>
+</tbody>
+</table>
+<div class="language-c highlight"><span class="filename">srcs/parser/parse_texture.c (NO のパースのみ抜粋)</span><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">// 行頭が &quot;NO &quot; で始まったら 3 文字目以降をテクスチャパスとして取得</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ft_strncmp</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;NO &quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="n">config</span><span class="o">-&gt;</span><span class="n">no_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ft_strdup</span><span class="p">(</span><span class="n">line</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">config</span><span class="o">-&gt;</span><span class="n">no_path</span><span class="p">)</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">ft_error</span><span class="p">(</span><span class="s">&quot;strdup failed&quot;</span><span class="p">));</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="n">config</span><span class="o">-&gt;</span><span class="n">flags</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="n">NO_FLAG</span><span class="p">;</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="p">}</span>
+</span></code></pre></div>
+<div class="language-c highlight"><span class="filename">srcs/render/texture.c (ft_load_textures)</span><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">ft_load_textures</span><span class="p">(</span><span class="n">t_game</span><span class="w"> </span><span class="o">*</span><span class="n">game</span><span class="p">)</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="p">{</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">w</span><span class="p">,</span><span class="w"> </span><span class="n">h</span><span class="p">;</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">textures</span><span class="p">[</span><span class="n">NO</span><span class="p">].</span><span class="n">img</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mlx_xpm_file_to_image</span><span class="p">(</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">        </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">mlx</span><span class="p">,</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">config</span><span class="p">.</span><span class="n">no_path</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">w</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">h</span><span class="p">);</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">game</span><span class="o">-&gt;</span><span class="n">textures</span><span class="p">[</span><span class="n">NO</span><span class="p">].</span><span class="n">img</span><span class="p">)</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">        </span><span class="n">ft_error</span><span class="p">(</span><span class="s">&quot;Failed to load NO texture&quot;</span><span class="p">);</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">textures</span><span class="p">[</span><span class="n">NO</span><span class="p">].</span><span class="n">addr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mlx_get_data_addr</span><span class="p">(</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">        </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">textures</span><span class="p">[</span><span class="n">NO</span><span class="p">].</span><span class="n">img</span><span class="p">,</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">        </span><span class="o">&amp;</span><span class="n">game</span><span class="o">-&gt;</span><span class="n">textures</span><span class="p">[</span><span class="n">NO</span><span class="p">].</span><span class="n">bpp</span><span class="p">,</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">        </span><span class="o">&amp;</span><span class="n">game</span><span class="o">-&gt;</span><span class="n">textures</span><span class="p">[</span><span class="n">NO</span><span class="p">].</span><span class="n">line</span><span class="p">,</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">        </span><span class="o">&amp;</span><span class="n">game</span><span class="o">-&gt;</span><span class="n">textures</span><span class="p">[</span><span class="n">NO</span><span class="p">].</span><span class="n">endian</span><span class="p">);</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">    </span><span class="c1">// SO / EA / WE も同様に...</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="p">}</span>
+</span></code></pre></div>
+<h3 id="5">⑤ 原理原則 — パスを<strong>ハードコードしない</strong>設計</h3>
+<p>評価者は「<code>.cub</code> を変えれば再実行だけで反映」を期待します。よくあるダメ実装は:</p>
+<div class="language-c highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">// ❌ こうしてはいけない</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">game</span><span class="o">-&gt;</span><span class="n">textures</span><span class="p">[</span><span class="n">NO</span><span class="p">].</span><span class="n">img</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mlx_xpm_file_to_image</span><span class="p">(</span><span class="n">mlx</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;./textures/wall.xpm&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">...);</span>
+</span></code></pre></div>
+<p>これでは <code>.cub</code> を書き換えてもテクスチャが変わらず Test 2 が即失敗します。</p>
+<p>正しい設計:</p>
+<pre class="mermaid"><code>flowchart LR
+    Cub[".cub ファイル"]
+    Parser["parse_texture.c&lt;br/&gt;NO/SO/EA/WE 行を読む"]
+    Config["config-&gt;no_path&lt;br/&gt;config-&gt;so_path&lt;br/&gt;config-&gt;ea_path&lt;br/&gt;config-&gt;we_path"]
+    Loader["mlx_xpm_file_to_image&lt;br/&gt;config の path を使って読み込み"]
+    Cub --&gt; Parser --&gt; Config --&gt; Loader</code></pre>
+<p>パーサーは<strong>文字列をそのまま保持</strong> するだけ。実際の画像読み込みは <strong><code>mlx_xpm_file_to_image</code></strong> に config の文字列を渡すだけ、というシンプルなデータフローにします。</p>
+<h3 id="6_1">⑥ よくある罠</h3>
+<ul>
+<li>❌ テクスチャパスをコード内に<strong>ハードコード</strong> → <code>.cub</code> 変更で動かない、Test 2 即失敗</li>
+<li>❌ パスを <code>char *</code> で保持しているが <code>free</code> 漏れ → Leaks</li>
+<li>❌ パスを <code>strdup</code> し忘れて <code>getline</code> のバッファ参照のまま → 解放後の dangling pointer</li>
+<li>❌ 4 方向のうち 1 つだけ <code>mlx_xpm_file_to_image</code> を呼び忘れ → NULL ポインタ参照で segfault</li>
+<li>❌ パスから改行 <code>\n</code> を取り除いていない → <code>./textures/wall.xpm\n</code> で open 失敗</li>
+</ul>
+<h3 id="7_1">⑦ 想定質問と模範回答</h3>
+<table>
+<thead>
+<tr>
+<th>質問</th>
+<th>模範回答</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>「テクスチャパスはどう保持する？」</td>
+<td><code>t_config</code> 構造体の <code>no_path</code>/<code>so_path</code>/<code>ea_path</code>/<code>we_path</code> フィールドに<strong>文字列として</strong>保存します。<code>strdup</code> で複製して持ち、終了時に <code>free</code> します</td>
+</tr>
+<tr>
+<td>「<code>.cub</code> を書き換えただけで反映される仕組みは？」</td>
+<td>実行時にパーサーが <code>.cub</code> を読んで <code>config-&gt;*_path</code> に格納し、<code>mlx_xpm_file_to_image</code> がそれを使って読み込むため。コードにパスは一切書きません</td>
+</tr>
+<tr>
+<td>「<code>mlx_xpm_file_to_image</code> の戻り値 NULL チェックは？」</td>
+<td>はい、必ず NULL チェックして NULL なら <code>ft_error</code> で終了します。これが Test 3（不正パスエラー）の挙動にも直結します</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="test-3">Test 3: 不正なテクスチャパスでエラー終了</h2>
+<h3 id="1_2">① 評価シート原文</h3>
+<blockquote>
+<p>Also check that if you set a non-existent path it raises an error.</p>
+</blockquote>
+<h3 id="2_2">② 日本語訳</h3>
+<blockquote>
+<p><strong>存在しないパス</strong> をテクスチャに設定すると、<strong>エラーが発生</strong> することを確認する。</p>
+</blockquote>
+<h3 id="3_3">③ 評価者が確認すること</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">確認</th>
+<th style="text-align: left;">期待される挙動</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>存在しないパス</strong></td>
+<td style="text-align: left;"><code>NO ./does_not_exist.xpm</code> などを指定</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>エラーメッセージ</strong></td>
+<td style="text-align: left;"><code>Error\n</code> の後に内容（例: "Failed to load NO texture"）を <strong>stderr</strong> に出力</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>クラッシュではない</strong></td>
+<td style="text-align: left;">segfault せず、<code>exit(EXIT_FAILURE)</code> で正常終了</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>メモリリークなし</strong></td>
+<td style="text-align: left;">部分的に確保していたリソースも解放して終了</td>
+</tr>
+</tbody>
+</table>
+<h3 id="4_2">④ 評価者が見るコード箇所</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">ファイル</th>
+<th style="text-align: left;">関数</th>
+<th style="text-align: left;">何を見るか</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>srcs/render/texture.c</code></td>
+<td style="text-align: left;"><code>ft_load_textures</code></td>
+<td style="text-align: left;"><code>mlx_xpm_file_to_image</code> の戻り値 NULL チェック</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>srcs/utils/error.c</code></td>
+<td style="text-align: left;"><code>ft_error</code></td>
+<td style="text-align: left;"><code>Error\n</code> を stderr に書き、<code>ft_cleanup</code> 後に <code>exit</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>srcs/utils/cleanup.c</code></td>
+<td style="text-align: left;"><code>ft_cleanup</code></td>
+<td style="text-align: left;">途中まで確保したリソースも全て解放</td>
+</tr>
+</tbody>
+</table>
+<div class="language-c highlight"><span class="filename">srcs/render/texture.c (NULL チェック付き)</span><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">game</span><span class="o">-&gt;</span><span class="n">textures</span><span class="p">[</span><span class="n">NO</span><span class="p">].</span><span class="n">img</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mlx_xpm_file_to_image</span><span class="p">(</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">mlx</span><span class="p">,</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">config</span><span class="p">.</span><span class="n">no_path</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">w</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">h</span><span class="p">);</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">game</span><span class="o">-&gt;</span><span class="n">textures</span><span class="p">[</span><span class="n">NO</span><span class="p">].</span><span class="n">img</span><span class="p">)</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="n">ft_error_with_cleanup</span><span class="p">(</span><span class="n">game</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Failed to load NO texture&quot;</span><span class="p">);</span>
+</span></code></pre></div>
+<div class="language-c highlight"><span class="filename">srcs/utils/error.c (ft_error)</span><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">ft_error</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">msg</span><span class="p">)</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="p">{</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="n">ft_putstr_fd</span><span class="p">(</span><span class="s">&quot;Error</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="n">ft_putstr_fd</span><span class="p">((</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">msg</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span><span class="n">ft_putstr_fd</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">    </span><span class="n">exit</span><span class="p">(</span><span class="n">EXIT_FAILURE</span><span class="p">);</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="p">}</span>
+</span></code></pre></div>
+<div class="language-c highlight"><span class="filename">srcs/utils/error.c (cleanup を伴うエラー)</span><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">ft_error_with_cleanup</span><span class="p">(</span><span class="n">t_game</span><span class="w"> </span><span class="o">*</span><span class="n">game</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">msg</span><span class="p">)</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="p">{</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="n">ft_putstr_fd</span><span class="p">(</span><span class="s">&quot;Error</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="n">ft_putstr_fd</span><span class="p">((</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">msg</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">    </span><span class="n">ft_putstr_fd</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">    </span><span class="n">ft_cleanup</span><span class="p">(</span><span class="n">game</span><span class="p">);</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">    </span><span class="n">exit</span><span class="p">(</span><span class="n">EXIT_FAILURE</span><span class="p">);</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="p">}</span>
+</span></code></pre></div>
+<h3 id="5_1">⑤ 原理原則 — エラーは「<strong>早く・きれいに</strong>」終わる</h3>
+<p>42 では <code>Error\n</code> 出力後に <code>EXIT_FAILURE</code>（通常 1）で終了するのが慣例です。重要なのは:</p>
+<ol>
+<li><strong>stderr</strong> に出力（<code>fd = 2</code>）、stdout には出さない</li>
+<li><code>Error\n</code> を<strong>最初の 1 行</strong>として出す（評価者は grep でこの行を探すこともある）</li>
+<li><code>exit</code> の<strong>前</strong> に <code>ft_cleanup</code> を呼んでリソースを全解放</li>
+<li>途中で確保したリソース（mlx ポインタ・window・既に読めたテクスチャ）も<strong>全部</strong> 解放</li>
+</ol>
+<pre class="mermaid"><code>flowchart LR
+    Open[".cub OK"] --&gt; LoadTex["テクスチャ読み込み"]
+    LoadTex --&gt; OK1["NO OK"]
+    OK1 --&gt; NG["SO 不正パス&lt;br/&gt;NULL 返却"]
+    NG --&gt; Err["ft_error_with_cleanup"]
+    Err --&gt; Clean["ft_cleanup:&lt;br/&gt;NO テクスチャを destroy&lt;br/&gt;mlx を destroy&lt;br/&gt;config_path を free"]
+    Clean --&gt; Exit["exit EXIT_FAILURE"]</code></pre>
+<h3 id="6_2">⑥ よくある罠</h3>
+<ul>
+<li>❌ <code>mlx_xpm_file_to_image</code> の戻り値を<strong>チェックしない</strong> → NULL を後段で参照して segfault</li>
+<li>❌ エラーメッセージを stdout に出す → 評価者から「stderr で出して」と言われる</li>
+<li>❌ エラー前に確保したテクスチャ（例えば NO だけ成功して SO で失敗）を解放しない → Leaks</li>
+<li>❌ <code>perror</code> だけで終わらせる → "Error\n" プレフィックスがない（42 慣例違反）</li>
+<li>❌ <code>exit</code> を呼ばず <code>return</code> → main まで戻って描画に進み segfault</li>
+</ul>
+<h3 id="7_2">⑦ 想定質問と模範回答</h3>
+<table>
+<thead>
+<tr>
+<th>質問</th>
+<th>模範回答</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>「不正なテクスチャパスはどう検知する？」</td>
+<td><code>mlx_xpm_file_to_image</code> が <strong>NULL を返す</strong> ことで検知します。これを呼ぶ全 4 か所で NULL チェックし、NULL なら <code>ft_error_with_cleanup</code> を呼びます</td>
+</tr>
+<tr>
+<td>「途中で確保したリソースはどう解放？」</td>
+<td><code>t_game</code> 構造体内に確保済みリソースを保持しているので、<code>ft_cleanup</code> が <code>mlx</code>・<code>win</code>・<code>config_path</code>・既読みのテクスチャを順に解放します。初期化時に <code>NULL</code> で埋めておくのがコツです</td>
+</tr>
+<tr>
+<td>「<code>Error\n</code> の形式の理由は？」</td>
+<td>42 の慣例で、評価者は <code>Error\n</code> の 1 行目を grep で探すことがあるためです。<code>stderr</code> に出すのも慣例</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="test-4">Test 4: 床/天井色がコンフィグから反映される</h2>
+<h3 id="1_3">① 評価シート原文</h3>
+<blockquote>
+<p>Check that the floor and ceiling colors are well handled when you modify them in the configuration file.</p>
+</blockquote>
+<h3 id="2_3">② 日本語訳</h3>
+<blockquote>
+<p>コンフィグファイルの<strong>床（F）と天井（C）の色</strong> を変更したとき、<strong>正しく反映</strong> されることを確認する。</p>
+</blockquote>
+<h3 id="3_4">③ 評価者が確認すること</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">確認</th>
+<th style="text-align: left;">期待される挙動</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong><code>F R,G,B</code></strong></td>
+<td style="text-align: left;">床が指定 RGB で塗られている（例 <code>F 100,100,200</code> で青みの床）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>C R,G,B</code></strong></td>
+<td style="text-align: left;">天井が指定 RGB で塗られている</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>値の範囲</strong></td>
+<td style="text-align: left;">0〜255 の範囲外（負数、256 以上、非数字）はエラー</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>再実行で反映</strong></td>
+<td style="text-align: left;">パスと同様、<code>.cub</code> を書き換えるだけで色が変わる</td>
+</tr>
+</tbody>
+</table>
+<h3 id="4_3">④ 評価者が見るコード箇所</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">ファイル</th>
+<th style="text-align: left;">関数</th>
+<th style="text-align: left;">何を見るか</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>srcs/parser/parse_color.c</code></td>
+<td style="text-align: left;"><code>ft_parse_color</code></td>
+<td style="text-align: left;"><code>R,G,B</code> をカンマ区切りで分解、<code>ft_atoi</code> で int に変換</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>srcs/parser/parse_color.c</code></td>
+<td style="text-align: left;"><code>ft_validate_rgb</code></td>
+<td style="text-align: left;">0〜255 範囲、3 要素揃っているかチェック</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>srcs/render/draw_column.c</code></td>
+<td style="text-align: left;"><code>ft_draw_floor_ceiling</code></td>
+<td style="text-align: left;">縦 1 列描画時、<code>line_top</code> より上を天井色、<code>line_bottom</code> より下を床色で塗る</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>includes/cub3d.h</code></td>
+<td style="text-align: left;"><code>t_config</code></td>
+<td style="text-align: left;"><code>floor_color</code> / <code>ceiling_color</code> を <code>int</code> (0xRRGGBB) で保持</td>
+</tr>
+</tbody>
+</table>
+<div class="language-c highlight"><span class="filename">srcs/parser/parse_color.c (ft_parse_color)</span><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kt">int</span><span class="w"> </span><span class="nf">ft_parse_color</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">str</span><span class="p">)</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="p">{</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">rgb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ft_split</span><span class="p">(</span><span class="n">str</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;,&#39;</span><span class="p">);</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">rgb</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">!</span><span class="n">rgb</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">!</span><span class="n">rgb</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">!</span><span class="n">rgb</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">rgb</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="mi">-1</span><span class="p">);</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ft_atoi</span><span class="p">(</span><span class="n">rgb</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">g</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ft_atoi</span><span class="p">(</span><span class="n">rgb</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ft_atoi</span><span class="p">(</span><span class="n">rgb</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">    </span><span class="n">ft_free_split</span><span class="p">(</span><span class="n">rgb</span><span class="p">);</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">r</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">255</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">g</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">g</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">255</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">255</span><span class="p">)</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="mi">-1</span><span class="p">);</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">((</span><span class="n">r</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">16</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="n">g</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="p">}</span>
+</span></code></pre></div>
+<div class="language-c highlight"><span class="filename">srcs/render/draw_column.c (床・天井描画)</span><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1">// 縦 1 列の描画で、壁の上下を塗る</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">line_top</span><span class="p">)</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">    </span><span class="n">ft_put_pixel</span><span class="p">(</span><span class="n">game</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">++</span><span class="p">,</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">config</span><span class="p">.</span><span class="n">ceiling_color</span><span class="p">);</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">line_bottom</span><span class="p">;</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">WIN_H</span><span class="p">)</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="w">    </span><span class="n">ft_put_pixel</span><span class="p">(</span><span class="n">game</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">++</span><span class="p">,</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">config</span><span class="p">.</span><span class="n">floor_color</span><span class="p">);</span>
+</span></code></pre></div>
+<h3 id="5-rgb-1-int">⑤ 原理原則 — RGB を 1 つの <code>int</code> にパック</h3>
+<p>3 つの 0〜255 の値を <code>0xRRGGBB</code> 形式の int 1 つにまとめると、<code>mlx_get_data_addr</code> で書き込むときの形式と一致して便利:</p>
+<pre class="mermaid"><code>flowchart LR
+    R["R: 100&lt;br/&gt;0x64"]
+    G["G: 100&lt;br/&gt;0x64"]
+    B["B: 200&lt;br/&gt;0xC8"]
+    Pack["(R &lt;&lt; 16) | (G &lt;&lt; 8) | B&lt;br/&gt;= 0x6464C8"]
+    R --&gt; Pack
+    G --&gt; Pack
+    B --&gt; Pack
+    Pack --&gt; Mem["メモリへ書き込み"]</code></pre>
+<ul>
+<li><code>r &lt;&lt; 16</code> で R をビット 16-23 に</li>
+<li><code>g &lt;&lt; 8</code> で G をビット 8-15 に</li>
+<li><code>b</code> はそのままビット 0-7</li>
+</ul>
+<p><code>int</code> の負数は使わないので、<code>unsigned int</code> でも <code>int</code> でも実害なし。</p>
+<h3 id="6_3">⑥ よくある罠</h3>
+<ul>
+<li>❌ <code>0〜255</code> の範囲チェックなし → <code>F 999,0,0</code> でオーバーフロー、変な色になる</li>
+<li>❌ カンマ区切りで 4 要素以上来た（<code>F 100,100,100,100</code>）をエラーにしない → subject 違反</li>
+<li>❌ 床/天井色をコードに<strong>ハードコード</strong> → <code>.cub</code> 書き換えで反映されない（Test 2 と同じ罠）</li>
+<li>❌ パース結果をエンディアン違いで詰める → BGR 順になり「青を指定したのに赤」</li>
+<li>❌ <code>R,G,B</code> の前後に<strong>空白</strong> がある（<code>F 100, 100, 100</code>）をパースエラーにする → subject では空白許容なので柔軟に処理</li>
+</ul>
+<h3 id="7_3">⑦ 想定質問と模範回答</h3>
+<table>
+<thead>
+<tr>
+<th>質問</th>
+<th>模範回答</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>「色はどう保持する？」</td>
+<td>3 つの int（0〜255）を <code>(R &lt;&lt; 16) \| (G &lt;&lt; 8) \| B</code> で 1 つの int にパックして <code>config-&gt;floor_color</code>/<code>ceiling_color</code> に保存します</td>
+</tr>
+<tr>
+<td>「範囲外の値はどう扱う？」</td>
+<td><code>ft_atoi</code> で int に変換後、0〜255 の範囲チェックを行い、外れていたら <code>ft_error("Invalid color")</code> で終了します</td>
+</tr>
+<tr>
+<td>「床・天井の描画タイミングは？」</td>
+<td>レイキャストの縦 1 列描画時、<code>line_top</code> より上を天井色、<code>line_bottom</code> より下を床色で塗ります。壁を描く前後に分ける実装もありますが、結果は同じです</td>
+</tr>
+<tr>
+<td>「カンマ区切りのパースは？」</td>
+<td><code>ft_split(str, ',')</code> で 3 要素に分解、各要素を <code>ft_atoi</code> で int に変換、要素数や前後空白を検証します</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_2">🎯 ディフェンス当日の動き方</h2>
+<ol>
+<li><strong>4 種類の派手なテクスチャ</strong>（例: NO=赤、SO=青、EA=緑、WE=黄）でビルド済みの <code>.cub</code> を起動</li>
+<li>部屋を 1 周しながら ← → で回転 → <strong>4 方向で異なる色</strong> が見えることを示す</li>
+<li>「遠近感」を見せるため、長い廊下を W で前進して<strong>壁が小さく見える</strong> ことを実演</li>
+<li>ESC で終了 → <code>.cub</code> の <code>NO</code> 行のパスを別テクスチャに書き換え → 再実行 → 北の壁が変わる</li>
+<li>ESC → <code>.cub</code> の <code>NO</code> 行を<strong>存在しないパス</strong>（例 <code>NO ./nope.xpm</code>）に書き換え → 起動 → <strong><code>Error\n</code> + メッセージ</strong> で終了することを実演（同じターミナルで <code>leaks</code> 監視中だとなお良い）</li>
+<li>ESC → <code>.cub</code> の <code>F</code> と <code>C</code> 行の RGB を変更 → 再起動 → 床/天井の色が変わるのを示す</li>
+<li>コード説明: <code>raycaster.c</code> の side 判定 → <code>draw_column.c</code> の <code>ft_pick_texture</code> → <code>texture.c</code> の <code>mlx_xpm_file_to_image</code> + NULL チェック → <code>parse_color.c</code> の <code>ft_parse_color</code> の順で指す</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">30 秒で説明できるストーリー</p>
+<p>「DDA で最後に跨いだ格子線の向き（side）と光線の符号で 4 方向のテクスチャを選んでいます。テクスチャパスと床/天井色は <code>.cub</code> パース時に config 構造体に文字列・int で保持し、描画時にそれを使うだけなのでコードにハードコードはありません。<code>mlx_xpm_file_to_image</code> が NULL を返したら <code>ft_cleanup</code> を呼んでから <code>Error\n</code> を出して <code>exit(1)</code> します。」</p>
+</div>
+<hr />
+<h2 id="_3">📋 提出前最終チェック</h2>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 4 方向で<strong>異なるテクスチャ</strong> が描画される（同じテクスチャを 2 方向で使い回していない）</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 遠近感が出ている（<code>line_h = WIN_H / perp_wall_dist</code>）</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> テクスチャパスがコードに<strong>ハードコードされていない</strong></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>.cub</code> のパス変更で<strong>再ビルド不要</strong> で反映される</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>mlx_xpm_file_to_image</code> の戻り値 NULL チェックを 4 か所すべてに入れた</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 不正パスで <code>Error\n</code> + メッセージ → <code>EXIT_FAILURE</code> 終了</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 不正パスエラー時に <strong>既に確保したリソースを解放</strong> している（リークなし）</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>F R,G,B</code> / <code>C R,G,B</code> の RGB を 0〜255 で検証</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 床/天井色を <code>.cub</code> で変更 → 再実行で反映</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> RGB を <code>(R &lt;&lt; 16) | (G &lt;&lt; 8) | B</code> 形式で保持</li>
+</ul>
+<hr />
+<h2 id="_4">関連ページ</h2>
+<ul>
+<li>本文: <a href="../02-parser/">02 パーサー</a></li>
+<li>本文: <a href="../03-raycasting/">03 レイキャスティング</a></li>
+<li>本文: <a href="../04-dda/">04 DDA アルゴリズム</a></li>
+<li>本文: <a href="../06-rendering/">06 レンダリング</a></li>
+<li>評価: <a href="../eval-movement/">Movements の評価詳細</a></li>
+<li>評価: <a href="../eval-errors/">Error management の評価詳細</a></li>
+<li>評価: <strong><a href="../eval/">評価対策トップへ戻る</a></strong></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  ページトップへ戻る
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="フッター" >
+        
+          
+          <a href="../eval-movement/" class="md-footer__link md-footer__link--prev" aria-label="前: 🏃 Movements">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                前
+              </span>
+              <div class="md-ellipsis">
+                🏃 Movements
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../eval-errors/" class="md-footer__link md-footer__link--next" aria-label="次: ⚠️ Error management">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                次
+              </span>
+              <div class="md-ellipsis">
+                ⚠️ Error management
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../js/video-control.js"></script>
+      
+        <script src="../js/mermaid-override.js"></script>
+      
+        <script src="../js/user-notes.js"></script>
+      
+    
+  </body>
+</html>

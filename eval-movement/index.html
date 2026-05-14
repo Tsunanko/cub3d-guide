@@ -1,0 +1,2927 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="42 Tokyo cub3D プロジェクトの解説サイト（超初心者向け）">
+      
+      
+      
+      
+        <link rel="prev" href="../eval-events/">
+      
+      
+        <link rel="next" href="../eval-walls/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>🏃 Movements - cub3D Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans JP";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="deep-purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#movements" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href=".." title="cub3D Guide" class="md-header__button md-logo" aria-label="cub3D Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 16.5c0 .38-.21.71-.53.88l-7.9 4.44c-.16.12-.36.18-.57.18s-.41-.06-.57-.18l-7.9-4.44A.99.99 0 0 1 3 16.5v-9c0-.38.21-.71.53-.88l7.9-4.44c.16-.12.36-.18.57-.18s.41.06.57.18l7.9 4.44c.32.17.53.5.53.88zM12 4.15 6.04 7.5 12 10.85l5.96-3.35zM5 15.91l6 3.38v-6.71L5 9.21zm14 0v-6.7l-6 3.37v6.71z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            cub3D Guide
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              🏃 Movements
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="deep-purple"  aria-label="ダークモードへ"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="ダークモードへ" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-purple"  aria-label="ライトモードへ"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="ライトモードへ" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="検索">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="共有" aria-label="共有" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="cub3D Guide" class="md-nav__button md-logo" aria-label="cub3D Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 16.5c0 .38-.21.71-.53.88l-7.9 4.44c-.16.12-.36.18-.57.18s-.41-.06-.57-.18l-7.9-4.44A.99.99 0 0 1 3 16.5v-9c0-.38.21-.71.53-.88l7.9-4.44c.16-.12.36-.18.57-.18s.41.06.57.18l7.9 4.44c.32.17.53.5.53.88zM12 4.15 6.04 7.5 12 10.85l5.96-3.35zM5 15.91l6 3.38v-6.71L5 9.21zm14 0v-6.7l-6 3.37v6.71z"/></svg>
+
+    </a>
+    cub3D Guide
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ホーム
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-main-flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    00. プログラム全体の流れ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01. 概要とビルド
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-parser/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02. パーサー
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-raycasting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03. レイキャスティングとは
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-dda/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04. DDA アルゴリズム
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-camera/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05. カメラと魚眼補正
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-rendering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06. レンダリング
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-input/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07. 入力処理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08. メモリ管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-debugging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09. 実際のバグと修正
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🎓 評価対策
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🎓 評価対策
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../eval/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概要
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../eval-execution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔨 Executable name
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../eval-config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ⚙️ Configuration file
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../eval-display/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🪟 Display
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../eval-events/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    👤 User basic events
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏃 Movements
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏃 Movements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🌱 3 秒でわかる
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📋 セクション全体の原文
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-1-nsew" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test 1: スポーン向きが N/S/E/W で正しい
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test 1: スポーン向きが N/S/E/W で正しい">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ① 評価シート原文
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ② 日本語訳
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ③ 評価者が確認すること
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ④ 評価者が見るコード箇所
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-dir-plane" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑤ 原理原則 — dir と plane が必ず直交する理由
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑥ よくある罠
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑦ 想定質問と模範回答
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test 2: ← → で左右回転
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test 2: ← → で左右回転">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ① 評価シート原文
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ② 日本語訳
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ③ 評価者が確認すること
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ④ 評価者が見るコード箇所
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-dir-plane_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑤ 原理原則 — なぜ dir と plane を両方回すのか？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑥ よくある罠
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑦ 想定質問と模範回答
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-3-w-z-s" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test 3: W (Z) / S で前進・後退（直進）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test 3: W (Z) / S で前進・後退（直進）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ① 評価シート原文
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ② 日本語訳
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ③ 評価者が確認すること
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ④ 評価者が見るコード箇所
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-dir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑤ 原理原則 — 「直進」とは dir ベクトル方向への移動
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑥ よくある罠
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑦ 想定質問と模範回答
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-4-a-q-d" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test 4: A (Q) / D で左右ストレイフ
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test 4: A (Q) / D で左右ストレイフ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ① 評価シート原文
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ② 日本語訳
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ③ 評価者が確認すること
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ④ 評価者が見るコード箇所
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-plane" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑤ 原理原則 — 「真横」 = plane ベクトル方向
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑥ よくある罠
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑦ 想定質問と模範回答
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-5-smooth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test 5: 表示は滑らか（smooth）か
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test 5: 表示は滑らか（smooth）か">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ① 評価シート原文
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ② 日本語訳
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ③ 評価者が確認すること
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ④ 評価者が見るコード箇所
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-mlx_pixel_put" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑤ 原理原則 — mlx_pixel_put を使わない理由
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑥ よくある罠
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑦ 想定質問と模範回答
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 ディフェンス当日の動き方
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📋 提出前最終チェック
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        関連ページ
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../eval-walls/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧱 Walls
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../eval-errors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ⚠️ Error management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../eval-bonus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏆 Bonus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📚 用語集
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🌱 3 秒でわかる
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📋 セクション全体の原文
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-1-nsew" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test 1: スポーン向きが N/S/E/W で正しい
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test 1: スポーン向きが N/S/E/W で正しい">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ① 評価シート原文
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ② 日本語訳
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ③ 評価者が確認すること
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ④ 評価者が見るコード箇所
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-dir-plane" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑤ 原理原則 — dir と plane が必ず直交する理由
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑥ よくある罠
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑦ 想定質問と模範回答
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test 2: ← → で左右回転
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test 2: ← → で左右回転">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ① 評価シート原文
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ② 日本語訳
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ③ 評価者が確認すること
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ④ 評価者が見るコード箇所
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-dir-plane_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑤ 原理原則 — なぜ dir と plane を両方回すのか？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑥ よくある罠
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑦ 想定質問と模範回答
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-3-w-z-s" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test 3: W (Z) / S で前進・後退（直進）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test 3: W (Z) / S で前進・後退（直進）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ① 評価シート原文
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ② 日本語訳
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ③ 評価者が確認すること
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ④ 評価者が見るコード箇所
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-dir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑤ 原理原則 — 「直進」とは dir ベクトル方向への移動
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑥ よくある罠
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑦ 想定質問と模範回答
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-4-a-q-d" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test 4: A (Q) / D で左右ストレイフ
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test 4: A (Q) / D で左右ストレイフ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ① 評価シート原文
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ② 日本語訳
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ③ 評価者が確認すること
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ④ 評価者が見るコード箇所
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-plane" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑤ 原理原則 — 「真横」 = plane ベクトル方向
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑥ よくある罠
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑦ 想定質問と模範回答
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-5-smooth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test 5: 表示は滑らか（smooth）か
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test 5: 表示は滑らか（smooth）か">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ① 評価シート原文
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ② 日本語訳
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ③ 評価者が確認すること
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ④ 評価者が見るコード箇所
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-mlx_pixel_put" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑤ 原理原則 — mlx_pixel_put を使わない理由
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑥ よくある罠
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑦ 想定質問と模範回答
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 ディフェンス当日の動き方
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📋 提出前最終チェック
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        関連ページ
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<p><a href="../">🏠 ホーム</a> › 🎓 評価対策 › <strong>🏃 Movements</strong></p>
+<h1 id="movements">Movements — 評価詳細</h1>
+<p>cub3D 評価シートの <strong>「Movements」セクション</strong> を「評価原文 + 日本語訳 + コード + 原理原則 + 模範回答」で 1 テストずつ解説します。</p>
+<p>→ 概要は <strong><a href="../eval/">評価対策トップ</a></strong> を参照。
+→ 本文の流れは <strong><a href="../07-input/">07 入力処理とプレイヤー移動</a></strong> と <strong><a href="../05-camera/">05 カメラと魚眼補正</a></strong> を参照。</p>
+<hr />
+<h2 id="3">🌱 3 秒でわかる</h2>
+<table>
+<thead>
+<tr>
+<th>観点</th>
+<th>一言で</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>🎯 評価形式</strong></td>
+<td>5 テスト中 <strong>1 つでも失敗</strong> したら <strong>このセクション 0 点</strong></td>
+</tr>
+<tr>
+<td><strong>📦 関連コード</strong></td>
+<td><code>init.c</code> の <code>ft_init_dir_*</code> + <code>move.c</code> の <code>ft_rotate</code> / <code>ft_move_*</code> / <code>ft_strafe_*</code></td>
+</tr>
+<tr>
+<td><strong>⚠️ ハマりどころ</strong></td>
+<td>spawn 向きが N/S/E/W で全部同じ → スポーン方向テストで 0 点 / sin・cos 引数の単位（ラジアン）取り違え</td>
+</tr>
+<tr>
+<td><strong>🔗 本文ページ</strong></td>
+<td><a href="../07-input/">07 入力処理</a> / <a href="../05-camera/">05 カメラ</a></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_1">📋 セクション全体の原文</h2>
+<div class="admonition note">
+<p class="admonition-title">原文（評価シート Movements）</p>
+<blockquote>
+<p>In this section, we'll evaluate the implementation of the player's movement/orientation inside the maze. Execute the 5 following tests. If at least one fails, this means that no points will be awarded for this section. The player's spawning orientation on the first image must be in accordance with the configuration file, test for each cardinal orientation (N, S, E, W). Press the left arrow then the right arrow. The player's view must rotate to the left then to the right as if the player's head was moving. Press W (or Z) then S. The player's view must go forward and then backward in a straight line. Press A (or Q) then D. The player's view must go to the left and then to the right in a straight line. During those four movements, was the display smooth? By smooth we mean is the game 'playable' or is it slow.</p>
+</blockquote>
+</div>
+<div class="admonition info">
+<p class="admonition-title">日本語訳</p>
+<p>本セクションでは迷路内のプレイヤーの移動/向きの実装を評価する。以下 5 テストを実行する。<strong>1 つでも失敗したら、このセクションは 0 点</strong>。最初の画像でのプレイヤーのスポーン向きはコンフィグファイルに従うこと（N, S, E, W の <strong>4 方向それぞれをテスト</strong>）。← → を押すと、頭を左右に振るようにビューが左右回転すること。W (または Z) と S を押すと、ビューが<strong>直進的に前進・後退</strong>すること。A (または Q) と D を押すと、ビューが<strong>直進的に左右ストレイフ</strong>すること。これら 4 つの移動中、<strong>表示は滑らか</strong>か？（プレイ可能な速度か、それとも遅いか）</p>
+</div>
+<hr />
+<h2 id="test-1-nsew">Test 1: スポーン向きが N/S/E/W で正しい</h2>
+<h3 id="1">① 評価シート原文</h3>
+<blockquote>
+<p>The player's spawning orientation on the first image must be in accordance with the configuration file, test for each cardinal orientation (N, S, E, W).</p>
+</blockquote>
+<h3 id="2">② 日本語訳</h3>
+<blockquote>
+<p>最初の画像でのプレイヤーのスポーン向きは、<strong>コンフィグファイル（.cub）に書かれた N/S/E/W</strong> に一致すること。<strong>4 方向すべて</strong> をテストする。</p>
+</blockquote>
+<h3 id="3_1">③ 評価者が確認すること</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">確認</th>
+<th style="text-align: left;">期待される挙動</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>N で起動</strong></td>
+<td style="text-align: left;">プレイヤーが<strong>北（マップ上方向）</strong>を向いている初期画面</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>S で起動</strong></td>
+<td style="text-align: left;">プレイヤーが<strong>南（マップ下方向）</strong>を向いている初期画面</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>E で起動</strong></td>
+<td style="text-align: left;">プレイヤーが<strong>東（マップ右方向）</strong>を向いている初期画面</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>W で起動</strong></td>
+<td style="text-align: left;">プレイヤーが<strong>西（マップ左方向）</strong>を向いている初期画面</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>コンフィグ変更で反映</strong></td>
+<td style="text-align: left;"><code>.cub</code> のスポーン文字を書き換えると、起動時のビューが変わる</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">4 つのマップを用意しておく</p>
+<p><code>maps/spawn_n.cub</code> / <code>maps/spawn_s.cub</code> / <code>maps/spawn_e.cub</code> / <code>maps/spawn_w.cub</code> の <strong>4 つを準備しておく</strong> とテストがスムーズ。中身は同じマップで、プレイヤー位置の文字だけ N/S/E/W を入れ替えます。</p>
+</div>
+<h3 id="4">④ 評価者が見るコード箇所</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">ファイル</th>
+<th style="text-align: left;">関数</th>
+<th style="text-align: left;">何を見るか</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>srcs/init.c</code></td>
+<td style="text-align: left;"><code>ft_init_player</code></td>
+<td style="text-align: left;">マップ走査で N/S/E/W の文字を発見し、対応する <code>ft_init_dir_*</code> を呼ぶ</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>srcs/init.c</code></td>
+<td style="text-align: left;"><code>ft_init_dir_ns</code></td>
+<td style="text-align: left;">N と S で <code>dir</code>・<code>plane</code> の符号がきちんと逆になっているか</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>srcs/init.c</code></td>
+<td style="text-align: left;"><code>ft_init_dir_ew</code></td>
+<td style="text-align: left;">E と W で <code>dir</code>・<code>plane</code> の符号がきちんと逆になっているか</td>
+</tr>
+</tbody>
+</table>
+<div class="language-c highlight"><span class="filename">srcs/init.c (ft_init_player 抜粋)</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">// マップを 1 マスずつ走査して N/S/E/W を見つける</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ch</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;N&#39;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">ch</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;S&#39;</span><span class="p">)</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="n">ft_init_dir_ns</span><span class="p">(</span><span class="n">game</span><span class="p">,</span><span class="w"> </span><span class="n">ch</span><span class="p">);</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ch</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;E&#39;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">ch</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;W&#39;</span><span class="p">)</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="n">ft_init_dir_ew</span><span class="p">(</span><span class="n">game</span><span class="p">,</span><span class="w"> </span><span class="n">ch</span><span class="p">);</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">pos_x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.5</span><span class="p">;</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">pos_y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.5</span><span class="p">;</span>
+</span></code></pre></div>
+<div class="language-c highlight"><span class="filename">srcs/init.c (ft_init_dir_ns)</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">ft_init_dir_ns</span><span class="p">(</span><span class="n">t_game</span><span class="w"> </span><span class="o">*</span><span class="n">game</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">ch</span><span class="p">)</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="p">{</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ch</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;N&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">dir_x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">  </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">dir_y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="k">else</span><span class="w">           </span><span class="p">{</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">dir_x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">  </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">dir_y</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ch</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;N&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">plane_x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.66</span><span class="p">;</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">plane_y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="k">else</span><span class="w">           </span><span class="p">{</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">plane_x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">-0.66</span><span class="p">;</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">plane_y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="p">}</span>
+</span></code></pre></div>
+<div class="language-c highlight"><span class="filename">srcs/init.c (ft_init_dir_ew)</span><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">ft_init_dir_ew</span><span class="p">(</span><span class="n">t_game</span><span class="w"> </span><span class="o">*</span><span class="n">game</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">ch</span><span class="p">)</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="p">{</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ch</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;E&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">dir_x</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">dir_y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="k">else</span><span class="w">           </span><span class="p">{</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">dir_x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">dir_y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ch</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;E&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">plane_x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">plane_y</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="mf">0.66</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="k">else</span><span class="w">           </span><span class="p">{</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">plane_x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">plane_y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">-0.66</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="p">}</span>
+</span></code></pre></div>
+<h3 id="5-dir-plane">⑤ 原理原則 — <code>dir</code> と <code>plane</code> が必ず直交する理由</h3>
+<p>レイキャスティングでは「<strong>プレイヤーの向き <code>dir</code></strong>」と「<strong>視野の幅を決める <code>plane</code></strong>」が<strong>直交する 2 つの 2D ベクトル</strong>で表されます。</p>
+<pre class="mermaid"><code>flowchart LR
+    N["N (北向き)&lt;br/&gt;dir=(0,-1)&lt;br/&gt;plane=(0.66, 0)"]
+    S["S (南向き)&lt;br/&gt;dir=(0, 1)&lt;br/&gt;plane=(-0.66, 0)"]
+    E["E (東向き)&lt;br/&gt;dir=(1, 0)&lt;br/&gt;plane=(0, 0.66)"]
+    W["W (西向き)&lt;br/&gt;dir=(-1, 0)&lt;br/&gt;plane=(0, -0.66)"]</code></pre>
+<ul>
+<li><code>dir</code> を 90 度時計回りに回した方向が <code>plane</code> の向きになる</li>
+<li><code>|plane| / |dir|</code> で <strong>視野角（FOV）</strong> が決まる（<code>0.66</code> で約 66°）</li>
+<li>N→S や E→W で <code>dir</code> を反転するときは <strong><code>plane</code> も同時に反転</strong> しないと「左右が鏡像」になる</li>
+</ul>
+<p>→ 詳細は <a href="../05-camera/">05 カメラと魚眼補正</a> を参照。</p>
+<h3 id="6">⑥ よくある罠</h3>
+<ul>
+<li>❌ <code>dir</code> だけ反転して <code>plane</code> を反転し忘れる → 北では正常だが南だけ<strong>左右逆</strong></li>
+<li>❌ <code>plane</code> の大きさが <code>dir</code> と等しい（<code>1.0</code>）→ FOV が 90° で広角すぎて魚眼っぽい</li>
+<li>❌ Y 軸の向きを数学（上が +Y）で書く → 画面座標は <strong>下が +Y</strong> なので N の <code>dir_y</code> は <code>-1</code></li>
+<li>❌ <code>.cub</code> で <code>N</code> が見つかったあとも走査を続けない → スポーン文字が複数あったらエラーにする必要がある（Error management 側のテストにも関連）</li>
+</ul>
+<h3 id="7">⑦ 想定質問と模範回答</h3>
+<table>
+<thead>
+<tr>
+<th>質問</th>
+<th>模範回答</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>「<code>dir</code> と <code>plane</code> の関係は？」</td>
+<td><strong>直交する 2 つの 2D ベクトル</strong>。<code>dir</code> がプレイヤーの向き、<code>plane</code> がカメラ平面で、両者の比で FOV が決まります。<code>|plane|/|dir|</code> を <code>0.66</code> にすると約 66° の自然な視野になります</td>
+</tr>
+<tr>
+<td>「N の <code>dir_y</code> が <code>-1</code> なのは？」</td>
+<td>miniLibX の画面座標は <strong>Y が下向き</strong> にプラス。マップでも上が <code>y=0</code>、下に行くほど y が増えるので、北 = 上向きは <code>dir_y = -1</code> です</td>
+</tr>
+<tr>
+<td>「<code>plane</code> の大きさ <code>0.66</code> の根拠は？」</td>
+<td><code>FOV = 2 * atan(|plane|/|dir|)</code>。<code>0.66</code> を入れると約 66°。広すぎず狭すぎず、Wolfenstein 3D 等と同じ慣例値です</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="test-2">Test 2: ← → で左右回転</h2>
+<h3 id="1_1">① 評価シート原文</h3>
+<blockquote>
+<p>Press the left arrow then the right arrow. The player's view must rotate to the left then to the right as if the player's head was moving.</p>
+</blockquote>
+<h3 id="2_1">② 日本語訳</h3>
+<blockquote>
+<p>← → を順に押す。<strong>頭を左右に振るようにビューが左→右に回転</strong> すること。</p>
+</blockquote>
+<h3 id="3_2">③ 評価者が確認すること</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">確認</th>
+<th style="text-align: left;">期待される挙動</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>← で左回転</strong></td>
+<td style="text-align: left;">画面の景色が<strong>右方向に流れる</strong>（=視点は左へ回る）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>→ で右回転</strong></td>
+<td style="text-align: left;">画面の景色が<strong>左方向に流れる</strong>（=視点は右へ回る）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>滑らかさ</strong></td>
+<td style="text-align: left;">押下中ずっと回転し続け、離すと止まる</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>方向の整合性</strong></td>
+<td style="text-align: left;">← で右回転してしまう、などの符号ミスがない</td>
+</tr>
+</tbody>
+</table>
+<h3 id="4_1">④ 評価者が見るコード箇所</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">ファイル</th>
+<th style="text-align: left;">関数</th>
+<th style="text-align: left;">何を見るか</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>srcs/input/input.c</code></td>
+<td style="text-align: left;"><code>ft_key_press</code> / <code>ft_key_release</code></td>
+<td style="text-align: left;"><code>KEY_LEFT</code> / <code>KEY_RIGHT</code> で <code>keys.left</code> / <code>keys.right</code> フラグを 1/0 にする</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>srcs/input/move.c</code></td>
+<td style="text-align: left;"><code>ft_rotate</code></td>
+<td style="text-align: left;"><strong>2D 回転行列</strong> を <code>dir</code> と <code>plane</code> の両方に適用</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>includes/cub3d.h</code></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;"><code>ROT_SPEED</code>（1 フレームあたりの回転角ラジアン）</td>
+</tr>
+</tbody>
+</table>
+<div class="language-c highlight"><span class="filename">srcs/input/move.c (ft_rotate)</span><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">ft_rotate</span><span class="p">(</span><span class="n">t_game</span><span class="w"> </span><span class="o">*</span><span class="n">game</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">angle</span><span class="p">)</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="p">{</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">old_dx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">dir_x</span><span class="p">;</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">old_px</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">plane_x</span><span class="p">;</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">dir_x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">old_dx</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">dir_y</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="p">);</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">dir_y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">old_dx</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">dir_y</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="p">);</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">plane_x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">old_px</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">plane_y</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="p">);</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">plane_y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">old_px</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">plane_y</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="p">);</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="p">}</span>
+</span></code></pre></div>
+<div class="language-c highlight"><span class="filename">srcs/input/move.c (毎フレームの回転呼び出し)</span><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">game</span><span class="o">-&gt;</span><span class="n">keys</span><span class="p">.</span><span class="n">left</span><span class="p">)</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="n">ft_rotate</span><span class="p">(</span><span class="n">game</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">ROT_SPEED</span><span class="p">);</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">game</span><span class="o">-&gt;</span><span class="n">keys</span><span class="p">.</span><span class="n">right</span><span class="p">)</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="n">ft_rotate</span><span class="p">(</span><span class="n">game</span><span class="p">,</span><span class="w"> </span><span class="n">ROT_SPEED</span><span class="p">);</span>
+</span></code></pre></div>
+<h3 id="5-dir-plane_1">⑤ 原理原則 — なぜ <code>dir</code> と <code>plane</code> を<strong>両方</strong>回すのか？</h3>
+<p><code>dir</code> だけを回して <code>plane</code> を放置すると、<strong>視野範囲（カメラ平面）が回転に追従しない</strong> ため、回転すると画面が歪んでいきます。</p>
+<pre class="mermaid"><code>flowchart LR
+    Key[← キー押下] --&gt; Flag[keys.left = 1]
+    Flag --&gt; Frame[毎フレーム ft_move]
+    Frame --&gt; Rot[ft_rotate -ROT_SPEED]
+    Rot --&gt; DR[dir に回転行列適用]
+    Rot --&gt; PR[plane に同じ回転行列適用]
+    DR --&gt; Render[次フレームの描画]
+    PR --&gt; Render</code></pre>
+<p>2D 回転行列の公式:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>[ x&#39; ]   [ cos θ  -sin θ ] [ x ]
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>[ y&#39; ] = [ sin θ   cos θ ] [ y ]
+</span></code></pre></div>
+<p>これを <strong><code>dir</code>・<code>plane</code> の両方</strong> に同じ角度 <code>θ</code> で適用すれば、両者の直交関係が保たれたまま回転します。</p>
+<h3 id="6_1">⑥ よくある罠</h3>
+<ul>
+<li>❌ <code>dir</code> だけ回して <code>plane</code> を回し忘れる → 回転するほど画面が歪む</li>
+<li>❌ 回転後の <code>dir_x</code> を計算してから、その<strong>書き換え後の値</strong>を使って <code>dir_y</code> を計算 → <code>old_dx</code> を退避し忘れている</li>
+<li>❌ <code>cos</code>/<code>sin</code> に<strong>度数（degree）</strong>を渡す → C の <code>&lt;math.h&gt;</code> はラジアンが前提</li>
+<li>❌ ← で <code>+ROT_SPEED</code> 、→ で <code>-ROT_SPEED</code> → 符号が逆で操作感が変</li>
+<li>❌ ← → に反応させる <code>mlx_hook</code> のイベント 2 / 3 を登録忘れ → キーが効かない</li>
+</ul>
+<h3 id="7_1">⑦ 想定質問と模範回答</h3>
+<table>
+<thead>
+<tr>
+<th>質問</th>
+<th>模範回答</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>「なぜ <code>plane</code> も一緒に回す？」</td>
+<td><code>dir</code> と <code>plane</code> は<strong>直交関係</strong>で FOV を作っているため。片方だけ回すと視野が歪み、camera_x の計算が破綻します</td>
+</tr>
+<tr>
+<td>「<code>cos(angle)</code> の <code>angle</code> の単位は？」</td>
+<td><strong>ラジアン</strong>。<code>&lt;math.h&gt;</code> の三角関数は全てラジアン前提なので、<code>M_PI/180</code> を掛けて度から変換する必要があります</td>
+</tr>
+<tr>
+<td>「<code>old_dx</code> を別変数に退避する理由は？」</td>
+<td><code>dir_x</code> を先に更新してしまうと、<code>dir_y</code> の計算で<strong>新しい <code>dir_x</code></strong> を使ってしまい結果が壊れるため。回転行列は元の値で計算する必要があります</td>
+</tr>
+<tr>
+<td>「← で <code>-ROT_SPEED</code> の理由は？」</td>
+<td>2D 回転行列の正回転は反時計回り（数学慣例）ですが、画面の Y が下向きなので<strong>符号が反転</strong> します。左回転 = 角度マイナス、で実機の見え方と一致します</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="test-3-w-z-s">Test 3: W (Z) / S で前進・後退（直進）</h2>
+<h3 id="1_2">① 評価シート原文</h3>
+<blockquote>
+<p>Press W (or Z) then S. The player's view must go forward and then backward in a straight line.</p>
+</blockquote>
+<h3 id="2_2">② 日本語訳</h3>
+<blockquote>
+<p>W （または Z）を押してから S を押す。<strong>ビューが直線的に前進し、その後直線的に後退</strong> すること。</p>
+</blockquote>
+<h3 id="3_3">③ 評価者が確認すること</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">確認</th>
+<th style="text-align: left;">期待される挙動</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>W / Z で前進</strong></td>
+<td style="text-align: left;">プレイヤーの向きに沿って前に進む</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>S で後退</strong></td>
+<td style="text-align: left;">プレイヤーの向きの真後ろに下がる</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>直進性</strong></td>
+<td style="text-align: left;">横にズレずに<strong>真っ直ぐ</strong>進む</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>壁との衝突</strong></td>
+<td style="text-align: left;">壁にぶつかると止まる（ただし斜めなら<strong>壁沿いに滑る</strong>）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="4_2">④ 評価者が見るコード箇所</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">ファイル</th>
+<th style="text-align: left;">関数</th>
+<th style="text-align: left;">何を見るか</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>srcs/input/move.c</code></td>
+<td style="text-align: left;"><code>ft_move_forward</code></td>
+<td style="text-align: left;"><code>pos += dir * MOVE_SPEED</code> の式と、X/Y を<strong>別々に衝突判定</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>srcs/input/move.c</code></td>
+<td style="text-align: left;"><code>ft_move_backward</code></td>
+<td style="text-align: left;"><code>pos -= dir * MOVE_SPEED</code>（符号を反転）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>srcs/input/move.c</code></td>
+<td style="text-align: left;"><code>ft_can_move</code></td>
+<td style="text-align: left;">移動先のマス（int 切り捨て）が <code>'1'</code> でないか</td>
+</tr>
+</tbody>
+</table>
+<div class="language-c highlight"><span class="filename">srcs/input/move.c (ft_move_forward)</span><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">ft_move_forward</span><span class="p">(</span><span class="n">t_game</span><span class="w"> </span><span class="o">*</span><span class="n">game</span><span class="p">)</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="p">{</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">nx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">pos_x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">dir_x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">MOVE_SPEED</span><span class="p">;</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">ny</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">pos_y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">dir_y</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">MOVE_SPEED</span><span class="p">;</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ft_can_move</span><span class="p">(</span><span class="n">game</span><span class="p">,</span><span class="w"> </span><span class="n">nx</span><span class="p">,</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">pos_y</span><span class="p">))</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">        </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">pos_x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nx</span><span class="p">;</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ft_can_move</span><span class="p">(</span><span class="n">game</span><span class="p">,</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">pos_x</span><span class="p">,</span><span class="w"> </span><span class="n">ny</span><span class="p">))</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">        </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">pos_y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ny</span><span class="p">;</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="p">}</span>
+</span></code></pre></div>
+<div class="language-c highlight"><span class="filename">srcs/input/move.c (ft_move_backward)</span><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">ft_move_backward</span><span class="p">(</span><span class="n">t_game</span><span class="w"> </span><span class="o">*</span><span class="n">game</span><span class="p">)</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="p">{</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">nx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">pos_x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">dir_x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">MOVE_SPEED</span><span class="p">;</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">ny</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">pos_y</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">dir_y</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">MOVE_SPEED</span><span class="p">;</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ft_can_move</span><span class="p">(</span><span class="n">game</span><span class="p">,</span><span class="w"> </span><span class="n">nx</span><span class="p">,</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">pos_y</span><span class="p">))</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">        </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">pos_x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nx</span><span class="p">;</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ft_can_move</span><span class="p">(</span><span class="n">game</span><span class="p">,</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">pos_x</span><span class="p">,</span><span class="w"> </span><span class="n">ny</span><span class="p">))</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">        </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">pos_y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ny</span><span class="p">;</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="p">}</span>
+</span></code></pre></div>
+<h3 id="5-dir">⑤ 原理原則 — 「直進」とは <code>dir</code> ベクトル方向への移動</h3>
+<p>「プレイヤーの向きに進む」を数式にすると:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>new_pos = pos + dir * speed   (前進)
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>new_pos = pos - dir * speed   (後退)
+</span></code></pre></div>
+<p><code>dir</code> は単位ベクトル（長さ 1）なので、<code>speed</code> がそのまま 1 フレームあたりの移動距離になります。</p>
+<p>X と Y を別々に判定する理由は <strong>壁沿いスライド</strong> のため:</p>
+<pre class="mermaid"><code>flowchart LR
+    Start["pos = 3.5, 2.5&lt;br/&gt;dir = 0.7, -0.7"]
+    Step["next = 3.85, 2.15"]
+    XCheck{"X だけ OK?"}
+    YCheck{"Y だけ OK?"}
+    Slide["壁沿いに 1 軸だけ進む"]
+    Start --&gt; Step --&gt; XCheck
+    Step --&gt; YCheck
+    XCheck --&gt;|Yes| Slide
+    YCheck --&gt;|Yes| Slide</code></pre>
+<p>両方一緒に判定すると、斜め移動で壁にぶつかった瞬間にぴたっと止まり「<strong>壁に貼り付いて動けない</strong>」感触になります。</p>
+<h3 id="6_2">⑥ よくある罠</h3>
+<ul>
+<li>❌ <code>MOVE_SPEED</code> が大きすぎる（例 <code>0.5</code>）→ 壁を貫通する</li>
+<li>❌ X と Y を <strong>同時に</strong> 判定 → 壁沿いをスライドできない</li>
+<li>❌ 移動先の <code>int</code> 変換を忘れる → <code>map[3.5][2.5]</code> のようなインデックスはコンパイルが通っても<strong>配列範囲外</strong> で UB</li>
+<li>❌ <code>S</code> のキーコードを <code>KEY_W</code> と同じに書いてしまう → S を押しても前進する</li>
+<li>❌ 横移動と前後で同じ関数を流用してしまい、<code>dir</code> ではなく <code>plane</code> で計算 → 「前 W で右に流れる」ような変なバグ</li>
+</ul>
+<h3 id="7_2">⑦ 想定質問と模範回答</h3>
+<table>
+<thead>
+<tr>
+<th>質問</th>
+<th>模範回答</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>「衝突判定の仕組みは？」</td>
+<td>移動後の座標を <code>int</code> に切り捨ててマップインデックスに変換し、<code>map[y][x] == '1'</code> なら壁とみなして移動をキャンセルします</td>
+</tr>
+<tr>
+<td>「X と Y を別々に判定する理由は？」</td>
+<td>壁沿いに斜め入力するとき、X 方向だけ・Y 方向だけ進めるようにするため。両軸を同時判定すると壁に貼り付いて動けなくなります</td>
+</tr>
+<tr>
+<td>「<code>MOVE_SPEED</code> の決め方は？」</td>
+<td>1 マス（1.0）の <strong>数十分の一</strong> を目安に。60fps 想定で <code>0.05</code> 程度。これより大きいと衝突判定をすり抜けるリスクがあります</td>
+</tr>
+<tr>
+<td>「前進と後退でコードが似ているのは？」</td>
+<td>符号を反転しただけ。共通化する場合は <code>ft_move_in_dir(game, sign)</code> のように <code>+1 / -1</code> を引数で渡せば 1 関数にできます</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="test-4-a-q-d">Test 4: A (Q) / D で左右ストレイフ</h2>
+<h3 id="1_3">① 評価シート原文</h3>
+<blockquote>
+<p>Press A (or Q) then D. The player's view must go to the left and then to the right in a straight line.</p>
+</blockquote>
+<h3 id="2_3">② 日本語訳</h3>
+<blockquote>
+<p>A （または Q）を押してから D を押す。<strong>ビューが直線的に左へ、その後直線的に右へストレイフ（平行移動）</strong> すること。</p>
+</blockquote>
+<h3 id="3_4">③ 評価者が確認すること</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">確認</th>
+<th style="text-align: left;">期待される挙動</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>A / Q で左ストレイフ</strong></td>
+<td style="text-align: left;">プレイヤーの<strong>真左</strong> に平行移動（向きは変わらない）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>D で右ストレイフ</strong></td>
+<td style="text-align: left;">プレイヤーの<strong>真右</strong> に平行移動</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>直進性</strong></td>
+<td style="text-align: left;">前後にズレずに横方向だけに動く</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>回転と区別</strong></td>
+<td style="text-align: left;">視点が回転していない（あくまで平行移動）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="4_3">④ 評価者が見るコード箇所</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">ファイル</th>
+<th style="text-align: left;">関数</th>
+<th style="text-align: left;">何を見るか</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>srcs/input/move.c</code></td>
+<td style="text-align: left;"><code>ft_strafe_left</code></td>
+<td style="text-align: left;"><code>pos -= plane * MOVE_SPEED</code>（<code>plane</code> ベクトル方向の負）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>srcs/input/move.c</code></td>
+<td style="text-align: left;"><code>ft_strafe_right</code></td>
+<td style="text-align: left;"><code>pos += plane * MOVE_SPEED</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>srcs/input/move.c</code></td>
+<td style="text-align: left;"><code>ft_can_move</code></td>
+<td style="text-align: left;">前進と同じ衝突判定を共用</td>
+</tr>
+</tbody>
+</table>
+<div class="language-c highlight"><span class="filename">srcs/input/move.c (ft_strafe_left)</span><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">ft_strafe_left</span><span class="p">(</span><span class="n">t_game</span><span class="w"> </span><span class="o">*</span><span class="n">game</span><span class="p">)</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="p">{</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">nx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">pos_x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">plane_x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">MOVE_SPEED</span><span class="p">;</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">ny</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">pos_y</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">plane_y</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">MOVE_SPEED</span><span class="p">;</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ft_can_move</span><span class="p">(</span><span class="n">game</span><span class="p">,</span><span class="w"> </span><span class="n">nx</span><span class="p">,</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">pos_y</span><span class="p">))</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">        </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">pos_x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nx</span><span class="p">;</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ft_can_move</span><span class="p">(</span><span class="n">game</span><span class="p">,</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">pos_x</span><span class="p">,</span><span class="w"> </span><span class="n">ny</span><span class="p">))</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="w">        </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">pos_y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ny</span><span class="p">;</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="p">}</span>
+</span></code></pre></div>
+<div class="language-c highlight"><span class="filename">srcs/input/move.c (ft_strafe_right)</span><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">ft_strafe_right</span><span class="p">(</span><span class="n">t_game</span><span class="w"> </span><span class="o">*</span><span class="n">game</span><span class="p">)</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="p">{</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">nx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">pos_x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">plane_x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">MOVE_SPEED</span><span class="p">;</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">ny</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">pos_y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">plane_y</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">MOVE_SPEED</span><span class="p">;</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ft_can_move</span><span class="p">(</span><span class="n">game</span><span class="p">,</span><span class="w"> </span><span class="n">nx</span><span class="p">,</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">pos_y</span><span class="p">))</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">        </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">pos_x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nx</span><span class="p">;</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ft_can_move</span><span class="p">(</span><span class="n">game</span><span class="p">,</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">pos_x</span><span class="p">,</span><span class="w"> </span><span class="n">ny</span><span class="p">))</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">        </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">player</span><span class="p">.</span><span class="n">pos_y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ny</span><span class="p">;</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="p">}</span>
+</span></code></pre></div>
+<h3 id="5-plane">⑤ 原理原則 — 「真横」 = <code>plane</code> ベクトル方向</h3>
+<p><code>plane</code> は <code>dir</code> に<strong>垂直</strong> な単位（厳密には 0.66 倍）ベクトル。これを移動方向に使えば、向きを変えずに横方向に平行移動できます。</p>
+<table>
+<thead>
+<tr>
+<th>キー</th>
+<th>方向</th>
+<th>式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>W / Z</strong>（前）</td>
+<td><code>dir</code></td>
+<td><code>pos += dir * SPEED</code></td>
+</tr>
+<tr>
+<td><strong>S</strong>（後）</td>
+<td><code>-dir</code></td>
+<td><code>pos -= dir * SPEED</code></td>
+</tr>
+<tr>
+<td><strong>D</strong>（右）</td>
+<td><code>plane</code></td>
+<td><code>pos += plane * SPEED</code></td>
+</tr>
+<tr>
+<td><strong>A / Q</strong>（左）</td>
+<td><code>-plane</code></td>
+<td><code>pos -= plane * SPEED</code></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title"><code>plane</code> の長さは <code>0.66</code> だが移動量に問題ない？</p>
+<p>厳密には左右の移動量が前後より少し小さくなる（<code>0.66</code> 倍）。気になる場合は <code>plane / |plane|</code> で<strong>単位ベクトル化</strong>してから使う。多くの 42 提出例ではそのまま使っており、評価でも問題視されない。</p>
+</div>
+<h3 id="6_3">⑥ よくある罠</h3>
+<ul>
+<li>❌ A / D で <code>dir</code> を使って動かす → 真横ではなく<strong>真ん前 / 真後ろ</strong> に動いてしまう</li>
+<li>❌ <code>plane</code> の符号を取り違える → 左キーで右に動く</li>
+<li>❌ ストレイフ中に視点も回ってしまう → 回転処理を誤って呼んでいる</li>
+<li>❌ 移動量が <code>plane * SPEED</code> で、<code>plane = 0.66</code> 倍なので<strong>前後より遅く感じる</strong> → 評価者に「カクッ」と見えることはまずないが気になるなら正規化</li>
+</ul>
+<h3 id="7_3">⑦ 想定質問と模範回答</h3>
+<table>
+<thead>
+<tr>
+<th>質問</th>
+<th>模範回答</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>「なぜ <code>plane</code> を使う？」</td>
+<td><code>plane</code> は <code>dir</code> に直交するベクトルで、「プレイヤーの真横」の向きを表しているため。これに沿って動けば、向きを変えずに真横へ平行移動できます</td>
+</tr>
+<tr>
+<td>「ストレイフと回転の違いは？」</td>
+<td>ストレイフは<strong>位置だけ</strong> が動く（<code>pos</code> を更新）、回転は<strong>向きだけ</strong> が動く（<code>dir</code>・<code>plane</code> を更新）。混同するとバグります</td>
+</tr>
+<tr>
+<td>「<code>plane</code> が <code>0.66</code> 倍の単位だと、左右が前後より遅くなる？」</td>
+<td>厳密にはそうですが、約 34% の差で実機ではほぼ違和感ない速度。気になる場合は <code>plane</code> を正規化（<code>plane / |plane|</code>）して使えば均一になります</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="test-5-smooth">Test 5: 表示は滑らか（smooth）か</h2>
+<h3 id="1_4">① 評価シート原文</h3>
+<blockquote>
+<p>During those four movements, was the display smooth? By smooth we mean is the game 'playable' or is it slow.</p>
+</blockquote>
+<h3 id="2_4">② 日本語訳</h3>
+<blockquote>
+<p>上記 4 つの移動中、<strong>表示は滑らか</strong> か？　ここで言う "smooth" は「ゲームとして<strong>プレイ可能</strong> か、それとも<strong>遅い</strong> か」という意味。</p>
+</blockquote>
+<h3 id="3_5">③ 評価者が確認すること</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">確認</th>
+<th style="text-align: left;">期待される挙動</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>フレームが詰まらない</strong></td>
+<td style="text-align: left;">移動中に画面がカクカクしない</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>入力遅延が小さい</strong></td>
+<td style="text-align: left;">キー押下後、即座にビューが動き始める</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>解像度を上げても破綻しない</strong></td>
+<td style="text-align: left;">1024×768 程度で実用速度</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>キーリピート間隔に依存しない</strong></td>
+<td style="text-align: left;">押しっぱなしでスムーズに連続移動</td>
+</tr>
+</tbody>
+</table>
+<h3 id="4_4">④ 評価者が見るコード箇所</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">ファイル</th>
+<th style="text-align: left;">関数</th>
+<th style="text-align: left;">何を見るか</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>srcs/main.c</code></td>
+<td style="text-align: left;"><code>main</code></td>
+<td style="text-align: left;"><code>mlx_loop_hook(mlx, ft_loop, &amp;game)</code> で<strong>毎フレーム</strong> 描画を回している</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>srcs/render/raycaster.c</code></td>
+<td style="text-align: left;"><code>ft_raycast</code></td>
+<td style="text-align: left;"><strong>フレームバッファ</strong>（<code>mlx_new_image</code> で確保した image）に書き込む</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>srcs/render/raycaster.c</code></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;"><code>mlx_put_image_to_window</code> で<strong>完成画像を 1 回だけ</strong> 転送</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>srcs/input/input.c</code></td>
+<td style="text-align: left;"><code>ft_key_press</code> / <code>ft_key_release</code></td>
+<td style="text-align: left;"><strong>フラグ方式</strong> でキー状態を保持（直接 <code>pos</code> を書き換えない）</td>
+</tr>
+</tbody>
+</table>
+<div class="language-c highlight"><span class="filename">srcs/main.c (メインループ抜粋)</span><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">mlx_hook</span><span class="p">(</span><span class="n">game</span><span class="p">.</span><span class="n">win</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mf">1L</span><span class="o">&lt;&lt;</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">ft_key_press</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">game</span><span class="p">);</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">mlx_hook</span><span class="p">(</span><span class="n">game</span><span class="p">.</span><span class="n">win</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mf">1L</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">ft_key_release</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">game</span><span class="p">);</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="n">mlx_hook</span><span class="p">(</span><span class="n">game</span><span class="p">.</span><span class="n">win</span><span class="p">,</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">ft_close_window</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">game</span><span class="p">);</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="n">mlx_loop_hook</span><span class="p">(</span><span class="n">game</span><span class="p">.</span><span class="n">mlx</span><span class="p">,</span><span class="w"> </span><span class="n">ft_loop</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">game</span><span class="p">);</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="n">mlx_loop</span><span class="p">(</span><span class="n">game</span><span class="p">.</span><span class="n">mlx</span><span class="p">);</span>
+</span></code></pre></div>
+<div class="language-c highlight"><span class="filename">srcs/main.c (ft_loop: 毎フレームの処理)</span><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kt">int</span><span class="w"> </span><span class="nf">ft_loop</span><span class="p">(</span><span class="n">t_game</span><span class="w"> </span><span class="o">*</span><span class="n">game</span><span class="p">)</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="p">{</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">    </span><span class="n">ft_move</span><span class="p">(</span><span class="n">game</span><span class="p">);</span><span class="w">                  </span><span class="c1">// フラグを見て位置・向きを更新</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">    </span><span class="n">ft_raycast</span><span class="p">(</span><span class="n">game</span><span class="p">);</span><span class="w">               </span><span class="c1">// フレームバッファに 1 列ずつ描画</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="w">    </span><span class="n">mlx_put_image_to_window</span><span class="p">(</span><span class="n">game</span><span class="o">-&gt;</span><span class="n">mlx</span><span class="p">,</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">win</span><span class="p">,</span><span class="w"> </span><span class="n">game</span><span class="o">-&gt;</span><span class="n">img</span><span class="p">.</span><span class="n">ptr</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="p">}</span>
+</span></code></pre></div>
+<h3 id="5-mlx_pixel_put">⑤ 原理原則 — <code>mlx_pixel_put</code> を使わない理由</h3>
+<p><code>mlx_pixel_put</code> は 1 ピクセルごとに <strong>X サーバーへ通信</strong> する API。これを <code>WIN_W × WIN_H = 786,432</code> 回呼ぶと 1 フレーム描くだけで何秒もかかります。</p>
+<pre class="mermaid"><code>flowchart TB
+    subgraph slow["遅い実装"]
+        S1["for each pixel"] --&gt; S2["mlx_pixel_put&lt;br/&gt;X11 通信"]
+        S2 --&gt; S3["数十ミリ秒/ピクセル"]
+    end
+    subgraph fast["速い実装"]
+        F1["mlx_new_image で&lt;br/&gt;メモリ確保"] --&gt; F2["メモリに直接書き込み"]
+        F2 --&gt; F3["mlx_put_image_to_window&lt;br/&gt;1 回だけ通信"]
+    end</code></pre>
+<p>正しい実装:</p>
+<ol>
+<li><code>mlx_new_image</code> で <strong>画面サイズ分のメモリバッファ</strong> を確保</li>
+<li><code>mlx_get_data_addr</code> でそのアドレスを取得</li>
+<li>レイキャスティング結果を <strong>直接メモリに書き込む</strong>（<code>addr[y * line + x * bpp] = color</code>）</li>
+<li><code>mlx_put_image_to_window</code> で <strong>1 回だけ</strong> ウィンドウに転送</li>
+</ol>
+<p>これで 60fps 以上を実現できます。</p>
+<h3 id="6_4">⑥ よくある罠</h3>
+<ul>
+<li>❌ <code>mlx_pixel_put</code> でピクセル単位に書く → <strong>1fps 以下</strong> で評価即 0 点</li>
+<li>❌ 毎フレームで <code>mlx_new_image</code> を<strong>作り直し</strong>、<code>mlx_destroy_image</code> を忘れる → 起動 10 秒でメモリ数百 MB</li>
+<li>❌ <code>mlx_put_image_to_window</code> を<strong>列ごとに</strong> 呼ぶ → 1 回にまとめないと遅い</li>
+<li>❌ <code>ft_key_press</code> 内で <strong>直接 <code>pos</code> を更新</strong> → キーリピート間隔に依存してガタつく</li>
+<li>❌ 解像度を <code>1920x1080</code> のような高すぎる値にする → 描画が間に合わずカクつく</li>
+</ul>
+<h3 id="7_4">⑦ 想定質問と模範回答</h3>
+<table>
+<thead>
+<tr>
+<th>質問</th>
+<th>模範回答</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>「滑らかに描画するためのキモは？」</td>
+<td><strong>フレームバッファ方式</strong>。<code>mlx_new_image</code> でメモリ画像を作り、レイキャスト結果を直接メモリに書き、最後に <code>mlx_put_image_to_window</code> で 1 回だけ転送します</td>
+</tr>
+<tr>
+<td>「<code>mlx_pixel_put</code> を使わない理由は？」</td>
+<td>1 ピクセルごとに X サーバーへ通信が発生し、画面全体で<strong>百万回近い通信</strong> になるため。フレームバッファなら 1 回の通信で済みます</td>
+</tr>
+<tr>
+<td>「フレーム間で <code>image</code> を作り直していない？」</td>
+<td>いいえ、<code>mlx_new_image</code> は<strong>起動時に 1 回だけ</strong> 呼び、毎フレームは<strong>同じ image にデータを上書き</strong> するだけです。これで <code>mlx_destroy_image</code> の手間もリークもありません</td>
+</tr>
+<tr>
+<td>「FPS が出ない場合の対処は？」</td>
+<td>(1) 解像度を下げる (2) <code>mlx_pixel_put</code> 使用箇所を image バッファに置き換える (3) <code>printf</code> などのデバッグ出力を削除 — の順に確認します</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_2">🎯 ディフェンス当日の動き方</h2>
+<ol>
+<li><strong><code>maps/spawn_n.cub</code></strong> から起動 → 北向きの初期画面を見せる</li>
+<li>ESC で終了 → <code>maps/spawn_s.cub</code> → 南向き → ESC</li>
+<li>同様に <code>maps/spawn_e.cub</code> / <code>maps/spawn_w.cub</code> も実演</li>
+<li>通常マップを起動して <strong>← → を押して左右回転</strong> → 「景色が逆方向に流れる」を見せる</li>
+<li><strong>W / Z で前進</strong> → <strong>S で後退</strong> → 真っ直ぐ進むことを実演</li>
+<li><strong>A / Q で左ストレイフ</strong> → <strong>D で右ストレイフ</strong> → 視点が回らず横移動するのを確認</li>
+<li>全 4 移動を組み合わせて壁沿いを歩く → 滑らかなフレームレートを見せる</li>
+<li>コード説明: <code>init.c</code> の <code>ft_init_dir_ns</code> / <code>ft_init_dir_ew</code> で N/S/E/W 別の <code>dir</code>・<code>plane</code> 初期化 → <code>move.c</code> の <code>ft_rotate</code> / <code>ft_move_*</code> / <code>ft_strafe_*</code> の順で指す</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">30 秒で説明できるストーリー</p>
+<p>「プレイヤーの状態は <code>dir</code>（向き）と <code>plane</code>（カメラ平面）の 2 つの直交するベクトルで表現しています。N/S/E/W のスポーンはこの 2 つの初期値を切り替えるだけです。回転は両方に同じ 2D 回転行列を適用、前進・後退は <code>dir</code> 方向、左右ストレイフは <code>plane</code> 方向に <code>pos</code> を動かします。描画は <code>mlx_new_image</code> のフレームバッファに書き込んで <code>mlx_put_image_to_window</code> で 1 回転送するので 60fps が出ます。」</p>
+</div>
+<hr />
+<h2 id="_3">📋 提出前最終チェック</h2>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>maps/spawn_n.cub</code> / <code>maps/spawn_s.cub</code> / <code>maps/spawn_e.cub</code> / <code>maps/spawn_w.cub</code> の <strong>4 マップ</strong> を用意した</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> N / S / E / W それぞれの起動で<strong>期待した初期向き</strong> が出る</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> ← で左回転、→ で右回転（符号ミスなし）</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> W / Z で前進、S で後退、A / Q で左ストレイフ、D で右ストレイフ</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 押しっぱなしで連続移動、離すと停止（フラグ方式）</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 壁にぶつかると止まる、斜めなら壁沿いに滑る（X / Y 別判定）</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 描画が<strong>滑らか</strong>（<code>mlx_pixel_put</code> ではなく <code>mlx_new_image</code> ＋ <code>mlx_put_image_to_window</code>）</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>cos</code>/<code>sin</code> の引数は<strong>ラジアン</strong></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>dir</code> と <code>plane</code> を<strong>両方</strong> 回転している</li>
+</ul>
+<hr />
+<h2 id="_4">関連ページ</h2>
+<ul>
+<li>本文: <a href="../05-camera/">05 カメラと魚眼補正</a></li>
+<li>本文: <a href="../07-input/">07 入力処理とプレイヤー移動</a></li>
+<li>評価: <a href="../eval-events/">User basic events の評価詳細</a></li>
+<li>評価: <a href="../eval-walls/">Walls の評価詳細</a></li>
+<li>評価: <a href="../eval-errors/">Error management の評価詳細</a></li>
+<li>評価: <strong><a href="../eval/">評価対策トップへ戻る</a></strong></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  ページトップへ戻る
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="フッター" >
+        
+          
+          <a href="../eval-events/" class="md-footer__link md-footer__link--prev" aria-label="前: 👤 User basic events">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                前
+              </span>
+              <div class="md-ellipsis">
+                👤 User basic events
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../eval-walls/" class="md-footer__link md-footer__link--next" aria-label="次: 🧱 Walls">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                次
+              </span>
+              <div class="md-ellipsis">
+                🧱 Walls
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../js/video-control.js"></script>
+      
+        <script src="../js/mermaid-override.js"></script>
+      
+        <script src="../js/user-notes.js"></script>
+      
+    
+  </body>
+</html>

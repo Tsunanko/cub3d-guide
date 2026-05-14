@@ -1,0 +1,743 @@
+/* =====================================================
+ * cub3D ガイド 共通スタイル
+ * ===================================================== */
+
+/* ----- コンテンツエリア: 広い画面では左右の余白を有効活用 -----
+ * Material デフォルト 1220px だと FHD/QHD で両脇が空きすぎる。
+ * viewport の 92% を上限にしつつ、超ワイドでも 1760px で頭打ち。
+ */
+.md-grid {
+    max-width: min(1760px, 92vw);
+}
+
+/* ----- 本文フォントをビューポート幅に応じて伸縮 ----- */
+.md-typeset {
+    font-size: clamp(0.82rem, 0.78rem + 0.22vw, 0.92rem);
+    line-height: 1.75;
+}
+.md-typeset h1 { font-size: clamp(1.6rem, 1.3rem + 0.9vw, 2.0rem); }
+.md-typeset h2 { font-size: clamp(1.25rem, 1.05rem + 0.6vw, 1.5rem); margin-top: 1.8em; }
+.md-typeset h3 { font-size: clamp(1.05rem, 0.95rem + 0.3vw, 1.2rem); }
+.md-typeset h4 { font-size: 1.05rem; }
+
+/* 見出しは日本語単位で改行（半角スペース前後で変な位置に折れないように） */
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3,
+.md-typeset h4,
+.md-typeset h5,
+.md-typeset h6 {
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    line-break: strict;
+}
+
+/* 表の中で <code>（関数名・パス等）が途中で折れないようにする */
+.md-typeset table code {
+    white-space: nowrap;
+}
+
+/* 表のセル内で日本語短単位が不自然に割れないように */
+.md-typeset table td,
+.md-typeset table th {
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+    line-break: strict;
+}
+
+/* サイドバー・ナビは本文より一回り小さく */
+.md-nav {
+    font-size: clamp(0.7rem, 0.68rem + 0.08vw, 0.76rem);
+}
+
+/* 画像とGIFを全幅で大きく表示 */
+.md-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* GIFやスクリーンショットは特に大きく */
+.md-content img[src$=".gif"],
+.md-content img[src$=".png"] {
+    display: block;
+    margin: 1em auto;
+    max-width: 100%;
+}
+
+/* 動画も画像と同じ扱いで表示 */
+.md-content video,
+.md-content .cub3d-video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1em auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    cursor: pointer;
+}
+
+.md-content video:hover {
+    opacity: 0.97;
+    transition: opacity 0.15s;
+}
+
+/* =====================================================
+ * Mermaid 図の文字サイズと枠線を本文に合わせて調整
+ * ===================================================== */
+.mermaid {
+    margin: 1.5em auto;
+    text-align: center;
+}
+/* SVG は親幅いっぱい使う。Mermaid は内部 viewBox を持つので
+ * width: 100% で自然にスケールアップ（小さい図も画面幅まで広がる） */
+.mermaid svg {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+.mermaid .node rect,
+.mermaid .node polygon,
+.mermaid .node circle,
+.mermaid .node ellipse,
+.mermaid .node path {
+    stroke-width: 2.5px !important;
+}
+/* 17 → 20px。SVG が拡大されるとさらに大きく見える */
+.mermaid .nodeLabel,
+.mermaid .nodeLabel p,
+.mermaid .label {
+    font-size: 20px !important;
+    font-weight: 500;
+    line-height: 1.4 !important;
+}
+.mermaid .edgeLabel,
+.mermaid .edgeLabel p,
+.mermaid .edgeLabel span {
+    font-size: 18px !important;
+    font-weight: 500;
+}
+.mermaid .cluster-label,
+.mermaid .cluster text {
+    font-size: 19px !important;
+    font-weight: 600 !important;
+}
+
+/* =====================================================
+ * ダークモード調整（[data-md-color-scheme="slate"]）
+ *
+ * 目的:
+ *   Mermaid のパステル塗り (style X fill:#E3F2FD 等) は
+ *   デフォルトで黒文字を想定していてダークモードで
+ *   文字が読みにくいため、明示的に塗りの彩度を上げて
+ *   文字を濃色に強制する。
+ * ===================================================== */
+
+/* Mermaid ノードのテキストをダークモードでも見やすく */
+[data-md-color-scheme="slate"] .mermaid .node rect,
+[data-md-color-scheme="slate"] .mermaid .node polygon,
+[data-md-color-scheme="slate"] .mermaid .node circle,
+[data-md-color-scheme="slate"] .mermaid .node ellipse,
+[data-md-color-scheme="slate"] .mermaid .node path {
+    stroke-width: 1.5px;
+}
+
+/* ダークモードで Mermaid ラベル文字を濃い色に統一 */
+[data-md-color-scheme="slate"] .mermaid .nodeLabel,
+[data-md-color-scheme="slate"] .mermaid .nodeLabel p,
+[data-md-color-scheme="slate"] .mermaid .nodeLabel span,
+[data-md-color-scheme="slate"] .mermaid .edgeLabel,
+[data-md-color-scheme="slate"] .mermaid .edgeLabel p,
+[data-md-color-scheme="slate"] .mermaid .label {
+    color: #1a1a1a !important;
+    fill: #1a1a1a !important;
+}
+
+/* edgeLabel の背景（矢印ラベル下地）もダーク対応 */
+[data-md-color-scheme="slate"] .mermaid .edgeLabel rect,
+[data-md-color-scheme="slate"] .mermaid .edgeLabel .labelBkg {
+    fill: #eceff1 !important;
+    background-color: #eceff1 !important;
+    opacity: 0.95 !important;
+}
+
+/* Mermaid の矢印線 */
+[data-md-color-scheme="slate"] .mermaid .flowchart-link,
+[data-md-color-scheme="slate"] .mermaid path.path,
+[data-md-color-scheme="slate"] .mermaid .edgePath .path {
+    stroke: #b0bec5 !important;
+}
+
+[data-md-color-scheme="slate"] .mermaid marker path,
+[data-md-color-scheme="slate"] .mermaid .arrowheadPath {
+    fill: #b0bec5 !important;
+    stroke: #b0bec5 !important;
+}
+
+/* =====================================================
+ * ダークモードでのその他の読みやすさ改善
+ * ===================================================== */
+
+/* インラインコード（`code`）のコントラスト向上 */
+[data-md-color-scheme="slate"] code {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: #ffcc80;
+}
+
+/* ==highlight== のダークモード対応 */
+[data-md-color-scheme="slate"] mark {
+    background-color: #ffe082;
+    color: #1a1a1a;
+    padding: 0 0.2em;
+    border-radius: 3px;
+}
+
+/* テーブル行の縞模様（ダークモードでも読みやすく） */
+[data-md-color-scheme="slate"] .md-typeset table:not([class]) tbody tr:nth-child(odd) {
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+[data-md-color-scheme="slate"] .md-typeset table:not([class]) th {
+    background-color: rgba(255, 255, 255, 0.06);
+    color: #eceff1;
+}
+
+/* 引用ブロック (blockquote) のダークモード */
+[data-md-color-scheme="slate"] .md-typeset blockquote {
+    color: #cfd8dc;
+    border-left-color: #546e7a;
+}
+
+/* Admonition タイトルバーの文字色を明るく */
+[data-md-color-scheme="slate"] .md-typeset .admonition-title,
+[data-md-color-scheme="slate"] .md-typeset summary {
+    color: #eceff1;
+}
+
+/* Admonition ボックスの背景を若干明るく */
+[data-md-color-scheme="slate"] .md-typeset .admonition,
+[data-md-color-scheme="slate"] .md-typeset details {
+    background-color: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* タブ (pymdownx.tabbed) のダークモード */
+[data-md-color-scheme="slate"] .md-typeset .tabbed-set > input:checked + label {
+    color: #ff9800;
+    border-color: #ff9800;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .tabbed-labels > label {
+    color: #b0bec5;
+}
+
+/* リンクの下線強化（ダークモードでも見やすく） */
+[data-md-color-scheme="slate"] .md-typeset a {
+    color: #80cbc4;
+}
+
+[data-md-color-scheme="slate"] .md-typeset a:hover {
+    color: #ffcc80;
+}
+
+/* チェックリストのチェックマークもダーク対応 */
+[data-md-color-scheme="slate"] .md-typeset [type="checkbox"] + label::before {
+    border-color: #78909c;
+}
+
+/* 見出しの下線（h2）のコントラスト */
+[data-md-color-scheme="slate"] .md-typeset h2 {
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+/* コードブロック全体のフォント明るさ */
+[data-md-color-scheme="slate"] .highlight .cp,
+[data-md-color-scheme="slate"] .highlight .c1,
+[data-md-color-scheme="slate"] .highlight .cm,
+[data-md-color-scheme="slate"] .highlight .c {
+    color: #90a4ae !important;
+}
+
+/* キーボードショートカット */
+[data-md-color-scheme="slate"] .md-typeset kbd {
+    background-color: #37474f;
+    color: #eceff1;
+    border-color: #546e7a;
+    box-shadow: 0 1px 0 #263238;
+}
+
+/* =====================================================
+ * 画像クリックで拡大（画像を含むリンクのみに限定）
+ * 周囲のレイアウトに影響しない absolute オーバーレイ表示。
+ * ===================================================== */
+
+.md-content a:has(> img) {
+    position: relative;
+    display: inline-block;
+}
+
+.md-content a img {
+    cursor: zoom-in;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.md-content a img:hover {
+    transform: scale(1.01);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.22);
+}
+
+.md-content a:has(> img):hover::after {
+    content: "🔍 クリックで拡大";
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    background: rgba(94, 53, 177, 0.92);
+    color: #ffffff;
+    font-size: 0.8em;
+    font-weight: 600;
+    pointer-events: none;
+    letter-spacing: 0.02em;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+[data-md-color-scheme="slate"] .md-content a:has(> img):hover::after {
+    background: rgba(179, 136, 255, 0.92);
+    color: #1a1a1a;
+}
+
+/* =====================================================
+ * サイドバー: セクション見出しとクリック可能リンクを区別
+ * ===================================================== */
+
+.md-nav__title {
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+/* セクション見出し（nav.sections の非リンク見出し）のみスタイル。
+ * label.md-nav__link はモバイル展開用で Material がデフォルトで hide している
+ * ため触らない（触るとデスクトップで「02. パーサー」が 2 重表示になる）。 */
+.md-nav__item--section > .md-nav__link {
+    cursor: default;
+    font-weight: 700;
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+    margin-top: 0.9em;
+    margin-bottom: 0.2em;
+    padding-top: 0.35em;
+    padding-bottom: 0.35em;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    color: #5e35b1;
+    opacity: 1;
+}
+
+[data-md-color-scheme="slate"] .md-nav__item--section > .md-nav__link {
+    color: #ce93d8;
+    border-top-color: rgba(255, 255, 255, 0.12);
+}
+
+.md-nav__item--section > .md-nav__link:hover,
+.md-nav__item--section > .md-nav__link:focus {
+    color: #5e35b1;
+    background: transparent;
+}
+[data-md-color-scheme="slate"] .md-nav__item--section > .md-nav__link:hover,
+[data-md-color-scheme="slate"] .md-nav__item--section > .md-nav__link:focus {
+    color: #ce93d8;
+}
+
+/* クリック可能ページリンクは a 要素のみ。label は触らない。 */
+.md-nav__item:not(.md-nav__item--section) > a.md-nav__link {
+    display: block;
+    padding: 0.35em 0.6em;
+    margin: 0.1em 0;
+    border-left: 3px solid transparent;
+    border-radius: 0 4px 4px 0;
+    color: #2c3e50;
+    transition: background-color 0.15s ease,
+                border-left-color 0.15s ease,
+                color 0.15s ease,
+                padding-left 0.15s ease;
+}
+
+[data-md-color-scheme="slate"] .md-nav__item:not(.md-nav__item--section) > a.md-nav__link {
+    color: #cfd8dc;
+}
+
+.md-nav__item:not(.md-nav__item--section) > a.md-nav__link:hover {
+    background-color: rgba(94, 53, 177, 0.10);
+    border-left-color: #5e35b1;
+    color: #311b92;
+    padding-left: 0.9em;
+}
+[data-md-color-scheme="slate"] .md-nav__item:not(.md-nav__item--section) > a.md-nav__link:hover {
+    background-color: rgba(206, 147, 216, 0.14);
+    border-left-color: #ce93d8;
+    color: #ffffff;
+}
+
+.md-nav__item:not(.md-nav__item--section) > a.md-nav__link--active {
+    background-color: rgba(94, 53, 177, 0.16);
+    border-left-color: #5e35b1;
+    color: #311b92 !important;
+    font-weight: 600;
+}
+[data-md-color-scheme="slate"] .md-nav__item:not(.md-nav__item--section) > a.md-nav__link--active {
+    background-color: rgba(206, 147, 216, 0.20);
+    border-left-color: #ce93d8;
+    color: #ffffff !important;
+}
+
+/* label.md-nav__link (モバイル展開トグル) は Material の default に委ねる */
+label.md-nav__link {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+}
+
+a.md-nav__link:focus-visible {
+    outline: 2px solid #5e35b1;
+    outline-offset: 1px;
+}
+[data-md-color-scheme="slate"] a.md-nav__link:focus-visible {
+    outline-color: #ce93d8;
+}
+
+/* =====================================================
+ * HTML カードコンポーネント（Markdown 内に埋め込める視覚化部品）
+ *
+ * 使い方:
+ *   <div class="step-flow">
+ *     <div class="step"><span class="step-num">1</span>...</div>
+ *     ...
+ *   </div>
+ *
+ *   <div class="concept-card">
+ *     <div class="concept-title">💡 タイトル</div>
+ *     本文...
+ *   </div>
+ * ===================================================== */
+
+/* ステップフロー（番号付きの横並びカード） */
+.step-flow {
+    display: flex;
+    gap: 10px;
+    margin: 1.5em 0;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: center;
+}
+
+.step-flow .step {
+    flex: 1 1 180px;
+    min-width: 180px;
+    padding: 1em;
+    background: linear-gradient(135deg, #EDE7F6, #D1C4E9);
+    border: 2px solid #9575cd;
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+    font-size: 0.95em;
+    color: #1a1a1a;
+}
+
+.step-flow .step .step-num {
+    display: inline-block;
+    width: 2em;
+    height: 2em;
+    line-height: 2em;
+    background: #5e35b1;
+    color: #fff;
+    border-radius: 50%;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+}
+
+[data-md-color-scheme="slate"] .step-flow .step {
+    background: linear-gradient(135deg, #4527a0, #5e35b1);
+    color: #eceff1;
+    border-color: #b39ddb;
+}
+
+[data-md-color-scheme="slate"] .step-flow .step .step-num {
+    background: #b39ddb;
+    color: #311b92;
+}
+
+/* コンセプトカード（まとめボックス） */
+.concept-card {
+    margin: 1.5em 0;
+    padding: 1.2em 1.4em;
+    background: linear-gradient(135deg, #F3E5F5, #E1BEE7);
+    border: 2px solid #ba68c8;
+    border-left-width: 6px;
+    border-radius: 8px;
+    color: #1a1a1a;
+}
+
+.concept-card .concept-title {
+    font-weight: 700;
+    font-size: 1.05em;
+    margin-bottom: 0.6em;
+    color: #4a148c;
+}
+
+.concept-card.concept-warning {
+    background: linear-gradient(135deg, #FFF3E0, #FFCCBC);
+    border-color: #ff7043;
+}
+
+.concept-card.concept-warning .concept-title {
+    color: #bf360c;
+}
+
+[data-md-color-scheme="slate"] .concept-card {
+    background: linear-gradient(135deg, #311b92, #4527a0);
+    color: #eceff1;
+    border-color: #b39ddb;
+}
+
+[data-md-color-scheme="slate"] .concept-card .concept-title {
+    color: #ffffff;
+}
+
+[data-md-color-scheme="slate"] .concept-card.concept-warning {
+    background: linear-gradient(135deg, #4e342e, #5d4037);
+    border-color: #ff8a65;
+}
+
+[data-md-color-scheme="slate"] .concept-card.concept-warning .concept-title {
+    color: #ffab91;
+}
+
+/* =====================================================
+ * マイメモ機能 (user-notes.js)
+ * 右下 FAB + 右からスライドする drawer で、ページごとのメモを localStorage 保存
+ * カラーは JS 側から --un-primary / --un-primary-dark を注入
+ * ===================================================== */
+
+#un-fab {
+    position: fixed;
+    right: 1.2rem;
+    bottom: 1.2rem;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: none;
+    background: var(--un-primary, #5e35b1);
+    color: #fff;
+    font-size: 22px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    z-index: 100;
+    transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+#un-fab:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+    background: var(--un-primary-dark, #4527a0);
+}
+#un-fab:focus {
+    outline: 3px solid rgba(255, 255, 255, 0.6);
+    outline-offset: 2px;
+}
+.un-fab-icon {
+    font-size: 24px;
+    line-height: 1;
+}
+.un-fab-dot {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #4caf50;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+#un-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    z-index: 199;
+    opacity: 0;
+    transition: opacity 0.24s ease-out;
+}
+#un-backdrop.un-open {
+    opacity: 1;
+}
+
+#un-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 420px;
+    max-width: 100vw;
+    height: 100vh;
+    background: var(--md-default-bg-color, #fff);
+    color: var(--md-default-fg-color, #111);
+    box-shadow: -4px 0 14px rgba(0, 0, 0, 0.2);
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform 0.24s ease-out;
+    font-size: 0.9rem;
+}
+#un-drawer.un-open {
+    transform: translateX(0);
+}
+
+.un-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 1rem 1rem 0.8rem;
+    border-bottom: 1px solid var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.1));
+    gap: 0.6rem;
+}
+.un-head-title {
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-start;
+    min-width: 0;
+    flex: 1;
+}
+.un-head-icon {
+    font-size: 1.6rem;
+    line-height: 1;
+    flex-shrink: 0;
+}
+.un-head-text {
+    min-width: 0;
+    flex: 1;
+}
+.un-head-label {
+    font-size: 0.72rem;
+    opacity: 0.6;
+    line-height: 1.2;
+}
+.un-head-page {
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.3;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+}
+#un-close {
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: 1.2rem;
+    cursor: pointer;
+    opacity: 0.65;
+    padding: 0.2rem 0.5rem;
+    flex-shrink: 0;
+    line-height: 1;
+}
+#un-close:hover {
+    opacity: 1;
+}
+
+.un-hint {
+    padding: 0.6rem 1rem;
+    font-size: 0.74rem;
+    line-height: 1.6;
+    opacity: 0.8;
+    background: var(--md-code-bg-color, #f5f5f5);
+    border-bottom: 1px solid var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.08));
+}
+[data-md-color-scheme="slate"] .un-hint {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+#un-text {
+    flex: 1;
+    width: 100%;
+    min-height: 0;
+    padding: 0.9rem 1rem;
+    border: none;
+    outline: none;
+    resize: none;
+    font-family: inherit;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: inherit;
+    background: transparent;
+    tab-size: 2;
+}
+#un-text::placeholder {
+    opacity: 0.4;
+}
+
+.un-foot {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.4rem;
+    padding: 0.7rem;
+    border-top: 1px solid var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.1));
+    background: var(--md-default-bg-color, #fff);
+}
+.un-foot button {
+    padding: 0.5rem 0.6rem;
+    background: transparent;
+    color: inherit;
+    border: 1px solid var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.15));
+    border-radius: 4px;
+    font-size: 0.78rem;
+    cursor: pointer;
+    transition: background 0.12s, border-color 0.12s;
+}
+.un-foot button:hover {
+    background: var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.06));
+    border-color: var(--md-default-fg-color--lighter, rgba(0, 0, 0, 0.3));
+}
+.un-foot .un-feedback {
+    grid-column: 1 / -1;
+    background: var(--un-primary, #5e35b1);
+    color: #fff;
+    border-color: var(--un-primary, #5e35b1);
+    font-weight: 600;
+}
+.un-foot .un-feedback:hover {
+    background: var(--un-primary-dark, #4527a0);
+    border-color: var(--un-primary-dark, #4527a0);
+}
+
+[data-md-color-scheme="slate"] .un-foot button {
+    background: rgba(255, 255, 255, 0.04);
+}
+[data-md-color-scheme="slate"] .un-foot button:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 480px) {
+    #un-drawer {
+        width: 100vw;
+    }
+    #un-fab {
+        right: 0.9rem;
+        bottom: 0.9rem;
+    }
+}
+
+/* 印刷時は表示しない */
+@media print {
+    #un-fab,
+    #un-drawer,
+    #un-backdrop {
+        display: none !important;
+    }
+}
